@@ -8,7 +8,7 @@ const HeroSection = () => {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="bg-white py-10 md:py-20 px-4 md:px-12 lg:px-20">
+    <section className="bg-white pt-4 pb-12 md:py-20 px-4 md:px-12 lg:px-20">
       {/* Conteneur principal */}
       <div className="relative overflow-hidden bg-[#3650D0] rounded-3xl p-6 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center text-white">
 
@@ -66,7 +66,7 @@ const HeroSection = () => {
           transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
         >
           <h1
-            className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight bg-gradient-to-r from-white via-[#BFDFFF] to-[#66B2FF] bg-[length:200%_auto] text-transparent bg-clip-text animate-gradient"
+            className="font-display font-extrabold text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight bg-gradient-to-r from-white via-[#BFDFFF] to-[#66B2FF] bg-[length:200%_auto] text-transparent bg-clip-text animate-gradient"
           >
             Votre ville, votre chauffeur.
           </h1>
