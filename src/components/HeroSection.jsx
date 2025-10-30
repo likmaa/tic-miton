@@ -8,12 +8,12 @@ const HeroSection = () => {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="bg-white py-20 px-6 md:px-12 lg:px-20">
+    <section className="bg-white py-10 md:py-20 px-4 md:px-12 lg:px-20">
       {/* Conteneur principal */}
-      <div className="relative overflow-hidden bg-[#3650D0] rounded-3xl p-10 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center text-white">
+      <div className="relative overflow-hidden bg-[#3650D0] rounded-3xl p-6 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center text-white">
 
         {/* Subtle orange radial accents to match CTA chauffeur */}
-        <div aria-hidden="true" className="absolute inset-0 pointer-events-none z-0">
+        <div aria-hidden="true" className="hidden md:block absolute inset-0 pointer-events-none z-0">
           <div className="absolute -top-14 -left-14 w-72 h-72 bg-[#FF7B00]/20 rounded-full blur-3xl" />
           <div className="absolute -bottom-24 -right-20 w-96 h-96 bg-[#FF7B00]/10 rounded-full blur-3xl" />
         </div>
@@ -66,24 +66,24 @@ const HeroSection = () => {
           transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
         >
           <h1
-            className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight bg-gradient-to-r from-white via-[#BFDFFF] to-[#66B2FF] bg-[length:200%_auto] text-transparent bg-clip-text animate-gradient"
+            className="font-display font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight bg-gradient-to-r from-white via-[#BFDFFF] to-[#66B2FF] bg-[length:200%_auto] text-transparent bg-clip-text animate-gradient"
           >
             Votre ville, votre chauffeur.
           </h1>
           
-          <p className="font-sans text-white/90 text-lg max-w-md mx-auto md:mx-0">
+          <p className="font-sans text-white/90 text-base sm:text-lg max-w-md mx-auto md:mx-0">
             TIC Miton est votre solution simple et sûre pour tous vos trajets.
             Commandez un déplacement, demandez une course ou faites-vous livrer
             en quelques clics.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start pt-3 sm:pt-4">
             {/* CTA Button */}
             <motion.a
               href={PLACEHOLDER_LINKS.downloadUrl}
               whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
               whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
-              className="bg-[#FF7B00] text-white px-8 py-4 rounded-md font-sans font-semibold flex items-center justify-center gap-2 shadow-lg hover:bg-[#e66f00] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30 transition"
+              className="bg-[#FF7B00] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-md font-sans font-semibold text-base sm:text-lg flex items-center justify-center gap-2 shadow-lg hover:bg-[#e66f00] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30 transition"
               aria-label="Télécharger l'application TIC Miton"
             >
               Télécharger l'application
@@ -98,7 +98,7 @@ const HeroSection = () => {
                 className="inline-block rounded-md focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-white/40"
                 rel="noopener noreferrer"
               >
-                <span className="inline-flex items-center gap-2 md:gap-2.5 rounded-md bg-gray-900 text-white px-3.5 py-2 md:px-4 md:py-2.5 border border-white/10 shadow">
+                <span className="inline-flex items-center gap-2 md:gap-2.5 rounded-md bg-gray-900 text-white px-3 py-1.5 md:px-4 md:py-2.5 border border-white/10 shadow">
                   <Play className="w-4 h-4 md:w-5 md:h-5" aria-hidden="true" />
                   <span className="font-sans text-sm md:text-base font-medium">Play Store</span>
                 </span>
@@ -109,7 +109,7 @@ const HeroSection = () => {
                 className="inline-block rounded-md focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-white/40"
                 rel="noopener noreferrer"
               >
-                <span className="inline-flex items-center gap-2 md:gap-2.5 rounded-md bg-gray-900 text-white px-3.5 py-2 md:px-4 md:py-2.5 border border-white/10 shadow">
+                <span className="inline-flex items-center gap-2 md:gap-2.5 rounded-md bg-gray-900 text-white px-3 py-1.5 md:px-4 md:py-2.5 border border-white/10 shadow">
                   <Apple className="w-4 h-4 md:w-5 md:h-5" aria-hidden="true" />
                   <span className="font-sans text-sm md:text-base font-medium">App Store</span>
                 </span>
