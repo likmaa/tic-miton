@@ -114,7 +114,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
     }
     // If no API endpoint is configured (e.g., GitHub Pages), fall back to a mailto to support
     if (!apiEndpoint) {
-      const to = LINKS.supportEmail || "support@ticmition.com";
+      const to = LINKS.supportEmail || "support@ticmiton.com";
       const subject = `Nouvelle candidature chauffeur — ${form.fullName} — ${form.city}`;
       const body = [
         `Nom complet: ${form.fullName}`,

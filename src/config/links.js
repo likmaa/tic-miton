@@ -8,7 +8,7 @@ const APP_STORE_URL = import.meta?.env?.VITE_APP_STORE_URL ?? "https://apps.appl
 const DOWNLOAD_URL = import.meta?.env?.VITE_DOWNLOAD_URL ?? `${BASE}/download`;
 const LIVE_URL = import.meta?.env?.VITE_LIVE_URL ?? "https://likmaa.github.io/tic-miton/";
 const WHATSAPP_URL = import.meta?.env?.VITE_WHATSAPP_URL ?? "https://wa.me/2290157792662";
-const SUPPORT_EMAIL = import.meta?.env?.VITE_SUPPORT_EMAIL ?? "support@ticmition.com";
+const SUPPORT_EMAIL = import.meta?.env?.VITE_SUPPORT_EMAIL ?? "support@ticmiton.com";
 
 const PLACEHOLDER_LINKS = {
   // Primary download landing (page interne)
