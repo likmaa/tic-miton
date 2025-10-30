@@ -2,7 +2,7 @@
 import React from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import aboutImage from "../assets/features/Image B10.jpg";
+import aboutImage from "../assets/features/Image B10.jpg?w=480;768;1200;1600&format=webp;avif;jpg&as=picture";
 
 
 const LONG_TEXT = `
@@ -106,12 +106,45 @@ export default function AboutHistorySection({ className = "" }) {
 
           {/* Colonne droite : image */}
           <div className="w-full">
-            <img
-              src={aboutImage}
-              alt="Illustration de l'histoire de TIC Miton"
-              className="w-full h-56 md:h-[22rem] object-cover rounded-2xl border border-gray-100 shadow-sm"
-              loading="lazy"
-            />
+            {(() => {
+              const hasPictureShape = aboutImage && typeof aboutImage === 'object' && ("sources" in aboutImage || "img" in aboutImage);
+              if (hasPictureShape) {
+                const rawSources = aboutImage.sources;
+                const sources = Array.isArray(rawSources)
+                  ? rawSources
+                  : rawSources
+                    ? Object.values(rawSources)
+                    : [];
+                const img = aboutImage.img || {};
+                return (
+                  <picture>
+                    {sources.map((source, idx) => (
+                      <source key={idx} type={source.type} srcSet={source.srcset} sizes="(min-width: 768px) 50vw, 100vw" />
+                    ))}
+                    <img
+                      src={img.src || (typeof aboutImage === 'string' ? aboutImage : '')}
+                      alt="Illustration de l'histoire de TIC Miton"
+                      className="w-full h-56 md:h-[22rem] object-cover rounded-2xl border border-gray-100 shadow-sm"
+                      loading="lazy"
+                      decoding="async"
+                      width={img.w || 1600}
+                      height={img.h || 900}
+                    />
+                  </picture>
+                );
+              }
+              return (
+                <img
+                  src={typeof aboutImage === 'string' ? aboutImage : ''}
+                  alt="Illustration de l'histoire de TIC Miton"
+                  className="w-full h-56 md:h-[22rem] object-cover rounded-2xl border border-gray-100 shadow-sm"
+                  loading="lazy"
+                  decoding="async"
+                  width="1600"
+                  height="900"
+                />
+              );
+            })()}
           </div>
         </div>
       </div>

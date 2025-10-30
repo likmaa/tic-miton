@@ -1,7 +1,7 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
-import aboutHeroImg from "../assets/3d-smartphone-mock-up.png";
+import aboutHeroImg from "../assets/3d-smartphone-mock-up.png?w=640;960;1440;1920&format=webp;avif;jpg&as=picture";
 import LINKS from "../config/links";
 
 const AboutHero = ({
@@ -27,16 +27,49 @@ const AboutHero = ({
         aria-labelledby="about-hero-title"
       >
         {/* Image en haut, plein largeur, comme la section Download */}
-        <img
-          src={image}
-          alt="Illustration TIC Miton / Aperçu de l'application"
-          className="w-full h-72 sm:h-80 md:h-96 lg:h-[28rem] object-cover block rounded-t-3xl"
-          loading="lazy"
-          decoding="async"
-          width="1600"
-          height="900"
-          style={{ objectPosition: imagePosition }}
-        />
+        {(() => {
+          const hasPictureShape = image && typeof image === 'object' && ("sources" in image || "img" in image);
+          if (hasPictureShape) {
+            const rawSources = image.sources;
+            const sources = Array.isArray(rawSources)
+              ? rawSources
+              : rawSources
+                ? Object.values(rawSources)
+                : [];
+            const img = image.img || {};
+            return (
+              <picture>
+                {sources.map((source, idx) => (
+                  <source key={idx} type={source.type} srcSet={source.srcset} sizes="100vw" />
+                ))}
+                <img
+                  src={img.src || (typeof image === 'string' ? image : '')}
+                  alt="Illustration TIC Miton / Aperçu de l'application"
+                  className="w-full h-72 sm:h-80 md:h-96 lg:h-[28rem] object-cover block rounded-t-3xl"
+                  loading="eager"
+                  fetchpriority="high"
+                  decoding="async"
+                  width={img.w || 1600}
+                  height={img.h || 900}
+                  style={{ objectPosition: imagePosition }}
+                />
+              </picture>
+            );
+          }
+          return (
+            <img
+              src={typeof image === 'string' ? image : ''}
+              alt="Illustration TIC Miton / Aperçu de l'application"
+              className="w-full h-72 sm:h-80 md:h-96 lg:h-[28rem] object-cover block rounded-t-3xl"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              width="1600"
+              height="900"
+              style={{ objectPosition: imagePosition }}
+            />
+          );
+        })()}
 
         {/* Contenu sous l'image, aligné comme DownloadCTABand */}
         <div className="p-6 md:p-8 flex flex-col md:flex-row items-center md:justify-between gap-6 md:gap-8">

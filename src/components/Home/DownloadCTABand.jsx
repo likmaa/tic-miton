@@ -2,7 +2,6 @@ import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Apple, Play } from "lucide-react";
 import PLACEHOLDER_LINKS from "../config/links";
-import phoneMockup from "../assets/3d-smartphone-mock-up.png";
 // Image bannière responsive (par défaut), remplaçable via prop
 import downPic from "../assets/features/Down.jpeg?w=864;1200;1600;2000&format=webp;avif;jpg&as=picture";
 
@@ -55,7 +54,7 @@ const DownloadCTABand = ({
                   <source key={idx} type={source.type} srcSet={source.srcset} sizes="100vw" />
                 ))}
                 <img
-                  src={img.src || phoneMockup}
+                  src={img.src}
                   alt="Illustration de l'application TIC Miton"
                   className="w-full h-72 sm:h-80 md:h-96 lg:h-[28rem] object-cover object-top block rounded-t-3xl"
                   loading="lazy"
@@ -68,7 +67,7 @@ const DownloadCTABand = ({
           }
           return (
             <img
-              src={backgroundImage || phoneMockup}
+              src={backgroundImage}
               alt="Illustration de l'application TIC Miton"
               className="w-full h-72 sm:h-80 md:h-96 lg:h-[28rem] object-cover object-top block rounded-t-3xl"
               loading="lazy"

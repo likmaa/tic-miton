@@ -7,7 +7,7 @@ import AboutHistorySection from '../components/AboutHistorySection';
 import AboutTeamSection from '../components/AboutTeamSection';
 import DownloadQRSection from '../components/DownloadQRSection';
 import LINKS from '../config/links';
-import aboutImage from '../assets/features/Image B10.jpg';
+import aboutImage from '../assets/features/Image B10.jpg?w=640;960;1440;1920&format=webp;avif;jpg&as=picture';
 import { Link } from 'react-router-dom';
 
 export default function About() {

@@ -1,5 +1,5 @@
 import React from "react";
-import phoneMockup from "../assets/3d-smartphone-mock-up.png";
+import phoneMockup from "../assets/3d-smartphone-mock-up.png?w=640;960;1440;1920&format=webp;avif;jpg&as=picture";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Apple, Play } from "lucide-react";
 import PLACEHOLDER_LINKS from "../config/links";
@@ -44,17 +44,55 @@ const HeroSection = () => {
             {/* Phone image — mobile (hidden per request) */}
             <span className="hidden" />
             {/* Phone image — desktop */}
-            <motion.img
-              src={phoneMockup}
-              alt="Mockup téléphone TIC Miton"
-              className={
-                "hidden md:block md:w-[34rem] lg:w-[40rem] xl:w-[44rem] " +
-                "relative md:absolute md:left-1/2 md:top-1/2 md:-translate-x-[55%] md:-translate-y-[58%] drop-shadow-[0_25px_45px_rgba(0,0,0,0.35)]"
+            {(() => {
+              const hasPictureShape = phoneMockup && typeof phoneMockup === 'object' && ("sources" in phoneMockup || "img" in phoneMockup);
+              if (hasPictureShape) {
+                const rawSources = phoneMockup.sources;
+                const sources = Array.isArray(rawSources)
+                  ? rawSources
+                  : rawSources
+                    ? Object.values(rawSources)
+                    : [];
+                const img = phoneMockup.img || {};
+                return (
+                  <picture>
+                    {sources.map((source, idx) => (
+                      <source key={idx} type={source.type} srcSet={source.srcset} sizes="(min-width: 1024px) 60vw, 100vw" />
+                    ))}
+                    <motion.img
+                      src={img.src}
+                      alt="Mockup téléphone TIC Miton"
+                      className={
+                        "hidden md:block md:w-[34rem] lg:w-[40rem] xl:w-[44rem] " +
+                        "relative md:absolute md:left-1/2 md:top-1/2 md:-translate-x-[55%] md:-translate-y-[58%] drop-shadow-[0_25px_45px_rgba(0,0,0,0.35)]"
+                      }
+                      loading="lazy"
+                      decoding="async"
+                      width={img.w || undefined}
+                      height={img.h || undefined}
+                      animate={shouldReduceMotion ? undefined : { y: [0, -12, 0] }}
+                      transition={shouldReduceMotion ? undefined : { duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                      style={{ pointerEvents: "none" }}
+                    />
+                  </picture>
+                );
               }
-              animate={shouldReduceMotion ? undefined : { y: [0, -12, 0] }}
-              transition={shouldReduceMotion ? undefined : { duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              style={{ pointerEvents: "none" }}
-            />
+              return (
+                <motion.img
+                  src={typeof phoneMockup === 'string' ? phoneMockup : ''}
+                  alt="Mockup téléphone TIC Miton"
+                  className={
+                    "hidden md:block md:w-[34rem] lg:w-[40rem] xl:w-[44rem] " +
+                    "relative md:absolute md:left-1/2 md:top-1/2 md:-translate-x-[55%] md:-translate-y-[58%] drop-shadow-[0_25px_45px_rgba(0,0,0,0.35)]"
+                  }
+                  loading="lazy"
+                  decoding="async"
+                  animate={shouldReduceMotion ? undefined : { y: [0, -12, 0] }}
+                  transition={shouldReduceMotion ? undefined : { duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                  style={{ pointerEvents: "none" }}
+                />
+              );
+            })()}
           </div>
         </motion.div>
 

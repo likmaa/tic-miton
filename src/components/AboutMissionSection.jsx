@@ -1,9 +1,9 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Globe, Users, Sparkles } from "lucide-react";
-import missionImage from "../assets/features/Mission.png";
-import visionImage from "../assets/features/vision.png";
-import valeursImage from "../assets/features/valeurs.png";
+import missionImage from "../assets/features/Mission.png?w=480;768;1200;1600&format=webp;avif;jpg&as=picture";
+import visionImage from "../assets/features/vision.png?w=480;768;1200;1600&format=webp;avif;jpg&as=picture";
+import valeursImage from "../assets/features/valeurs.png?w=480;768;1200;1600&format=webp;avif;jpg&as=picture";
 
 
 
@@ -67,13 +67,47 @@ const FeatureCard = ({ item, reducedMotion }) => {
     >
       {/* top image */}
       <div className="w-full h-40 md:h-44 overflow-hidden">
-        <img
-          src={item.image}
-          alt={`${item.title} illustration`}
-          className="w-full h-full object-cover"
-          loading="lazy"
-          style={{ objectPosition: item.objectPosition || "center center" }}
-        />
+        {(() => {
+          const hasPictureShape = item.image && typeof item.image === 'object' && ("sources" in item.image || "img" in item.image);
+          if (hasPictureShape) {
+            const rawSources = item.image.sources;
+            const sources = Array.isArray(rawSources)
+              ? rawSources
+              : rawSources
+                ? Object.values(rawSources)
+                : [];
+            const img = item.image.img || {};
+            return (
+              <picture>
+                {sources.map((source, idx) => (
+                  <source key={idx} type={source.type} srcSet={source.srcset} sizes="(min-width: 1024px) 33vw, 100vw" />
+                ))}
+                <img
+                  src={img.src || (typeof item.image === 'string' ? item.image : '')}
+                  alt={`${item.title} illustration`}
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  width={img.w || 1200}
+                  height={img.h || 600}
+                  style={{ objectPosition: item.objectPosition || "center center" }}
+                />
+              </picture>
+            );
+          }
+          return (
+            <img
+              src={typeof item.image === 'string' ? item.image : ''}
+              alt={`${item.title} illustration`}
+              className="w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+              width="1200"
+              height="600"
+              style={{ objectPosition: item.objectPosition || "center center" }}
+            />
+          );
+        })()}
       </div>
 
       {/* content */}
