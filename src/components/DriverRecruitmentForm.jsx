@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import LINKS from "../config/links";
 
 
 
@@ -46,7 +47,7 @@ const FilePreview = ({ file, onRemove }) => {
   );
 };
 
-const DriverRecruitmentForm = ({ apiEndpoint = "/api/drivers/apply", onSuccess, className = "" }) => {
+const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }) => {
   
   const [form, setForm] = useState(initialState);
   const [idFile, setIdFile] = useState(null);
@@ -111,8 +112,35 @@ const DriverRecruitmentForm = ({ apiEndpoint = "/api/drivers/apply", onSuccess, 
       window.scrollTo && window.scrollTo({ top: 200, behavior: "smooth" });
       return;
     }
+    // If no API endpoint is configured (e.g., GitHub Pages), fall back to a mailto to support
+    if (!apiEndpoint) {
+      const to = LINKS.supportEmail || "support@ticmition.com";
+      const subject = `Nouvelle candidature chauffeur — ${form.fullName} — ${form.city}`;
+      const body = [
+        `Nom complet: ${form.fullName}`,
+        `Email: ${form.email}`,
+        `Téléphone: ${form.phone}`,
+        `Ville: ${form.city}`,
+        `Numéro de permis: ${form.licenseNumber}`,
+        `Immatriculation: ${form.plateNumber}`,
+        `Note: ${form.note || "(aucune)"}`,
+        "",
+        "Pièces jointes: (non jointes via mailto). Le candidat a sélectionné des fichiers dans le formulaire.",
+      ].join("\n");
 
-    // Build FormData
+      const mailtoUrl = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      // Give UX feedback then trigger mail client
+      setStatus({ state: "success", message: "Ouverture de votre client e‑mail… Vous pouvez envoyer la candidature." });
+      setTimeout(() => {
+        window.location.href = mailtoUrl;
+      }, 200);
+
+      // We keep the form values so the user can try à nouveau si besoin
+      return;
+    }
+
+    // Otherwise, send to API endpoint with files (requires backend)
     const data = new FormData();
     data.append("fullName", form.fullName);
     data.append("email", form.email);
@@ -124,55 +152,30 @@ const DriverRecruitmentForm = ({ apiEndpoint = "/api/drivers/apply", onSuccess, 
     data.append("consent", form.consent ? "1" : "0");
     if (idFile) data.append("idFile", idFile, idFile.name);
     if (licenseFile) data.append("licenseFile", licenseFile, licenseFile.name);
-    
 
-    // Use XHR to provide upload progress
     const xhr = new XMLHttpRequest();
     xhrRef.current = xhr;
-
     xhr.open("POST", apiEndpoint, true);
     xhr.setRequestHeader("Accept", "application/json");
-
     xhr.upload.onprogress = (ev) => {
-      if (ev.lengthComputable) {
-        const pct = Math.round((ev.loaded / ev.total) * 100);
-        setProgress(pct);
-      }
+      if (ev.lengthComputable) setProgress(Math.round((ev.loaded / ev.total) * 100));
     };
-
-    xhr.onloadstart = () => {
-      setStatus({ state: "uploading", message: "Envoi en cours..." });
-      setProgress(0);
-    };
-
-    xhr.onerror = () => {
-      setStatus({ state: "error", message: "Erreur réseau. Réessayez." });
-    };
-
+    xhr.onloadstart = () => { setStatus({ state: "uploading", message: "Envoi en cours..." }); setProgress(0); };
+    xhr.onerror = () => { setStatus({ state: "error", message: "Erreur réseau. Réessayez." }); };
     xhr.onload = () => {
       if (xhr.status >= 200 && xhr.status < 300) {
         let resp = {};
-        try {
-          resp = JSON.parse(xhr.responseText || "{}");
-        } catch {
-          resp = { ok: true, message: "Candidature reçue." };
-        }
+        try { resp = JSON.parse(xhr.responseText || "{}"); } catch { resp = { ok: true, message: "Candidature reçue." }; }
         setStatus({ state: "success", message: resp.message || "Candidature envoyée. Nous vous contacterons." });
         setProgress(100);
         onSuccess && onSuccess(resp);
-        // keep form or reset depending on response; here we reset after small timeout
         setTimeout(() => reset(), 1800);
       } else {
         let resp = {};
-        try {
-          resp = JSON.parse(xhr.responseText || "{}");
-        } catch {
-          resp = {};
-        }
+        try { resp = JSON.parse(xhr.responseText || "{}"); } catch { resp = {}; }
         setStatus({ state: "error", message: resp.message || `Erreur serveur (${xhr.status}).` });
       }
     };
-
     xhr.send(data);
   };
 
