@@ -21,7 +21,7 @@ export default function Navbar() {
   return (
     <nav className="w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 fixed top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-24 py-4">
+  <div className="flex justify-between items-center h-16 md:h-24 py-2 md:py-4">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to={PLACEHOLDER_LINKS.home} className="flex items-center gap-3">
@@ -57,15 +57,6 @@ export default function Navbar() {
 
           {/* Mobile menu button and CTA */}
           <div className="flex items-center space-x-4">
-            {/* Lien Live (démo) */}
-            <a
-              href={PLACEHOLDER_LINKS.liveDemoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-sans font-medium rounded-md text-gray-700 hover:bg-gray-50 transition-all"
-            >
-              Voir la démo
-            </a>
             <button
               type="button"
               className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-brand-blue hover:text-brand-blue hover:bg-gray-100/80 transition-all"
@@ -163,15 +154,6 @@ export default function Navbar() {
             >
               Contact
             </Link>
-            <a
-              href={PLACEHOLDER_LINKS.liveDemoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block px-3 py-2 rounded text-base font-sans text-gray-600 hover:text-brand-blue hover:bg-gray-50/80 transition-all"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Voir la démo
-            </a>
           </div>
         </div>
       </div>

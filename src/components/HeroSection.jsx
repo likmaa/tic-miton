@@ -35,21 +35,14 @@ const HeroSection = () => {
               - becomes large absolute ring on md+ to reproduce the immersive halo
           */}
           <div className="relative flex items-center justify-center">
-            {/* Mobile halo (visible on small screens) */}
-            <div className="hidden sm:block md:hidden absolute -inset-2 w-[20rem] h-[20rem] bg-gradient-to-tr from-[#3650D0]/20 to-[#FF7B00]/12 rounded-full blur-2xl" aria-hidden="true" />
+            {/* Mobile halo (hidden as per request to simplify mobile hero) */}
+            <div className="hidden" aria-hidden="true" />
 
             {/* Desktop halo (only on md+) */}
             <div className="hidden md:block md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-[26rem] md:h-[26rem] lg:w-[30rem] lg:h-[30rem] bg-gradient-to-tr from-[#3650D0]/40 to-[#FF7B00]/20 blur-3xl rounded-full" aria-hidden="true" />
 
-            {/* Phone image — mobile */}
-            <motion.img
-              src={phoneMockup}
-              alt="Mockup téléphone TIC Miton"
-              className="block md:hidden w-[16rem] sm:w-[18rem] drop-shadow-[0_18px_36px_rgba(0,0,0,0.28)]"
-              animate={shouldReduceMotion ? undefined : { y: [0, -8, 0] }}
-              transition={shouldReduceMotion ? undefined : { duration: 8, repeat: Infinity, ease: "easeInOut" }}
-              style={{ pointerEvents: "none" }}
-            />
+            {/* Phone image — mobile (hidden per request) */}
+            <span className="hidden" />
             {/* Phone image — desktop */}
             <motion.img
               src={phoneMockup}
