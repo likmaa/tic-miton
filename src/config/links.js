@@ -6,6 +6,7 @@ const APP_URL = import.meta?.env?.VITE_APP_URL ?? `${BASE}/app`;
 const PLAY_STORE_URL = import.meta?.env?.VITE_PLAY_STORE_URL ?? "https://play.google.com/store/apps";
 const APP_STORE_URL = import.meta?.env?.VITE_APP_STORE_URL ?? "https://apps.apple.com/";
 const DOWNLOAD_URL = import.meta?.env?.VITE_DOWNLOAD_URL ?? `${BASE}/download`;
+const LIVE_URL = import.meta?.env?.VITE_LIVE_URL ?? "https://likmaa.github.io/tic-miton/";
 const WHATSAPP_URL = import.meta?.env?.VITE_WHATSAPP_URL ?? "https://wa.me/2290157792662";
 
 const PLACEHOLDER_LINKS = {
@@ -37,6 +38,9 @@ const PLACEHOLDER_LINKS = {
 
   // Contact direct via WhatsApp
   whatsappUrl: WHATSAPP_URL,
+
+  // Lien démo en ligne (GitHub Pages par défaut)
+  liveDemoUrl: LIVE_URL,
 
   // Utile pour assets/marketing
   media: {

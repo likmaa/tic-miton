@@ -57,6 +57,15 @@ export default function Navbar() {
 
           {/* Mobile menu button and CTA */}
           <div className="flex items-center space-x-4">
+            {/* Lien Live (démo) */}
+            <a
+              href={PLACEHOLDER_LINKS.liveDemoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-sans font-medium rounded-md text-gray-700 hover:bg-gray-50 transition-all"
+            >
+              Voir la démo
+            </a>
             <button
               type="button"
               className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-brand-blue hover:text-brand-blue hover:bg-gray-100/80 transition-all"
@@ -154,6 +163,15 @@ export default function Navbar() {
             >
               Contact
             </Link>
+            <a
+              href={PLACEHOLDER_LINKS.liveDemoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block px-3 py-2 rounded text-base font-sans text-gray-600 hover:text-brand-blue hover:bg-gray-50/80 transition-all"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              Voir la démo
+            </a>
           </div>
         </div>
       </div>
