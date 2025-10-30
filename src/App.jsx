@@ -14,7 +14,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white text-gray-900">
       <Navbar />
-  <main className="pt-14 md:pt-24">
+  <main className="pt-[44px] md:pt-14">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />

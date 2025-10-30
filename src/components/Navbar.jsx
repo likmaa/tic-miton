@@ -20,15 +20,15 @@ export default function Navbar() {
 
   return (
     <nav className="w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 fixed top-0 z-50 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div className="flex justify-between items-center h-12 md:h-24 py-1 md:py-4">
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div className="flex justify-between items-center h-[44px] md:h-24 md:py-4">
           {/* Logo */}
           <div className="flex-shrink-0">
             <Link to={PLACEHOLDER_LINKS.home} className="flex items-center gap-3">
               <img
                 src={logoUrl}
                 alt="TIC Miton Logo"
-                className="h-8 md:h-12 w-auto object-contain"
+                className="h-7 md:h-12 w-auto object-contain"
               />
               <div className="flex flex-col">
                 <div className="font-display font-bold text-2xl text-gray-900">
@@ -56,7 +56,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile menu button and CTA */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
             <button
               type="button"
               className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-brand-blue hover:text-brand-blue hover:bg-gray-100/80 transition-all"
@@ -120,10 +120,11 @@ export default function Navbar() {
         <div
           id="mobile-menu"
           className={`md:hidden transition-all duration-200 ease-in-out ${
-            isMobileMenuOpen 
-              ? "opacity-100 translate-y-0" 
-              : "opacity-0 -translate-y-2 pointer-events-none"
+            isMobileMenuOpen
+              ? "block opacity-100 translate-y-0"
+              : "hidden opacity-0 -translate-y-2 pointer-events-none"
           }`}
+          aria-hidden={!isMobileMenuOpen}
         >
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/95 backdrop-blur-sm shadow-lg rounded-b-md">
             <Link
