@@ -1,5 +1,9 @@
 # TIC Miton — Site Web / Landing React
 
+[![Deploy to GitHub Pages](https://github.com/likmaa/tic-miton/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/likmaa/tic-miton/actions/workflows/deploy-pages.yml)
+
+Live: https://likmaa.github.io/tic-miton/
+
 Application de mobilité locale (Porto‑Novo). Ce dépôt contient le site marketing/landing et les composants React (Accueil, À propos, Services, Recrutement Chauffeurs, Contact, etc.).
 
 ## Sommaire
@@ -102,6 +106,21 @@ Sections notables:
 Le build génère `dist/`, prêt pour un hébergement statique (Netlify, Vercel, S3/CloudFront, GitHub Pages…).
 - Assurez-vous de définir les variables d’environnement côté plateforme si vous en utilisez (VITE_* ci-dessus).
 - SPA routing: activez la redirection “fallback → index.html” pour les routes internes (selon l’hébergeur).
+
+### GitHub Pages
+- L’Action GitHub `Deploy to GitHub Pages` build avec `--base=/tic-miton/` et publie automatiquement.
+- URL de production: https://likmaa.github.io/tic-miton/
+- Pour activer:
+	1. Repo > Settings > Pages
+	2. Source: "GitHub Actions"
+	3. Sauvegarder. Le déploiement se fera à chaque push sur `main`.
+
+### Netlify
+- Publis: dossier `dist/`, build command `npm run build`
+- SPA fallback: fichier `public/_redirects` déjà présent (`/* /index.html 200`).
+
+### Vercel
+- Config `vercel.json` incluse (rewrite SPA); build `npm run build`, output `dist/`.
 
 ## Accessibilité & responsive
 - Typographies et contrastes conformes à la charte.
