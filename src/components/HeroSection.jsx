@@ -10,10 +10,10 @@ const HeroSection = () => {
   return (
     <section className="bg-white pt-4 pb-12 md:py-20 px-4 md:px-12 lg:px-20">
       {/* Conteneur principal */}
-      <div className="relative overflow-hidden bg-[#3650D0] rounded-3xl p-6 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center text-white">
+  <div className="relative overflow-visible lg:overflow-hidden bg-[#3650D0] rounded-3xl p-6 md:p-16 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center text-white">
 
         {/* Subtle orange radial accents to match CTA chauffeur */}
-        <div aria-hidden="true" className="hidden md:block absolute inset-0 pointer-events-none z-0">
+        <div aria-hidden="true" className="hidden lg:block absolute inset-0 pointer-events-none z-0">
           <div className="absolute -top-14 -left-14 w-72 h-72 bg-[#FF7B00]/20 rounded-full blur-3xl" />
           <div className="absolute -bottom-24 -right-20 w-96 h-96 bg-[#FF7B00]/10 rounded-full blur-3xl" />
         </div>
@@ -38,8 +38,8 @@ const HeroSection = () => {
             {/* Mobile halo (hidden as per request to simplify mobile hero) */}
             <div className="hidden" aria-hidden="true" />
 
-            {/* Desktop halo (only on md+) */}
-            <div className="hidden md:block md:absolute md:left-1/2 md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-[26rem] md:h-[26rem] lg:w-[30rem] lg:h-[30rem] bg-gradient-to-tr from-[#3650D0]/40 to-[#FF7B00]/20 blur-3xl rounded-full" aria-hidden="true" />
+            {/* Desktop halo (only on lg+) to avoid crowding on tablets */}
+            <div className="hidden lg:block lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-1/2 lg:-translate-y-1/2 lg:w-[30rem] lg:h-[30rem] xl:w-[34rem] xl:h-[34rem] bg-gradient-to-tr from-[#3650D0]/40 to-[#FF7B00]/20 blur-3xl rounded-full" aria-hidden="true" />
 
             {/* Phone image — mobile (hidden per request) */}
             <span className="hidden" />
@@ -63,8 +63,8 @@ const HeroSection = () => {
                       src={img.src}
                       alt="Mockup téléphone TIC Miton"
                       className={
-                        "hidden md:block md:w-[34rem] lg:w-[40rem] xl:w-[44rem] " +
-                        "relative md:absolute md:left-1/2 md:top-1/2 md:-translate-x-[55%] md:-translate-y-[58%] drop-shadow-[0_25px_45px_rgba(0,0,0,0.35)]"
+                        "hidden md:block md:w-[26rem] lg:w-[34rem] xl:w-[40rem] " +
+                        "relative lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-[55%] lg:-translate-y-[58%] drop-shadow-[0_25px_45px_rgba(0,0,0,0.35)]"
                       }
                       loading="lazy"
                       decoding="async"
@@ -82,8 +82,8 @@ const HeroSection = () => {
                   src={typeof phoneMockup === 'string' ? phoneMockup : ''}
                   alt="Mockup téléphone TIC Miton"
                   className={
-                    "hidden md:block md:w-[34rem] lg:w-[40rem] xl:w-[44rem] " +
-                    "relative md:absolute md:left-1/2 md:top-1/2 md:-translate-x-[55%] md:-translate-y-[58%] drop-shadow-[0_25px_45px_rgba(0,0,0,0.35)]"
+                    "hidden md:block md:w-[26rem] lg:w-[34rem] xl:w-[40rem] " +
+                    "relative lg:absolute lg:left-1/2 lg:top-1/2 lg:-translate-x-[55%] lg:-translate-y-[58%] drop-shadow-[0_25px_45px_rgba(0,0,0,0.35)]"
                   }
                   loading="lazy"
                   decoding="async"
@@ -104,7 +104,7 @@ const HeroSection = () => {
           transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
         >
           <h1
-            className="font-display font-extrabold text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight bg-gradient-to-r from-white via-[#BFDFFF] to-[#66B2FF] bg-[length:200%_auto] text-transparent bg-clip-text animate-gradient"
+            className="font-display font-extrabold text-2xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight bg-gradient-to-r from-white via-[#BFDFFF] to-[#66B2FF] bg-[length:200%_auto] text-transparent bg-clip-text animate-gradient break-words"
           >
             Votre ville, votre chauffeur.
           </h1>
