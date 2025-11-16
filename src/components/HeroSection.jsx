@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Apple, Play } from "lucide-react";
 import PLACEHOLDER_LINKS from "../config/links";
 import Aurora from "./Aurora";
-import phoneImg from "../assets/Mockup.png";
+import phonePicture from "../assets/Mockup.png?w=360;420;520;560;720;960&format=avif;webp;png&as=picture";
 
 const HeroSection = () => {
   const shouldReduceMotion = useReducedMotion();
@@ -92,16 +92,35 @@ const HeroSection = () => {
           animate={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         >
-          <motion.img
-            src={phoneImg}
-            alt="Aperçu de l'application TIC Miton"
-            className="w-[280px] sm:w-[360px] md:w-[420px] lg:w-[520px] xl:w-[560px] drop-shadow-2xl pointer-events-none select-none will-change-transform"
-            decoding="async"
-            loading="eager"
-            animate={shouldReduceMotion ? undefined : { y: [0, -4, 0], rotate: [0, -0.8, 0, 0.8, 0] }}
-            transition={shouldReduceMotion ? undefined : { duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            style={{ transformOrigin: "50% 85%" }}
-          />
+          {/* Image responsive (AVIF/WEBP/PNG) avec animation sur l'élément <img> de fallback */}
+          {(() => {
+            const rawSources = phonePicture?.sources;
+            const sources = Array.isArray(rawSources)
+              ? rawSources
+              : rawSources
+                ? Object.values(rawSources)
+                : [];
+            const img = phonePicture?.img || {};
+            return (
+              <picture>
+                {sources.map((source, idx) => (
+                  <source key={idx} type={source.type} srcSet={source.srcset} sizes="(min-width: 1280px) 560px, (min-width: 1024px) 520px, (min-width: 768px) 420px, (min-width: 640px) 360px, 280px" />
+                ))}
+                <motion.img
+                  src={img.src || (typeof phonePicture === 'string' ? phonePicture : '')}
+                  alt="Aperçu de l'application TIC Miton"
+                  className="w-[280px] sm:w-[360px] md:w-[420px] lg:w-[520px] xl:w-[560px] drop-shadow-2xl pointer-events-none select-none will-change-transform"
+                  decoding="async"
+                  loading="eager"
+                  width={img.w || undefined}
+                  height={img.h || undefined}
+                  animate={shouldReduceMotion ? undefined : { y: [0, -4, 0], rotate: [0, -0.8, 0, 0.8, 0] }}
+                  transition={shouldReduceMotion ? undefined : { duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  style={{ transformOrigin: "50% 85%" }}
+                />
+              </picture>
+            );
+          })()}
         </motion.div>
           </div>
         </div>
