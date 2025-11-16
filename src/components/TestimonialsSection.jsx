@@ -153,7 +153,8 @@ const TestimonialsSection = ({
               name: t.name ?? t.nom ?? t.fullname ?? "",
               handle: t.handle ?? t.pseudo ?? "",
               avatar: normalizeAvatar(t.avatar ?? t.photo ?? "") || defaultAvatar,
-              text: t.text ?? t.message ?? t.comment ?? "",
+              // accept multiple common field names, including Apps Script 'quote'
+              text: t.text ?? t.quote ?? t.message ?? t.comment ?? t.temoignage ?? "",
             }))
             .filter((t) => t.name && t.text);
           if (mapped.length) setRemoteItems(mapped);
