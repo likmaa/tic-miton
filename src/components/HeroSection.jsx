@@ -13,10 +13,14 @@ const HeroSection = () => {
   <div className="relative overflow-visible bg-[#3650D0] rounded-3xl p-8 sm:p-12 md:p-16 flex flex-col items-center text-white text-center space-y-8">
         {/* Aurora animated background */}
         <Aurora
-          colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
-          blend={0.45}
-          amplitude={1.0}
-          speed={0.6}
+          variant="ribbon"
+          colorStops={["#FF7B00", "#FFFFFF"]}
+          blend={0.28}
+          amplitude={0.9}
+          speed={1.15}
+          heightRatio={0.42}
+          offsetYRatio={0}
+          className="absolute inset-x-0 top-0 z-0 opacity-80"
         />
 
         {/* CONTENT CENTERED */}
