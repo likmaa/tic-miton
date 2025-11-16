@@ -85,16 +85,24 @@ const HeroSection = () => {
           </div>
         </motion.div>
 
-        {/* IMAGE */}
-        <div className="mt-6 lg:mt-0 flex justify-center lg:justify-end lg:ml-4 xl:ml-8">
-          <img
+        {/* IMAGE (idle float + micro-rotation, motion-safe) */}
+        <motion.div
+          className="mt-6 lg:mt-0 flex justify-center lg:justify-end lg:ml-4 xl:ml-8"
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+          animate={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+        >
+          <motion.img
             src={phoneImg}
             alt="Aperçu de l'application TIC Miton"
-            className="w-[280px] sm:w-[360px] md:w-[420px] lg:w-[520px] xl:w-[560px] drop-shadow-2xl pointer-events-none select-none"
+            className="w-[280px] sm:w-[360px] md:w-[420px] lg:w-[520px] xl:w-[560px] drop-shadow-2xl pointer-events-none select-none will-change-transform"
             decoding="async"
             loading="eager"
+            animate={shouldReduceMotion ? undefined : { y: [0, -4, 0], rotate: [0, -0.8, 0, 0.8, 0] }}
+            transition={shouldReduceMotion ? undefined : { duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            style={{ transformOrigin: "50% 85%" }}
           />
-        </div>
+        </motion.div>
           </div>
         </div>
       </div>
