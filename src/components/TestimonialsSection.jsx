@@ -118,6 +118,18 @@ const TestimonialsSection = ({
   useEffect(() => {
     let aborted = false;
     const defaultAvatar = `${import.meta.env.BASE_URL || "/"}avatars/default.svg`;
+    const normalizeAvatar = (url) => {
+      if (!url || typeof url !== 'string') return '';
+      const u = url.trim();
+      // Google Drive patterns -> direct view URL
+      // 1) https://drive.google.com/open?id=FILE_ID
+      const m1 = u.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+      if (m1) return `https://drive.google.com/uc?export=view&id=${m1[1]}`;
+      // 2) https://drive.google.com/file/d/FILE_ID/view?usp=sharing
+      const m2 = u.match(/\/file\/d\/([a-zA-Z0-9_-]+)\/view/);
+      if (m2) return `https://drive.google.com/uc?export=view&id=${m2[1]}`;
+      return u;
+    };
 
     const load = () => {
       if (!TESTIMONIALS_URL) return;
@@ -140,7 +152,7 @@ const TestimonialsSection = ({
               id: t.id ?? idx + 1,
               name: t.name ?? t.nom ?? t.fullname ?? "",
               handle: t.handle ?? t.pseudo ?? "",
-              avatar: (t.avatar ?? t.photo ?? "") || defaultAvatar,
+              avatar: normalizeAvatar(t.avatar ?? t.photo ?? "") || defaultAvatar,
               text: t.text ?? t.message ?? t.comment ?? "",
             }))
             .filter((t) => t.name && t.text);
