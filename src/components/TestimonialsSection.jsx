@@ -107,6 +107,7 @@ const TestimonialsSection = ({
   fade = true,
   cardWidth = null,
   rows = 2,
+  refreshIntervalMs = 600000, // 10 minutes
 }) => {
   const reduceMotion = useReducedMotion();
   const TESTIMONIALS_URL = import.meta?.env?.VITE_TESTIMONIALS_URL || "";
@@ -116,28 +117,45 @@ const TestimonialsSection = ({
 
   useEffect(() => {
     let aborted = false;
-    if (!TESTIMONIALS_URL) return;
-    fetch(TESTIMONIALS_URL, { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data) => {
-        if (aborted || !data) return;
-        const arr = Array.isArray(data?.items) ? data.items : Array.isArray(data) ? data : [];
-        const mapped = arr
-          .map((t, idx) => ({
-            id: t.id ?? idx + 1,
-            name: t.name ?? t.nom ?? t.fullname ?? "",
-            handle: t.handle ?? t.pseudo ?? "",
-            avatar: t.avatar ?? t.photo ?? "https://avatars.githubusercontent.com/u/0?v=4",
-            text: t.text ?? t.message ?? t.comment ?? "",
-          }))
-          .filter((t) => t.name && t.text);
-        if (mapped.length) setRemoteItems(mapped);
-      })
-      .catch(() => {});
-    return () => {
-      aborted = true;
+    const defaultAvatar = `${import.meta.env.BASE_URL || "/"}avatars/default.svg`;
+
+    const load = () => {
+      if (!TESTIMONIALS_URL) return;
+      fetch(TESTIMONIALS_URL, { cache: "no-store" })
+        .then(async (r) => {
+          if (!r.ok) return null;
+          // Attempt JSON parse first, fallback to text->JSON parse
+          try {
+            return await r.json();
+          } catch (e) {
+            const txt = await r.text();
+            try { return JSON.parse(txt); } catch { return null; }
+          }
+        })
+        .then((data) => {
+          if (aborted || !data) return;
+          const arr = Array.isArray(data?.items) ? data.items : Array.isArray(data) ? data : [];
+          const mapped = arr
+            .map((t, idx) => ({
+              id: t.id ?? idx + 1,
+              name: t.name ?? t.nom ?? t.fullname ?? "",
+              handle: t.handle ?? t.pseudo ?? "",
+              avatar: (t.avatar ?? t.photo ?? "") || defaultAvatar,
+              text: t.text ?? t.message ?? t.comment ?? "",
+            }))
+            .filter((t) => t.name && t.text);
+          if (mapped.length) setRemoteItems(mapped);
+        })
+        .catch(() => {});
     };
-  }, [TESTIMONIALS_URL]);
+
+    load();
+    if (refreshIntervalMs && refreshIntervalMs > 0) {
+      const id = setInterval(load, refreshIntervalMs);
+      return () => { aborted = true; clearInterval(id); };
+    }
+    return () => { aborted = true; };
+  }, [TESTIMONIALS_URL, refreshIntervalMs]);
 
   // internal states for pause handling
   const [isManuallyPaused, setIsManuallyPaused] = useState(false);
