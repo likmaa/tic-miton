@@ -1,7 +1,7 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
-import aboutHeroImg from "../assets/3d-smartphone-mock-up.png?w=640;960;1440;1920&format=webp;avif;jpg&as=picture";
+import aboutHeroImg from "../assets/Mockup.png";
 import LINKS from "../config/links";
 
 const AboutHero = ({
