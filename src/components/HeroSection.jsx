@@ -2,6 +2,7 @@ import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Apple, Play } from "lucide-react";
 import PLACEHOLDER_LINKS from "../config/links";
+import Aurora from "./Aurora";
 
 const HeroSection = () => {
   const shouldReduceMotion = useReducedMotion();
@@ -10,6 +11,13 @@ const HeroSection = () => {
     <section className="bg-white pt-4 pb-12 md:py-20 px-4 md:px-12 lg:px-20">
       {/* Conteneur principal */}
   <div className="relative overflow-visible bg-[#3650D0] rounded-3xl p-8 sm:p-12 md:p-16 flex flex-col items-center text-white text-center space-y-8">
+        {/* Aurora animated background */}
+        <Aurora
+          colorStops={["#3A29FF", "#FF94B4", "#FF3232"]}
+          blend={0.45}
+          amplitude={1.0}
+          speed={0.6}
+        />
 
         {/* CONTENT CENTERED */}
         <motion.div
