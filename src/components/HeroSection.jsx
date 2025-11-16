@@ -99,7 +99,7 @@ const HeroSection = () => {
             decoding="async"
             loading="eager"
             animate={shouldReduceMotion ? undefined : { y: [0, -4, 0], rotate: [0, -0.8, 0, 0.8, 0] }}
-            transition={shouldReduceMotion ? undefined : { duration: 10, repeat: Infinity, ease: "easeInOut" }}
+            transition={shouldReduceMotion ? undefined : { duration: 2, repeat: Infinity, ease: "easeInOut" }}
             style={{ transformOrigin: "50% 85%" }}
           />
         </motion.div>
