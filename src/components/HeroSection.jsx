@@ -10,22 +10,23 @@ const HeroSection = () => {
   return (
     <section className="bg-white pt-4 pb-12 md:py-20 px-4 md:px-12 lg:px-20">
       {/* Conteneur principal */}
-  <div className="relative overflow-visible bg-[#3650D0] rounded-3xl p-8 sm:p-12 md:p-16 flex flex-col items-center text-white text-center space-y-8">
-        {/* Aurora animated background */}
+  <div className="relative overflow-hidden bg-[#3650D0] rounded-3xl p-8 sm:p-12 md:p-16 lg:p-20 min-h-[520px] md:min-h-[620px] lg:min-h-[720px] text-white flex items-center">
+
+        {/* Aurora WebGL background */}
         <Aurora
-          variant="ribbon"
-          colorStops={["#FF7B00", "#FFFFFF"]}
-          blend={0.28}
-          amplitude={0.9}
-          speed={1.15}
-          heightRatio={0.42}
-          offsetYRatio={0}
-          className="absolute inset-x-0 top-0 z-0 opacity-80"
+          colorStops={["#3650D0", "#FFFFFF", "#FF7B00"]}
+          blend={0.5}
+          amplitude={1.0}
+          speed={0.6}
         />
 
-        {/* CONTENT CENTERED */}
+        {/* CONTENT + IMAGE LAYOUT */}
+        <div className="relative z-10 h-full">
+          <div className="max-w-7xl mx-auto grid gap-8 lg:grid-cols-2 items-center h-full">
+        
+        {/* CONTENT */}
         <motion.div
-          className="relative z-10 max-w-4xl text-center space-y-6"
+          className="relative z-10 max-w-4xl space-y-6 mx-auto lg:mx-0 text-center lg:text-left"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
@@ -36,13 +37,13 @@ const HeroSection = () => {
             Votre ville, votre chauffeur.
           </h1>
           
-          <p className="font-sans text-white/90 text-base md:text-lg max-w-[50ch] mx-auto">
+          <p className="font-sans text-white/90 text-base md:text-lg max-w-[50ch] mx-auto lg:mx-0">
             TIC Miton est votre solution simple et sûre pour tous vos trajets.
             Commandez un déplacement, demandez une course ou faites-vous livrer
             en quelques clics.
           </p>
 
-          <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center pt-4">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center lg:justify-start pt-4">
             {/* CTA Button */}
             <motion.a
               href={PLACEHOLDER_LINKS.downloadUrl}
@@ -82,6 +83,19 @@ const HeroSection = () => {
             </div>
           </div>
         </motion.div>
+
+        {/* IMAGE */}
+        <div className="mt-6 lg:mt-0 flex justify-center lg:justify-end">
+          <img
+            src="/images/hero-phones.png"
+            alt="Aperçu de l'application TIC Miton"
+            className="w-[280px] sm:w-[360px] md:w-[420px] lg:w-[520px] xl:w-[560px] drop-shadow-2xl pointer-events-none select-none"
+            decoding="async"
+            loading="eager"
+          />
+        </div>
+          </div>
+        </div>
       </div>
     </section>
   );
