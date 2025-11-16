@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Apple, Play } from "lucide-react";
 import PLACEHOLDER_LINKS from "../config/links";
 import Aurora from "./Aurora";
+import phoneImg from "../assets/Mockup.png";
 
 const HeroSection = () => {
   const shouldReduceMotion = useReducedMotion();
@@ -14,19 +15,19 @@ const HeroSection = () => {
 
         {/* Aurora WebGL background */}
         <Aurora
-          colorStops={["#3650D0", "#FFFFFF", "#FF7B00"]}
+          colorStops={["#3650D0", "#ffffffff", "#FF7B00"]}
           blend={0.5}
           amplitude={1.0}
           speed={0.6}
         />
 
         {/* CONTENT + IMAGE LAYOUT */}
-        <div className="relative z-10 h-full">
-          <div className="max-w-7xl mx-auto grid gap-8 lg:grid-cols-2 items-center h-full">
+        <div className="relative z-10 h-full w-full">
+          <div className="max-w-7xl mx-auto grid h-full w-full gap-8 lg:gap-16 xl:gap-24 lg:grid-cols-2 items-center lg:justify-items-start">
         
         {/* CONTENT */}
         <motion.div
-          className="relative z-10 max-w-4xl space-y-6 mx-auto lg:mx-0 text-center lg:text-left"
+          className="relative z-10 max-w-4xl space-y-6 mx-auto lg:mx-0 text-center lg:text-left lg:pr-8 xl:pr-12"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
@@ -85,9 +86,9 @@ const HeroSection = () => {
         </motion.div>
 
         {/* IMAGE */}
-        <div className="mt-6 lg:mt-0 flex justify-center lg:justify-end">
+        <div className="mt-6 lg:mt-0 flex justify-center lg:justify-end lg:ml-4 xl:ml-8">
           <img
-            src="/images/hero-phones.png"
+            src={phoneImg}
             alt="Aperçu de l'application TIC Miton"
             className="w-[280px] sm:w-[360px] md:w-[420px] lg:w-[520px] xl:w-[560px] drop-shadow-2xl pointer-events-none select-none"
             decoding="async"
