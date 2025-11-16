@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
 import { Play, Pause } from "lucide-react";
 
@@ -109,6 +109,35 @@ const TestimonialsSection = ({
   rows = 2,
 }) => {
   const reduceMotion = useReducedMotion();
+  const TESTIMONIALS_URL = import.meta?.env?.VITE_TESTIMONIALS_URL || "";
+
+  const [remoteItems, setRemoteItems] = useState(null);
+  const effectiveItems = remoteItems && Array.isArray(remoteItems) && remoteItems.length > 0 ? remoteItems : items;
+
+  useEffect(() => {
+    let aborted = false;
+    if (!TESTIMONIALS_URL) return;
+    fetch(TESTIMONIALS_URL, { cache: "no-store" })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((data) => {
+        if (aborted || !data) return;
+        const arr = Array.isArray(data?.items) ? data.items : Array.isArray(data) ? data : [];
+        const mapped = arr
+          .map((t, idx) => ({
+            id: t.id ?? idx + 1,
+            name: t.name ?? t.nom ?? t.fullname ?? "",
+            handle: t.handle ?? t.pseudo ?? "",
+            avatar: t.avatar ?? t.photo ?? "https://avatars.githubusercontent.com/u/0?v=4",
+            text: t.text ?? t.message ?? t.comment ?? "",
+          }))
+          .filter((t) => t.name && t.text);
+        if (mapped.length) setRemoteItems(mapped);
+      })
+      .catch(() => {});
+    return () => {
+      aborted = true;
+    };
+  }, [TESTIMONIALS_URL]);
 
   // internal states for pause handling
   const [isManuallyPaused, setIsManuallyPaused] = useState(false);
@@ -232,7 +261,7 @@ const TestimonialsSection = ({
               aria-hidden={reduceMotion ? "true" : "false"}
             >
               <div className="marquee-track inline-flex gap-6" role="list">
-                {items.map((t) => (
+                {effectiveItems.map((t) => (
                   <div key={`top-a-${t.id}`} role="listitem">
                     <TestimonialCard t={t} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
                   </div>
@@ -240,7 +269,7 @@ const TestimonialsSection = ({
               </div>
 
               <div className="marquee-track inline-flex gap-6" role="list">
-                {items.map((t) => (
+                {effectiveItems.map((t) => (
                   <div key={`top-b-${t.id}`} role="listitem">
                     <TestimonialCard t={t} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
                   </div>
@@ -274,7 +303,7 @@ const TestimonialsSection = ({
                 aria-hidden={reduceMotion ? "true" : "false"}
               >
                 <div className="marquee-track inline-flex gap-6" role="list">
-                  {items.map((t) => (
+                  {effectiveItems.map((t) => (
                     <div key={`bot-a-${t.id}`} role="listitem">
                       <TestimonialCard t={t} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
                     </div>
@@ -282,7 +311,7 @@ const TestimonialsSection = ({
                 </div>
 
                 <div className="marquee-track inline-flex gap-6" role="list">
-                  {items.map((t) => (
+                  {effectiveItems.map((t) => (
                     <div key={`bot-b-${t.id}`} role="listitem">
                       <TestimonialCard t={t} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
                     </div>
