@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Play, Pause } from "lucide-react";
-import MalikAvatar from "../assets/features/IMG_2670.jpeg";
+import MalikAvatar from "../assets/features/IMG_2670.jpeg?w=256&format=webp&quality=70";
 
 
 
