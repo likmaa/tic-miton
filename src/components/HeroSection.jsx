@@ -15,10 +15,10 @@ const HeroSection = () => {
 
         {/* Aurora WebGL background */}
         <Aurora
-          colorStops={["#3650D0", "#ffffffff", "#FF7B00"]}
-          blend={0.5}
-          amplitude={1.0}
-          speed={0.6}
+          colorStops={["#3650D0", "#FF7B00", "#FFFFFF"]}
+          blend={0.6}
+          amplitude={1.25}
+          speed={0.65}
         />
 
         {/* CONTENT + IMAGE LAYOUT */}
