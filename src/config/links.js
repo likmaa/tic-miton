@@ -1,11 +1,15 @@
 // Liens centralisés. Lis d'abord les variables d'env Vite si elles existent,
 // sinon on garde des valeurs par défaut faciles à remplacer.
-const BASE = import.meta?.env?.VITE_BASE_URL ?? "https://example.com/tic-miton";
+const BASE = import.meta?.env?.VITE_BASE_URL ?? "";
 const APP_URL = import.meta?.env?.VITE_APP_URL ?? `${BASE}/app`;
 // Defaults set to official store home pages (replace with real app links when ready)
 const PLAY_STORE_URL = import.meta?.env?.VITE_PLAY_STORE_URL ?? "https://play.google.com/store/apps";
 const APP_STORE_URL = import.meta?.env?.VITE_APP_STORE_URL ?? "https://apps.apple.com/";
 const DOWNLOAD_URL = import.meta?.env?.VITE_DOWNLOAD_URL ?? `${BASE}/download`;
+// Direct binary URLs (only set these if you understand store/enterprise constraints)
+const ANDROID_APK_URL = import.meta?.env?.VITE_ANDROID_APK_URL ?? `${(import.meta?.env?.BASE_URL) || '/'}downloads/android/app-latest.apk`;
+const IOS_ENTERPRISE_PLIST_URL = import.meta?.env?.VITE_IOS_ENTERPRISE_PLIST_URL ?? ""; // e.g. https://yourdomain/downloads/ios/manifest.plist
+const TESTFLIGHT_URL = import.meta?.env?.VITE_TESTFLIGHT_URL ?? "https://testflight.apple.com/";
 const LIVE_URL = import.meta?.env?.VITE_LIVE_URL ?? "https://likmaa.github.io/tic-miton/";
 const WHATSAPP_URL = import.meta?.env?.VITE_WHATSAPP_URL ?? "https://wa.me/2290157792662";
 const SUPPORT_EMAIL = import.meta?.env?.VITE_SUPPORT_EMAIL ?? "support@ticmiton.com";
@@ -20,6 +24,9 @@ const PLACEHOLDER_LINKS = {
   // Stores
   playStoreUrl: PLAY_STORE_URL, // remplacer par le lien réel Google Play via VITE_PLAY_STORE_URL
   appStoreUrl: APP_STORE_URL,   // remplacer par le lien réel App Store via VITE_APP_STORE_URL
+  androidApkUrl: ANDROID_APK_URL,
+  iosEnterprisePlistUrl: IOS_ENTERPRISE_PLIST_URL,
+  testFlightUrl: TESTFLIGHT_URL,
 
   // Pages / ancres internes (utilise des routes ou ancres selon ta structure)
   features: {

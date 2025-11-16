@@ -1,0 +1,16 @@
+{
+  "version": "0.0.0",
+  "releasedAt": "2025-01-01T00:00:00Z",
+  "android": {
+    "url": "downloads/android/app-latest.apk",
+    "sizeBytes": 0,
+    "sha256": "",
+    "minSdk": 24
+  },
+  "ios": {
+    "enterprisePlistUrl": "",
+    "testFlightUrl": "https://testflight.apple.com/",
+    "minIOS": "14.0"
+  },
+  "notes": "Replace with your real release metadata."
+}
