@@ -3,7 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Apple, Play } from "lucide-react";
 import PLACEHOLDER_LINKS from "../config/links";
 import Aurora from "./Aurora";
-import phonePicture from "../assets/Mockup.png?w=360;420;520;560;720;960&format=avif;webp;jpg&quality=70&as=picture";
+import phonePicture from "../assets/Mockup.png?w=360;420;520;560;720;960&format=avif;webp&quality=70&as=picture";
 
 const HeroSection = () => {
   const shouldReduceMotion = useReducedMotion();
