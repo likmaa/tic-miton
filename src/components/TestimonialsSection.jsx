@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useReducedMotion } from "framer-motion";
-import { Play, Pause } from "lucide-react";
+import { Play, Pause, Star } from "lucide-react";
 
 
 
@@ -13,6 +13,7 @@ const DEFAULT_TESTIMONIALS = [
       "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80&auto=format&fit=crop",
     text:
       "Service impeccable. Le chauffeur est arrivé rapidement et la course était sûre. Je recommande TIC Miton à tous mes amis.",
+    rating: 5,
   },
   {
     id: 2,
@@ -22,6 +23,7 @@ const DEFAULT_TESTIMONIALS = [
       "https://images.unsplash.com/photo-1545996124-1b7e3b6b6c9d?w=200&q=80&auto=format&fit=crop",
     text:
       "Application fluide et intuitive. Les tarifs sont clairs et j'obtiens toujours un chauffeur en quelques minutes.",
+    rating: 4,
   },
   {
     id: 3,
@@ -31,6 +33,7 @@ const DEFAULT_TESTIMONIALS = [
       "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&q=80&auto=format&fit=crop",
     text:
       "Service client local et réactif — ils ont résolu mon souci en un appel. Très rassurant.",
+    rating: 5,
   },
   {
     id: 4,
@@ -40,6 +43,7 @@ const DEFAULT_TESTIMONIALS = [
       "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=200&q=80&auto=format&fit=crop",
     text:
       "Trajets rapides et chauffeurs professionnels — parfait pour mes déplacements en ville.",
+    rating: 4,
   },
   {
     id: 5,
@@ -49,22 +53,35 @@ const DEFAULT_TESTIMONIALS = [
       "https://images.unsplash.com/photo-1548095115-45697e6f7f4a?w=200&q=80&auto=format&fit=crop",
     text:
       "Application très pratique pour les livraisons. Les livreurs sont ponctuels et soigneux.",
+    rating: 5,
   },
   {
     id: 6,
     name: "Amina Diop",
     handle: "@amina",
-    avatar:
-      "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=200&q=80&auto=format&fit=crop",
+    avatar: "", // volontairement vide pour démontrer le fallback
     text:
       "J'apprécie la transparence des prix et la possibilité de partager mon trajet en temps réel.",
+    rating: 5,
   },
 ];
 
-const TestimonialCard = ({ t, cardWidth, onFocusChange }) => {
+const StarRating = ({ value = 0, max = 5 }) => {
+  const filled = Math.max(0, Math.min(max, Math.round(Number(value) || 0)));
+  return (
+    <div className="flex items-center gap-1" aria-label={`${filled} sur ${max} étoiles`}>
+      {Array.from({ length: max }).map((_, i) => (
+        <Star key={i} className={`w-4 h-4 ${i < filled ? "text-yellow-500" : "text-gray-300"}`} />
+      ))}
+    </div>
+  );
+};
+
+const TestimonialCard = ({ t, cardWidth, onFocusChange, defaultAvatar }) => {
   // Narrower cards on very small screens to avoid excessive overflow; still marquee inside overflow-hidden
   const widthClass =
     cardWidth || "w-[20rem] sm:w-[24rem] md:w-[30rem] lg:w-[34rem]";
+  const avatarSrc = (t.avatar && String(t.avatar).trim()) || defaultAvatar;
   return (
     <article
       tabIndex={0}
@@ -75,7 +92,7 @@ const TestimonialCard = ({ t, cardWidth, onFocusChange }) => {
     >
       <div className="flex items-start gap-4">
         <img
-          src={t.avatar}
+          src={avatarSrc}
           alt={`${t.name} avatar`}
           className="w-12 h-12 rounded-full object-cover flex-shrink-0"
           loading="lazy"
@@ -90,6 +107,11 @@ const TestimonialCard = ({ t, cardWidth, onFocusChange }) => {
             </h4>
             <span className="text-sm text-gray-400">{t.handle}</span>
           </div>
+          {typeof t.rating !== "undefined" && (
+            <div className="mt-1">
+              <StarRating value={t.rating} />
+            </div>
+          )}
           <p className="mt-3 font-sans text-gray-700 text-sm leading-relaxed">{t.text}</p>
         </div>
       </div>
@@ -111,6 +133,7 @@ const TestimonialsSection = ({
 }) => {
   const reduceMotion = useReducedMotion();
   const effectiveItems = items;
+  const defaultAvatar = `${import.meta.env.BASE_URL || "/"}avatars/default.svg`;
 
   // Plus aucune logique de récupération : avatars déjà dans les items statiques.
 
@@ -238,7 +261,7 @@ const TestimonialsSection = ({
               <div className="marquee-track inline-flex gap-6" role="list">
                 {effectiveItems.map((t) => (
                   <div key={`top-a-${t.id}`} role="listitem">
-                    <TestimonialCard t={t} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
+                    <TestimonialCard t={t} defaultAvatar={defaultAvatar} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
                   </div>
                 ))}
               </div>
@@ -246,7 +269,7 @@ const TestimonialsSection = ({
               <div className="marquee-track inline-flex gap-6" role="list">
                 {effectiveItems.map((t) => (
                   <div key={`top-b-${t.id}`} role="listitem">
-                    <TestimonialCard t={t} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
+                    <TestimonialCard t={t} defaultAvatar={defaultAvatar} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
                   </div>
                 ))}
               </div>
@@ -280,7 +303,7 @@ const TestimonialsSection = ({
                 <div className="marquee-track inline-flex gap-6" role="list">
                   {effectiveItems.map((t) => (
                     <div key={`bot-a-${t.id}`} role="listitem">
-                      <TestimonialCard t={t} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
+                      <TestimonialCard t={t} defaultAvatar={defaultAvatar} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
                     </div>
                   ))}
                 </div>
@@ -288,7 +311,7 @@ const TestimonialsSection = ({
                 <div className="marquee-track inline-flex gap-6" role="list">
                   {effectiveItems.map((t) => (
                     <div key={`bot-b-${t.id}`} role="listitem">
-                      <TestimonialCard t={t} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
+                      <TestimonialCard t={t} defaultAvatar={defaultAvatar} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
                     </div>
                   ))}
                 </div>
