@@ -1,4 +1,5 @@
 import React, { useRef, useState } from "react";
+import Avatar from "boring-avatars";
 import { useReducedMotion } from "framer-motion";
 import { Play, Pause, Star } from "lucide-react";
 
@@ -7,12 +8,12 @@ import { Play, Pause, Star } from "lucide-react";
 const DEFAULT_TESTIMONIALS = [
   {
     id: 1,
-    name: "Noah Patel",
-    handle: "@noah_ops",
+    name: "Ibou m.pipi",
+    handle: "@ibou_mpipi",
     avatar:
       "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80&auto=format&fit=crop",
     text:
-      "Service impeccable. Le chauffeur est arrivé rapidement et la course était sûre. Je recommande TIC Miton à tous mes amis.",
+      "Je suis vraiment satisfait des services de transport TIC à Porto-Novo. Ponctualité, sécurité et confort au rendez-vous ! Depuis que j’ai commencé à voyager avec eux, mes déplacements sont devenus plus faciles et agréables. Je recommande vivement TIC à tous ceux qui cherchent un moyen de transport fiable et professionnel.",
     rating: 5,
   },
   {
@@ -77,12 +78,11 @@ const StarRating = ({ value = 0, max = 5 }) => {
   );
 };
 
-const TestimonialCard = ({ t, cardWidth, onFocusChange, defaultAvatar }) => {
+const TestimonialCard = ({ t, cardWidth, onFocusChange }) => {
   // Narrower cards on very small screens to avoid excessive overflow; still marquee inside overflow-hidden
   const widthClass =
     cardWidth || "w-[20rem] sm:w-[24rem] md:w-[30rem] lg:w-[34rem]";
-  // Force l'utilisation de l'avatar par défaut pour tous les profils
-  const avatarSrc = defaultAvatar;
+  const seed = t.name || t.handle || "Utilisateur";
   return (
     <article
       tabIndex={0}
@@ -92,12 +92,14 @@ const TestimonialCard = ({ t, cardWidth, onFocusChange, defaultAvatar }) => {
       aria-labelledby={`test-${t.id}-title`}
     >
       <div className="flex items-start gap-4">
-        <img
-          src={avatarSrc}
-          alt={`${t.name} avatar`}
-          className="w-12 h-12 rounded-full object-cover flex-shrink-0"
-          loading="lazy"
-        />
+        <div className="w-12 h-12 flex-shrink-0 rounded-full overflow-hidden">
+          <Avatar
+            size={48}
+            name={seed}
+            variant="beam"
+            colors={["#3650D0", "#FF7B00", "#0EA5E9", "#22C55E", "#F59E0B"]}
+          />
+        </div>
         <div className="flex-1">
           <div className="flex items-center gap-2">
             <h4
@@ -134,7 +136,6 @@ const TestimonialsSection = ({
 }) => {
   const reduceMotion = useReducedMotion();
   const effectiveItems = items;
-  const defaultAvatar = `${import.meta.env.BASE_URL || "/"}avatars/default.svg`;
 
   // Plus aucune logique de récupération : avatars déjà dans les items statiques.
 
@@ -262,7 +263,7 @@ const TestimonialsSection = ({
               <div className="marquee-track inline-flex gap-6" role="list">
                 {effectiveItems.map((t) => (
                   <div key={`top-a-${t.id}`} role="listitem">
-                    <TestimonialCard t={t} defaultAvatar={defaultAvatar} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
+                    <TestimonialCard t={t} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
                   </div>
                 ))}
               </div>
@@ -270,7 +271,7 @@ const TestimonialsSection = ({
               <div className="marquee-track inline-flex gap-6" role="list">
                 {effectiveItems.map((t) => (
                   <div key={`top-b-${t.id}`} role="listitem">
-                    <TestimonialCard t={t} defaultAvatar={defaultAvatar} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
+                    <TestimonialCard t={t} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
                   </div>
                 ))}
               </div>
@@ -304,7 +305,7 @@ const TestimonialsSection = ({
                 <div className="marquee-track inline-flex gap-6" role="list">
                   {effectiveItems.map((t) => (
                     <div key={`bot-a-${t.id}`} role="listitem">
-                      <TestimonialCard t={t} defaultAvatar={defaultAvatar} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
+                      <TestimonialCard t={t} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
                     </div>
                   ))}
                 </div>
@@ -312,7 +313,7 @@ const TestimonialsSection = ({
                 <div className="marquee-track inline-flex gap-6" role="list">
                   {effectiveItems.map((t) => (
                     <div key={`bot-b-${t.id}`} role="listitem">
-                      <TestimonialCard t={t} defaultAvatar={defaultAvatar} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
+                      <TestimonialCard t={t} cardWidth={cardWidth} onFocusChange={(v) => (v ? onFocusEnter() : onFocusLeave())} />
                     </div>
                   ))}
                 </div>
