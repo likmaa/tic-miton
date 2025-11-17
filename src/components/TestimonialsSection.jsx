@@ -10,8 +10,6 @@ const DEFAULT_TESTIMONIALS = [
     id: 1,
     name: "Ibou m.pipi",
     handle: "@ibou_mpipi",
-    avatar:
-      "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&q=80&auto=format&fit=crop",
     text:
       "Je suis vraiment satisfait des services de transport TIC à Porto-Novo. Ponctualité, sécurité et confort au rendez-vous ! Depuis que j’ai commencé à voyager avec eux, mes déplacements sont devenus plus faciles et agréables. Je recommande vivement TIC à tous ceux qui cherchent un moyen de transport fiable et professionnel.",
     rating: 5,
@@ -20,8 +18,6 @@ const DEFAULT_TESTIMONIALS = [
     id: 2,
     name: "Maya Kim",
     handle: "@mayak",
-    avatar:
-      "https://images.unsplash.com/photo-1545996124-1b7e3b6b6c9d?w=200&q=80&auto=format&fit=crop",
     text:
       "Application fluide et intuitive. Les tarifs sont clairs et j'obtiens toujours un chauffeur en quelques minutes.",
     rating: 4,
@@ -30,8 +26,6 @@ const DEFAULT_TESTIMONIALS = [
     id: 3,
     name: "Leo Martin",
     handle: "@leom",
-    avatar:
-      "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=200&q=80&auto=format&fit=crop",
     text:
       "Service client local et réactif — ils ont résolu mon souci en un appel. Très rassurant.",
     rating: 5,
@@ -40,8 +34,6 @@ const DEFAULT_TESTIMONIALS = [
     id: 4,
     name: "Sofia Alvarez",
     handle: "@sofialabs",
-    avatar:
-      "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=200&q=80&auto=format&fit=crop",
     text:
       "Trajets rapides et chauffeurs professionnels — parfait pour mes déplacements en ville.",
     rating: 4,
@@ -50,8 +42,6 @@ const DEFAULT_TESTIMONIALS = [
     id: 5,
     name: "Jackson Lee",
     handle: "@jacksonlee",
-    avatar:
-      "https://images.unsplash.com/photo-1548095115-45697e6f7f4a?w=200&q=80&auto=format&fit=crop",
     text:
       "Application très pratique pour les livraisons. Les livreurs sont ponctuels et soigneux.",
     rating: 5,
@@ -60,7 +50,6 @@ const DEFAULT_TESTIMONIALS = [
     id: 6,
     name: "Amina Diop",
     handle: "@amina",
-    avatar: "", // volontairement vide pour démontrer le fallback
     text:
       "J'apprécie la transparence des prix et la possibilité de partager mon trajet en temps réel.",
     rating: 5,
@@ -83,6 +72,7 @@ const TestimonialCard = ({ t, cardWidth, onFocusChange }) => {
   const widthClass =
     cardWidth || "w-[20rem] sm:w-[24rem] md:w-[30rem] lg:w-[34rem]";
   const seed = t.name || t.handle || "Utilisateur";
+  const avatarSize = 44; // anneau de 2px autour d'un conteneur 48px
   return (
     <article
       tabIndex={0}
@@ -92,13 +82,22 @@ const TestimonialCard = ({ t, cardWidth, onFocusChange }) => {
       aria-labelledby={`test-${t.id}-title`}
     >
       <div className="flex items-start gap-4">
-        <div className="w-12 h-12 flex-shrink-0 rounded-full overflow-hidden">
-          <Avatar
-            size={48}
-            name={seed}
-            variant="beam"
-            colors={["#3650D0", "#FF7B00", "#0EA5E9", "#22C55E", "#F59E0B"]}
-          />
+        <div
+          className="w-12 h-12 flex-shrink-0 rounded-full p-[2px]"
+          style={{
+            background:
+              "conic-gradient(from 0deg, #FF7B00, #3650D0, #0EA5E9, #22C55E, #F59E0B, #FF7B00)",
+            animation: reduceMotion ? "none" : "spin 8s linear infinite",
+          }}
+        >
+          <div className="w-full h-full rounded-full overflow-hidden bg-white">
+            <Avatar
+              size={avatarSize}
+              name={seed}
+              variant="beam"
+              colors={["#3650D0", "#FF7B00", "#0EA5E9", "#22C55E", "#F59E0B"]}
+            />
+          </div>
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-2">
@@ -349,6 +348,12 @@ const TestimonialsSection = ({
           100% { transform: translateX(-50%); }
         }
 
+        /* rotating ring for avatars */
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+
         /* respect reduced motion at media level too */
         @media (prefers-reduced-motion: reduce) {
           .tmnls .overflow-hidden > .flex { animation: none !important; transform: none !important; }
@@ -372,3 +377,4 @@ const TestimonialsSection = ({
 };
 
 export default TestimonialsSection;
+
