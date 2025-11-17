@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 import { Play, Pause } from "lucide-react";
 
@@ -97,10 +97,7 @@ const TestimonialCard = ({ t, cardWidth, onFocusChange }) => {
   );
 };
 
-// Version simplifiée :
-// On conserve seulement les témoignages statiques (items) et on tente
-// éventuellement de récupérer des avatars depuis l'endpoint (même structure, on ignore le reste).
-// Si le fetch échoue ou ne fournit pas assez d'avatars, on garde ceux statiques.
+// Version 100% statique : aucun fetch, uniquement la liste par défaut ou passée en props.
 const TestimonialsSection = ({
   items = DEFAULT_TESTIMONIALS,
   topSpeed = 28,
@@ -111,51 +108,11 @@ const TestimonialsSection = ({
   fade = true,
   cardWidth = null,
   rows = 2,
-  // intervalle réduit ou nul si avatars ne changent pas souvent; mettre 0 pour désactiver
-  refreshIntervalMs = 0,
 }) => {
   const reduceMotion = useReducedMotion();
-  const TESTIMONIALS_URL = import.meta?.env?.VITE_TESTIMONIALS_URL || "";
-  // Tableau des avatars potentiellement récupérés
-  const [remoteAvatars, setRemoteAvatars] = useState([]);
-  // On fusionne avatars dynamiques (index) avec items statiques
-  const effectiveItems = items.map((t, i) => {
-    const remote = remoteAvatars[i];
-    return remote ? { ...t, avatar: remote } : t;
-  });
+  const effectiveItems = items;
 
-  useEffect(() => {
-    if (!TESTIMONIALS_URL) return;
-    let aborted = false;
-    const normalizeAvatar = (url) => {
-      if (!url || typeof url !== 'string') return '';
-      const u = url.trim();
-      const m1 = u.match(/[?&]id=([a-zA-Z0-9_-]+)/);
-      if (m1) return `https://drive.google.com/uc?export=view&id=${m1[1]}`;
-      const m2 = u.match(/\/file\/d\/([a-zA-Z0-9_-]+)\/view/);
-      if (m2) return `https://drive.google.com/uc?export=view&id=${m2[1]}`;
-      return u;
-    };
-    const loadAvatars = () => {
-      fetch(TESTIMONIALS_URL, { cache: 'no-store' })
-        .then(r => r.ok ? r.json().catch(()=>null) : null)
-        .then(data => {
-          if (aborted || !data) return;
-          const arr = Array.isArray(data?.items) ? data.items : [];
-          if (!arr.length) return;
-            // extrait uniquement les avatars
-          const avatars = arr.map(t => normalizeAvatar(t.avatar || t.photo || ''));
-          if (avatars.some(a => a)) setRemoteAvatars(avatars);
-        })
-        .catch(()=>{});
-    };
-    loadAvatars();
-    if (refreshIntervalMs && refreshIntervalMs > 0) {
-      const id = setInterval(loadAvatars, refreshIntervalMs);
-      return () => { aborted = true; clearInterval(id); };
-    }
-    return () => { aborted = true; };
-  }, [TESTIMONIALS_URL, refreshIntervalMs]);
+  // Plus aucune logique de récupération : avatars déjà dans les items statiques.
 
   // internal states for pause handling
   const [isManuallyPaused, setIsManuallyPaused] = useState(false);
