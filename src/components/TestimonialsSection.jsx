@@ -97,6 +97,10 @@ const TestimonialCard = ({ t, cardWidth, onFocusChange }) => {
   );
 };
 
+// Version simplifiée :
+// On conserve seulement les témoignages statiques (items) et on tente
+// éventuellement de récupérer des avatars depuis l'endpoint (même structure, on ignore le reste).
+// Si le fetch échoue ou ne fournit pas assez d'avatars, on garde ceux statiques.
 const TestimonialsSection = ({
   items = DEFAULT_TESTIMONIALS,
   topSpeed = 28,
@@ -107,64 +111,47 @@ const TestimonialsSection = ({
   fade = true,
   cardWidth = null,
   rows = 2,
-  refreshIntervalMs = 600000, // 10 minutes
+  // intervalle réduit ou nul si avatars ne changent pas souvent; mettre 0 pour désactiver
+  refreshIntervalMs = 0,
 }) => {
   const reduceMotion = useReducedMotion();
   const TESTIMONIALS_URL = import.meta?.env?.VITE_TESTIMONIALS_URL || "";
-
-  const [remoteItems, setRemoteItems] = useState(null);
-  const effectiveItems = remoteItems && Array.isArray(remoteItems) && remoteItems.length > 0 ? remoteItems : items;
+  // Tableau des avatars potentiellement récupérés
+  const [remoteAvatars, setRemoteAvatars] = useState([]);
+  // On fusionne avatars dynamiques (index) avec items statiques
+  const effectiveItems = items.map((t, i) => {
+    const remote = remoteAvatars[i];
+    return remote ? { ...t, avatar: remote } : t;
+  });
 
   useEffect(() => {
+    if (!TESTIMONIALS_URL) return;
     let aborted = false;
-    const defaultAvatar = `${import.meta.env.BASE_URL || "/"}avatars/default.svg`;
     const normalizeAvatar = (url) => {
       if (!url || typeof url !== 'string') return '';
       const u = url.trim();
-      // Google Drive patterns -> direct view URL
-      // 1) https://drive.google.com/open?id=FILE_ID
       const m1 = u.match(/[?&]id=([a-zA-Z0-9_-]+)/);
       if (m1) return `https://drive.google.com/uc?export=view&id=${m1[1]}`;
-      // 2) https://drive.google.com/file/d/FILE_ID/view?usp=sharing
       const m2 = u.match(/\/file\/d\/([a-zA-Z0-9_-]+)\/view/);
       if (m2) return `https://drive.google.com/uc?export=view&id=${m2[1]}`;
       return u;
     };
-
-    const load = () => {
-      if (!TESTIMONIALS_URL) return;
-      fetch(TESTIMONIALS_URL, { cache: "no-store" })
-        .then(async (r) => {
-          if (!r.ok) return null;
-          // Attempt JSON parse first, fallback to text->JSON parse
-          try {
-            return await r.json();
-          } catch (e) {
-            const txt = await r.text();
-            try { return JSON.parse(txt); } catch { return null; }
-          }
-        })
-        .then((data) => {
+    const loadAvatars = () => {
+      fetch(TESTIMONIALS_URL, { cache: 'no-store' })
+        .then(r => r.ok ? r.json().catch(()=>null) : null)
+        .then(data => {
           if (aborted || !data) return;
-          const arr = Array.isArray(data?.items) ? data.items : Array.isArray(data) ? data : [];
-          const mapped = arr
-            .map((t, idx) => ({
-              id: t.id ?? idx + 1,
-              name: t.name ?? t.nom ?? t.fullname ?? "",
-              handle: t.handle ?? t.pseudo ?? "",
-              avatar: normalizeAvatar(t.avatar ?? t.photo ?? "") || defaultAvatar,
-              // accept multiple common field names, including Apps Script 'quote'
-              text: t.text ?? t.quote ?? t.message ?? t.comment ?? t.temoignage ?? "",
-            }))
-            .filter((t) => t.name && t.text);
-          if (mapped.length) setRemoteItems(mapped);
+          const arr = Array.isArray(data?.items) ? data.items : [];
+          if (!arr.length) return;
+            // extrait uniquement les avatars
+          const avatars = arr.map(t => normalizeAvatar(t.avatar || t.photo || ''));
+          if (avatars.some(a => a)) setRemoteAvatars(avatars);
         })
-        .catch(() => {});
+        .catch(()=>{});
     };
-
-    load();
+    loadAvatars();
     if (refreshIntervalMs && refreshIntervalMs > 0) {
-      const id = setInterval(load, refreshIntervalMs);
+      const id = setInterval(loadAvatars, refreshIntervalMs);
       return () => { aborted = true; clearInterval(id); };
     }
     return () => { aborted = true; };
