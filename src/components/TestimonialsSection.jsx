@@ -104,7 +104,7 @@ const TestimonialCard = ({ t, cardWidth, onFocusChange }) => {
   const widthClass =
     cardWidth || "w-[20rem] sm:w-[24rem] md:w-[30rem] lg:w-[34rem]";
   const seed = t.name || t.handle || "Utilisateur";
-  const reduceMotion = useReducedMotion();
+  const shouldReduceMotionCard = useReducedMotion();
   const avatarSize = 44; // anneau de 2px autour d'un conteneur 48px
   return (
     <article
@@ -120,7 +120,7 @@ const TestimonialCard = ({ t, cardWidth, onFocusChange }) => {
           style={{
             background:
               "conic-gradient(from 0deg, #FF7B00, #3650D0, #0EA5E9, #22C55E, #F59E0B, #FF7B00)",
-            animation: reduceMotion ? "none" : "spin 8s linear infinite",
+            animation: shouldReduceMotionCard ? "none" : "spin 8s linear infinite",
           }}
         >
           <div className="w-full h-full rounded-full overflow-hidden bg-white">
@@ -166,7 +166,7 @@ const TestimonialsSection = ({
   cardWidth = null,
   rows = 2,
 }) => {
-  const reduceMotion = useReducedMotion();
+  const shouldReduceMotion = useReducedMotion();
   const effectiveItems = items;
 
   // Plus aucune logique de récupération : avatars déjà dans les items statiques.
@@ -180,7 +180,7 @@ const TestimonialsSection = ({
   const isFocused = focusCount > 0;
 
   const paused =
-    reduceMotion ||
+    shouldReduceMotion ||
     isManuallyPaused ||
     (pauseOnHover && isHovering) ||
     (pauseOnFocus && isFocused);
@@ -290,7 +290,7 @@ const TestimonialsSection = ({
                 ["--marquee-duration"]: `${topDuration}s`,
                 ["--marquee-direction"]: topDirection,
               }}
-              aria-hidden={reduceMotion ? "true" : "false"}
+              aria-hidden={shouldReduceMotion ? "true" : "false"}
             >
               <div className="marquee-track inline-flex gap-6" role="list">
                 {effectiveItems.map((t) => (
@@ -332,7 +332,7 @@ const TestimonialsSection = ({
                   ["--marquee-duration"]: `${botDuration}s`,
                   ["--marquee-direction"]: botDirection,
                 }}
-                aria-hidden={reduceMotion ? "true" : "false"}
+                aria-hidden={shouldReduceMotion ? "true" : "false"}
               >
                 <div className="marquee-track inline-flex gap-6" role="list">
                   {effectiveItems.map((t) => (
