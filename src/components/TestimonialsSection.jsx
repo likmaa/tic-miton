@@ -81,7 +81,8 @@ const TestimonialCard = ({ t, cardWidth, onFocusChange, defaultAvatar }) => {
   // Narrower cards on very small screens to avoid excessive overflow; still marquee inside overflow-hidden
   const widthClass =
     cardWidth || "w-[20rem] sm:w-[24rem] md:w-[30rem] lg:w-[34rem]";
-  const avatarSrc = (t.avatar && String(t.avatar).trim()) || defaultAvatar;
+  // Force l'utilisation de l'avatar par défaut pour tous les profils
+  const avatarSrc = defaultAvatar;
   return (
     <article
       tabIndex={0}
