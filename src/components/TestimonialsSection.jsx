@@ -16,34 +16,34 @@ const DEFAULT_TESTIMONIALS = [
   },
   {
     id: 2,
-    name: "Maya Kim",
+    name: "ALAO Faoziyath ",
     handle: "@mayak",
     text:
-      "Application fluide et intuitive. Les tarifs sont clairs et j'obtiens toujours un chauffeur en quelques minutes.",
+      "Je suis une cliente fidèle de l'agence TIC car j'ai toujours été satisfaite de leur service ❤️🥰",
     rating: 4,
   },
   {
     id: 3,
-    name: "Leo Martin",
-    handle: "@leom",
+    name: "Manksoudath",
+    handle: "@manksoudath",
     text:
-      "Service client local et réactif — ils ont résolu mon souci en un appel. Très rassurant.",
+      "Meilleur partenaire de voyage dans Porto Novo avec un coût très moyen et une équipe dynamique. Je recommande à 1000%.",
     rating: 5,
   },
   {
     id: 4,
-    name: "Sofia Alvarez",
-    handle: "@sofialabs",
+    name: "Abiodoun ",
+    handle: "@abiodoun",
     text:
-      "Trajets rapides et chauffeurs professionnels — parfait pour mes déplacements en ville.",
+      "J'ai aimer cette belle initiative mais pas encore professionnel car nous sommes confrontés parfois a la surfacturation, et au manque de respect pour certains conducteur. Néanmoins d'autre sont super parmis eux. Je mets 4 étoiles pour les efforts fournis et j'espère que ça ira de mieux en mieux.",
     rating: 4,
   },
   {
     id: 5,
-    name: "Jackson Lee",
-    handle: "@jacksonlee",
+    name: "Vieux sage",
+    handle: "@vieuxsage",
     text:
-      "Application très pratique pour les livraisons. Les livreurs sont ponctuels et soigneux.",
+      "Je souhaite que l'accueil constaté dans vos locaux soit ainsi au niveau de vos conducteurs aussi. Merci d'avoir pensé à ceux du deuxième âge qui on du mal à emprunter le zemidjan. C'est Porto-Novo qui gagne.",
     rating: 5,
   },
   {
@@ -53,6 +53,38 @@ const DEFAULT_TESTIMONIALS = [
     text:
       "J'apprécie la transparence des prix et la possibilité de partager mon trajet en temps réel.",
     rating: 5,
+  },
+  {
+    id: 7,
+    name: "TIDJANI KAMAL DINE",
+    handle: "@tidjani_kamal",
+    text:
+      "L'offre de l'entreprise est accessible. Les chauffeurs sont professionnels et courtois. Je recommande TIC Miton pour vos déplacements à Porto-Novo.",
+    rating: 5,
+  },
+  {
+    id: 8,
+    name: "BOUSSARI Zouliha",
+    handle: "@boussari_zouliha",
+    text:
+      "Travail impeccable 👌. Application fluide et intuitive. Les tarifs sont clairs et j'obtiens toujours un chauffeur en quelques minutes.",
+    rating: 4,
+  },
+  {
+    id: 9,
+    name: "Majoie",
+    handle: "@majoie",
+    text:
+      "TIC assure le transport quotidien de nos enfants en toute sécurité. Service fiable et chauffeurs attentionnés. Je recommande vivement !",
+    rating: 5,
+  },
+  {
+    id: 10,
+    name: "Zoulkifoule HOUEKIN ",
+    handle: "@zoulkifoule_houekin",
+    text:
+      "Une société qui répond à nos besoins de déplacement avec professionnalisme et efficacité. Je suis très satisfait de leurs services.",
+    rating: 4,
   },
 ];
 
@@ -72,6 +104,7 @@ const TestimonialCard = ({ t, cardWidth, onFocusChange }) => {
   const widthClass =
     cardWidth || "w-[20rem] sm:w-[24rem] md:w-[30rem] lg:w-[34rem]";
   const seed = t.name || t.handle || "Utilisateur";
+  const reduceMotion = useReducedMotion();
   const avatarSize = 44; // anneau de 2px autour d'un conteneur 48px
   return (
     <article
