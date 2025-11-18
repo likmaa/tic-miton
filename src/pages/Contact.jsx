@@ -25,7 +25,7 @@ export default function Contact() {
       )}`;
       window.location.href = mailto;
       setStatus({ sending: false, sent: true, error: "" });
-    } catch (err) {
+    } catch {
       setStatus({ sending: false, sent: false, error: "Une erreur est survenue. Réessayez plus tard." });
     }
   };

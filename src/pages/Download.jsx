@@ -81,7 +81,7 @@ export default function Download() {
               href={PLACEHOLDER_LINKS.appStoreUrl || TESTFLIGHT_URL}
               className="inline-flex items-center justify-center rounded-md bg-gray-900 text-white px-5 py-3 font-sans font-semibold hover:bg-black transition"
             >
-              Ouvrir iOS (TestFlight/App Store)
+              Ouvrir iOS (TestFlight/App Store)
             </a>
           )}
         </div>
@@ -115,7 +115,7 @@ export default function Download() {
           <div>
             <h2 className="font-semibold text-gray-900">iOS</h2>
             <ul className="list-disc ml-5 mt-1 space-y-1">
-              <li>La distribution publique hors App Store n'est pas autorisée. Deux options: App Store/TestFlight, ou distribution d'entreprise (MDM/itms-services) réservée aux usages internes et comptes Apple appropriés.</li>
+              <li>La distribution publique hors App Store n'est pas autorisée. Deux options: App Store/TestFlight, ou distribution d'entreprise (MDM/itms-services) réservée aux usages internes et comptes Apple appropriés.</li>
               <li>Si vous disposez d'un profil d'entreprise, utilisez le bouton "Installer sur iOS (Entreprise)" ci-dessus.</li>
             </ul>
           </div>
