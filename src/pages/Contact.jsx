@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
 import LINKS from "../config/links";
+import FORMS from "../config/forms";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -19,12 +20,30 @@ export default function Contact() {
     e.preventDefault();
     setStatus({ sending: true, sent: false, error: "" });
     try {
-      // Placeholder submit: open mail client with prefilled content
-      const mailto = `mailto:support@tic-miton.com?subject=${encodeURIComponent(form.subject || "Contact TIC Miton")}&body=${encodeURIComponent(
-        `Nom: ${form.name}\nEmail: ${form.email}\nTéléphone: ${form.phone}\n\nMessage:\n${form.message}`
-      )}`;
-      window.location.href = mailto;
-      setStatus({ sending: false, sent: true, error: "" });
+      if (FORMS.contactEndpoint) {
+        const data = new FormData();
+        data.append("name", form.name);
+        data.append("email", form.email);
+        data.append("phone", form.phone);
+        data.append("subject", form.subject || "Contact TIC Miton");
+        data.append("message", form.message);
+
+        const res = await fetch(FORMS.contactEndpoint, {
+          method: "POST",
+          body: data,
+          headers: { Accept: "application/json" },
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        setStatus({ sending: false, sent: true, error: "" });
+      } else {
+        // Fallback: ouvrir le client mail
+        const to = LINKS.supportEmail || "support@tic-miton.com";
+        const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(form.subject || "Contact TIC Miton")}&body=${encodeURIComponent(
+          `Nom: ${form.name}\nEmail: ${form.email}\nTéléphone: ${form.phone}\n\nMessage:\n${form.message}`
+        )}`;
+        window.location.href = mailto;
+        setStatus({ sending: false, sent: true, error: "" });
+      }
     } catch {
       setStatus({ sending: false, sent: false, error: "Une erreur est survenue. Réessayez plus tard." });
     }
@@ -84,7 +103,11 @@ export default function Contact() {
               >
                 Envoyer <Send className="w-4 h-4" />
               </button>
-              {status.sent && <span className="text-sm text-green-600">Message prêt dans votre client e-mail.</span>}
+              {status.sent && (
+                <span className="text-sm text-green-600">
+                  {FORMS.contactEndpoint ? "Message envoyé. Merci, nous revenons vers vous." : "Message prêt dans votre client e‑mail."}
+                </span>
+              )}
               {status.error && <span className="text-sm text-red-600">{status.error}</span>}
             </div>
           </motion.form>
