@@ -36,7 +36,6 @@ jobs:
       - name: Build with Vite (base for GH Pages)
         env:
           # Inject runtime config for production build (set in repo Variables or Secrets)
-          VITE_TESTIMONIALS_URL: ${{ secrets.VITE_TESTIMONIALS_URL || vars.VITE_TESTIMONIALS_URL }}
           VITE_ANDROID_APK_URL: ${{ secrets.VITE_ANDROID_APK_URL || vars.VITE_ANDROID_APK_URL }}
           VITE_IOS_ENTERPRISE_PLIST_URL: ${{ secrets.VITE_IOS_ENTERPRISE_PLIST_URL || vars.VITE_IOS_ENTERPRISE_PLIST_URL }}
           VITE_TESTFLIGHT_URL: ${{ secrets.VITE_TESTFLIGHT_URL || vars.VITE_TESTFLIGHT_URL }}
