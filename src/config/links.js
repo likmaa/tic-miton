@@ -10,7 +10,7 @@ const DOWNLOAD_URL = import.meta?.env?.VITE_DOWNLOAD_URL ?? `${BASE}/download`;
 const ANDROID_APK_URL = import.meta?.env?.VITE_ANDROID_APK_URL ?? `${(import.meta?.env?.BASE_URL) || '/'}downloads/android/app-latest.apk`;
 const IOS_ENTERPRISE_PLIST_URL = import.meta?.env?.VITE_IOS_ENTERPRISE_PLIST_URL ?? ""; // e.g. https://yourdomain/downloads/ios/manifest.plist
 const TESTFLIGHT_URL = import.meta?.env?.VITE_TESTFLIGHT_URL ?? "https://testflight.apple.com/";
-const LIVE_URL = import.meta?.env?.VITE_LIVE_URL ?? "https://likmaa.github.io/tic-miton/";
+const LIVE_URL = import.meta?.env?.VITE_LIVE_URL ?? "https://ticmiton.com/";
 const WHATSAPP_URL = import.meta?.env?.VITE_WHATSAPP_URL ?? "https://wa.me/2290157792662";
 const SUPPORT_EMAIL = import.meta?.env?.VITE_SUPPORT_EMAIL ?? "support@ticmiton.com";
 

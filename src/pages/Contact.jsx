@@ -117,7 +117,7 @@ export default function Contact() {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
               <h3 className="font-sans text-lg font-bold text-gray-900">Coordonnées</h3>
               <ul className="mt-4 space-y-3 text-gray-700">
-                <li className="flex items-center gap-2"><Mail className="w-5 h-5 text-[#3650D0]" /> support@tic-miton.com</li>
+                 <li className="flex items-center gap-2"><Mail className="w-5 h-5 text-[#3650D0]" /> {LINKS.supportEmail}</li>
                 <li className="flex items-center gap-2"><Phone className="w-5 h-5 text-[#3650D0]" /> +229 01 57 79 26 62</li>
                 <li className="flex items-center gap-2"><MapPin className="w-5 h-5 text-[#3650D0]" /> Cotonou, Bénin</li>
               </ul>
