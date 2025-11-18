@@ -42,7 +42,7 @@ export default function DriverHero({ className = '' }) {
           </h1>
 
           <p className="mt-5 font-sans text-white/90 max-w-xl">
-            Rejoins-nous avec un en remplissant le formulaire ci-bas. Notre équipe te contacte pour la validation et la formation.
+            Rejoins-nous en remplissant le formulaire ci-dessous. Notre équipe te contacte pour la validation et la formation.
           </p>
 
           {/* CTAs */}
