@@ -109,7 +109,7 @@ const StatCard = ({ stat, reduceMotion, itemAnim }) => {
         <div className="flex items-baseline gap-2">
           {/* Visible counter */}
           <div
-            className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-gray-900"
+            className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-brand-blue"
             aria-hidden="true"
           >
             {formatted}
