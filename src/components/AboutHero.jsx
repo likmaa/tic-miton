@@ -1,7 +1,8 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
-import aboutHeroImg from "../assets/Mockup.png?w=864;1200;1600&format=avif;webp&quality=100&as=picture";
+// Optimized responsive hero image (limit widths, lower quality)
+import aboutHeroImg from "../assets/Mockup.png?w=640;960;1200&format=avif;webp&quality=100&as=picture";
 import LINKS from "../config/links";
 
 const AboutHero = ({
@@ -76,7 +77,7 @@ const AboutHero = ({
           {/* Left: Titre + texte */}
           <div className="text-center md:text-left flex-1">
             <motion.h1
-              className="font-display text-2xl sm:text-3xl text-white font-extrabold leading-tight"
+              className="font-display text-3xl sm:text-4xl lg:text-5xl text-white font-extrabold leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}

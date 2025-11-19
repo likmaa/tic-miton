@@ -3,7 +3,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Apple, Play } from "lucide-react";
 import PLACEHOLDER_LINKS from "../config/links";
 import Aurora from "./Aurora";
-import phonePicture from "../assets/Mockup.png?w=360;420;520;560;720;960&format=avif;webp&quality=70&as=picture";
+// Fine-tune widths (drop 560, keep balanced steps) & slightly lower quality for further reduction
+import phonePicture from "../assets/Mockup.png?w=360;420;520;640;800;960&format=avif;webp&quality=100&as=picture";
 
 const HeroSection = () => {
   const shouldReduceMotion = useReducedMotion();
@@ -33,7 +34,7 @@ const HeroSection = () => {
           transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
         >
           <motion.h1
-            className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight tracking-tight text-white"
+            className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-tight text-white"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{

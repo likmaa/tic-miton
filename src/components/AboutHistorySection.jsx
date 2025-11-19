@@ -2,7 +2,7 @@
 import React from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import aboutImage from "../assets/features/Image B10.jpg?w=480;768;1200;1600&format=webp;avif;jpg&as=picture";
+import aboutImage from "../assets/features/Image B10.jpg?w=480;768;1200;1600&format=webp;avif;jpg&quality=100&as=picture";
 
 
 const LONG_TEXT = `

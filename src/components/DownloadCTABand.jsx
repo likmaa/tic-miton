@@ -3,7 +3,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Apple, Play } from "lucide-react";
 import PLACEHOLDER_LINKS from "../config/links";
 // Image bannière responsive (par défaut), remplaçable via prop
-import downPic from "../assets/features/Down.jpeg?w=864;1200;1600&format=avif;webp;jpg&quality=100&as=picture";
+// Responsive banner with reduced quality to shrink transfer size
+import downPic from "../assets/features/Down.jpeg?w=640;864;1200&format=avif;webp;jpg&quality=100&as=picture";
 
 
 
@@ -59,8 +60,8 @@ const DownloadCTABand = ({
                   className="w-full h-56 sm:h-72 md:h-80 lg:h-96 object-cover object-top block rounded-t-3xl"
                   loading="lazy"
                   decoding="async"
-                  width={img.w || 1600}
-                  height={img.h || 900}
+                  width={img.w || 1200}
+                  height={img.h || 675}
                 />
               </picture>
             );
@@ -72,6 +73,8 @@ const DownloadCTABand = ({
               className="w-full h-56 sm:h-72 md:h-80 lg:h-96 object-cover object-top block rounded-t-3xl"
               loading="lazy"
               decoding="async"
+              width="1200"
+              height="675"
             />
           );
         })()}

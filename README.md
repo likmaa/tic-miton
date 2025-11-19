@@ -133,6 +133,39 @@ Le build génère `dist/`, prêt pour un hébergement statique (Netlify, Vercel,
 - Ajouter des tests E2E (ex: Playwright) pour valider “estimation de prix”, modals, et navigation SPA.
 - Optionnel: améliorer le piégeage de focus dans les modals et ajouter « Échap pour fermer » partout.
 
+## Optimisations & Pipeline images
+
+### Typographie héro unifiée
+Toutes les sections héro utilisent désormais une échelle cohérente: `text-3xl sm:text-4xl lg:text-5xl` (lisible mobile, sans sauts visuels excessifs).
+
+### Images & CLS
+- Ajout systématique des attributs `width`/`height` ou dimensions tailwind contrôlées sur les images critiques (logo, avatars, mockups) pour réduire le Cumulative Layout Shift.
+- `decoding="async"` sur images non critiques et `loading="lazy"` sauf pour les héro principales (préchargées pour LCP).
+
+### Favicon & PWA
+- Manifest PWA (`public/site.webmanifest`) avec icônes multi-tailles (32, 192, 512). Apple touch icon 180×180 gérée séparément.
+- Variantes intermédiaires (transparent / fond blanc) nettoyées pour réduire le bruit du repo.
+
+### Script d’optimisation (Sharp)
+Un script Node `scripts/optimize-images.js` génère les icônes à partir du logo source (WebP ou PNG). Commande:
+```bash
+npm run optimize:images
+```
+Production des tailles nécessaires: 32, 180, 192, 512 (PNG). Peut être étendu pour WebP/AVIF future.
+
+### Couleurs brand
+La couleur primaire `#3650D0` est exposée dans Tailwind comme `bg-brand-blue`, éviter les hex directs dans le JSX. Prochain durcissement possible: lint custom pour interdire `#3650D0` en dur.
+
+### Axes de suivi futurs
+- Responsive sets supplémentaires pour images lourdes >150KB (Unsplash hero Services, etc.) via `?w=` multi-sources.
+- Preload police display (Unbounded) si LCP nécessite un gain supplémentaire.
+- Code splitting plus fin (animations / pages) si bundle >350KB persiste.
+- Audit Lighthouse CI automatisé (script `npm run lh` futur).
+
+---
+
+TIC Miton © {new Date().getFullYear()} — Tous droits réservés.
+
 ---
 
 TIC Miton © {new Date().getFullYear()} — Tous droits réservés.

@@ -2,7 +2,8 @@ import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { MessageCircle, ArrowRight } from 'lucide-react';
 import LINKS from '../config/links';
-import driverHeroImage from '../assets/hh.jpeg';
+// Responsive driver hero image (multi-format, multi-width)
+import driverHeroImage from '../assets/hh.jpeg?w=480;640;768;960;1200&format=avif;webp;jpg&quality=100&as=picture';
 
 /*
   DriverHero.jsx
@@ -37,7 +38,7 @@ export default function DriverHero({ className = '' }) {
 
           <div className="mt-3">
             <motion.h1
-              className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight text-white"
+              className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight text-white"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
@@ -45,8 +46,8 @@ export default function DriverHero({ className = '' }) {
               Tu es bon au volant ?
             </motion.h1>
             <div className="mt-1">
-              <span className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight text-white">On a une voiture pour </span>
-              <span className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight text-brand-orange">toi&nbsp;!</span>
+              <span className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight text-white">On a une voiture pour </span>
+              <span className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight text-brand-orange">toi&nbsp;!</span>
             </div>
           </div>
 
@@ -86,12 +87,41 @@ export default function DriverHero({ className = '' }) {
             <div className="w-64 h-64 sm:w-80 sm:h-80 md:w-[24rem] md:h-[24rem] rounded-full bg-gradient-to-tr from-brand-orange/20 to-transparent blur-2xl" aria-hidden />
           </div>
           <div className="relative h-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-            <img
-              src={driverHeroImage}
-              alt="Chauffeur TIC Miton professionnel"
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
+            {(() => {
+              const isPicture = driverHeroImage && typeof driverHeroImage === 'object' && ("sources" in driverHeroImage || "img" in driverHeroImage);
+              if (isPicture) {
+                const rawSources = driverHeroImage.sources;
+                const sources = Array.isArray(rawSources) ? rawSources : rawSources ? Object.values(rawSources) : [];
+                const img = driverHeroImage.img || {};
+                return (
+                  <picture>
+                    {sources.map((source, idx) => (
+                      <source key={idx} type={source.type} srcSet={source.srcset} sizes="(min-width: 1024px) 50vw, 100vw" />
+                    ))}
+                    <img
+                      src={img.src || (typeof driverHeroImage === 'string' ? driverHeroImage : '')}
+                      alt="Chauffeur TIC Miton professionnel"
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                      width={img.w || 1200}
+                      height={img.h || 800}
+                    />
+                  </picture>
+                );
+              }
+              return (
+                <img
+                  src={typeof driverHeroImage === 'string' ? driverHeroImage : ''}
+                  alt="Chauffeur TIC Miton professionnel"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                  width="1200"
+                  height="800"
+                />
+              );
+            })()}
             <div className="absolute inset-0 bg-gradient-to-t from-brand-blue/40 to-transparent" />
           </div>
         </motion.div>
