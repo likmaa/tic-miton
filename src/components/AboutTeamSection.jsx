@@ -2,7 +2,12 @@ import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Play, Pause } from "lucide-react";
-import MalikAvatar from "../assets/features/IMG_2670.jpeg?w=256&format=webp&quality=70";
+import MalikAvatar from "../assets/features/IMG_2670.jpeg?w=600&format=webp&quality=95";
+import DGAvatar from "../assets/features/DG.png?w=600&format=webp&quality=95";
+import DGAAvatar from "../assets/features/dga.png?w=600&format=webp&quality=95";
+import AdissaAvatar from "../assets/adissa.png?w=600&format=webp&quality=95";
+import FeAvatar from "../assets/features/fe.png?w=600&format=webp&quality=95";
+import HAvatar from "../assets/features/h.png?w=600&format=webp&quality=95";
 
 
 
@@ -11,7 +16,7 @@ const DEFAULT_MEMBERS = [
     id: "m1",
     name: "ACHIROU GAOUSSOU Alabi",
     role: "Co-fondateur & CEO",
-    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=600&q=60&auto=format&fit=crop",
+    avatar: DGAvatar,
     quote: "Faire avancer le Bénin, un trajet à la fois.",
     bio: `Je suis né et j’ai grandi avec l’envie de régler des problèmes concrets, proches des gens. Avec TIC Miton, mon objectif est simple : bâtir un service de mobilité fiable, humain et ancré dans notre réalité béninoise.
 
@@ -19,14 +24,14 @@ Très tôt, j’ai compris que la technologie n’a de sens que si elle amélior
 
 Ce que je veux, c’est une plateforme qui crée de vraies opportunités locales : des revenus plus stables pour les chauffeurs partenaires, des trajets et livraisons plus simples pour les familles, les étudiants et les commerces. Nous avançons pas à pas, avec exigence et humilité, en améliorant l’expérience à chaque version.
 
-Notre promesse n’est pas d’être parfaits, mais d’être sérieux, transparents et constants. Quand il y a un souci, on le règle. Quand il y a une bonne idée, on la teste vite. Et quand ça fonctionne, on le déploie pour tous. C’est ainsi que, jour après jour, nous construisons un service utile, durable et fier d’être d’ici.`,
-    linkedin: "https://www.linkedin.com/in/abdoul-malik-akogo-023b8819b/",
+Notre promesse n'est pas d'être parfaits, mais d'être sérieux, transparents et constants. Quand il y a un souci, on le règle. Quand il y a une bonne idée, on la teste vite. Et quand ça fonctionne, on le déploie pour tous. C'est ainsi que, jour après jour, nous construisons un service utile, durable et fier d'être d'ici.`,
+    instagram: "https://www.instagram.com/dg_tic?igsh=emxnZWtnbTJnOTFn",
   },
   {
     id: "m2",
     name: "ACHIROU WAHIB O. Atanda",
     role: "CTO",
-    avatar: "https://images.unsplash.com/photo-1545996124-1b7e3b6b6c9d?w=600&q=60&auto=format&fit=crop",
+    avatar: DGAAvatar,
     quote: "Faire simple ce qui est complexe.",
     bio: `Je conçois l'architecture et les fondations techniques pour que l'app reste rapide, fiable et sécurisée à toute heure.
 
@@ -39,7 +44,7 @@ Performance, sécurité des données et scalabilité sont nos priorités, sans b
     id: "m3",
     name: "TIDJANI ibouraima Adissa A.",
     role: "Head of Operations & DAF",
-    avatar: "https://images.unsplash.com/photo-1531123897727-8f129e1688ce?w=600&q=60&auto=format&fit=crop",
+    avatar: AdissaAvatar,
     quote: "La qualité naît de la rigueur au quotidien.",
     bio: `Je pilote les opérations terrain et les finances : onboarding chauffeurs, sécurité, couverture des zones, qualité de service et discipline budgétaire.
 
@@ -48,9 +53,9 @@ Nous suivons des indicateurs clés (délais de prise en charge, taux d'annulatio
   },
   {
     id: "m4",
-    name: "ACHIROU Amirath Abedje",
-    role: "Secréataire générale",
-    avatar: "https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?w=600&q=60&auto=format&fit=crop",
+    name: "Magassa HINDA",
+    role: "Assistante de Direction",
+    avatar: FeAvatar,
     quote: "La méthode et la transparence au service du collectif.",
     bio: `J'organise la vie de l'équipe et les processus : gouvernance, juridique, RH, conformité et communication interne.
 
@@ -61,7 +66,7 @@ Mon rôle est d'aligner tout le monde, de clarifier qui fait quoi et d'assurer u
     id: "m5",
     name: "HOUEKIN Zoulkifoule",
     role: "Directeur Technique",
-    avatar: "https://images.unsplash.com/photo-1548095115-45697e6f7f4a?w=600&q=60&auto=format&fit=crop",
+    avatar: HAvatar,
     quote: "Construire une base robuste, évolutive et sûre.",
     bio: `Je dirige l'ingénierie au quotidien : qualité du code, fiabilité, sécurité et livraison des fonctionnalités.
 
@@ -182,8 +187,9 @@ const AboutTeamSection = ({ members = DEFAULT_MEMBERS, className = "" }) => {
         <img
           src={m.avatar}
           alt={`${m.name} avatar`}
-          className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-sm"
+          className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-sm scale-110"
           loading="lazy"
+          style={{ objectPosition: 'center 30%' }}
         />
         <div className="flex-1">
           <div className="flex items-center justify-between gap-3">
@@ -218,6 +224,18 @@ const AboutTeamSection = ({ members = DEFAULT_MEMBERS, className = "" }) => {
             LinkedIn →
           </a>
         )}
+        {m.instagram && (
+          <a
+            href={m.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-gray-400 hover:text-gray-600"
+            onClick={(e) => e.stopPropagation()}
+            aria-label={`Lien Instagram de ${m.name}`}
+          >
+            Instagram →
+          </a>
+        )}
       </div>
     </article>
   );
@@ -243,6 +261,7 @@ const AboutTeamSection = ({ members = DEFAULT_MEMBERS, className = "" }) => {
               alt={`${ceo.name} avatar`}
               className="w-full md:w-64 h-64 md:h-64 object-cover rounded-2xl border border-white shadow"
               loading="lazy"
+              style={{ objectPosition: 'center 30%' }}
             />
             <div className="flex-1">
               <div className="flex items-start justify-between gap-4">
@@ -259,6 +278,16 @@ const AboutTeamSection = ({ members = DEFAULT_MEMBERS, className = "" }) => {
                       className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-sans font-semibold text-brand-blue bg-white border border-brand-blue hover:bg-brand-blue/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30"
                     >
                       LinkedIn
+                    </a>
+                  )}
+                  {ceo.instagram && (
+                    <a
+                      href={ceo.instagram}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-sans font-semibold text-brand-blue bg-white border border-brand-blue hover:bg-brand-blue/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30"
+                    >
+                      Instagram
                     </a>
                   )}
                   <button
@@ -395,6 +424,7 @@ const AboutTeamSection = ({ members = DEFAULT_MEMBERS, className = "" }) => {
                       alt={`${selected.name} avatar`}
                       className="w-full rounded-xl object-cover h-64"
                       loading="lazy"
+                      style={{ objectPosition: 'center 30%' }}
                     />
                   </div>
 
