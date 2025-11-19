@@ -123,8 +123,8 @@ const HeroSection = () => {
                   loading="eager"
                   width={img.w || undefined}
                   height={img.h || undefined}
-                  animate={shouldReduceMotion ? undefined : { y: [0, -4, 0], rotate: [0, -0.8, 0, 0.8, 0] }}
-                  transition={shouldReduceMotion ? undefined : { duration: 5, repeat: Infinity, ease: "easeInOut" }}
+                  animate={shouldReduceMotion ? undefined : { y: [0, -8, 0], rotate: [0, -1.5, 0, 1.5, 0] }}
+                  transition={shouldReduceMotion ? undefined : { duration: 3, repeat: Infinity, ease: "easeInOut" }}
                   style={{ transformOrigin: "50% 85%" }}
                 />
               </picture>

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
 import { CircleDot, Square, X, Navigation, Apple, Play } from "lucide-react";
 import LINKS from "../config/links";
@@ -32,7 +32,7 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
   // Track all pending fetches so we can cancel them
   const controllersRef = useRef(new Set());
 
-  const trackedFetch = async (url, options = {}) => {
+  const trackedFetch = useCallback(async (url, options = {}) => {
     const controller = new AbortController();
     controllersRef.current.add(controller);
     try {
@@ -41,14 +41,15 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
     } finally {
       controllersRef.current.delete(controller);
     }
-  };
+  }, []);
 
-  const normalize = (s) => s.trim().toLowerCase();
-  const formatPrice = (amount) =>
-    new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(Math.round(amount)) + " " + currency;
+  const normalize = useCallback((s) => s.trim().toLowerCase(), []);
+  const formatPrice = useCallback((amount) =>
+    new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(Math.round(amount)) + " " + currency,
+  [currency]);
 
   // Simple distance estimator (km). Replace with real geocoding/distance API later.
-  const estimateDistanceKm = (from, to) => {
+  const estimateDistanceKm = useCallback((from, to) => {
     const a = normalize(from);
     const b = normalize(to);
     if (!a || !b) return 0;
@@ -62,9 +63,9 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
       "cotonou|abomey-calavi": 15,
     };
     return table[key] ?? table[reverseKey] ?? 5; // défaut 5 km si inconnu
-  };
+  }, [normalize]);
 
-  const haversineKm = (a, b) => {
+  const haversineKm = useCallback((a, b) => {
     const toRad = (x) => (x * Math.PI) / 180;
     const R = 6371; // km
     const dLat = toRad(b.lat - a.lat);
@@ -76,7 +77,7 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
       Math.sin(dLon / 2) * Math.sin(dLon / 2) * Math.cos(lat1) * Math.cos(lat2);
     const c = 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
     return R * c;
-  };
+  }, []);
 
   const tryParseCoords = (text) => {
     const m = text.trim().match(/^(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)$/);
@@ -224,7 +225,7 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
           </p>
 
           <motion.h1
-            className="mt-3 font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight text-brand-blue"
+            className="mt-3 font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight text-brand-blue"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
