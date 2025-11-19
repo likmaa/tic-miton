@@ -95,25 +95,25 @@ const StatCard = ({ stat, reduceMotion, itemAnim }) => {
   return (
     <motion.article
       key={stat.id}
-      className="bg-white border border-gray-100 rounded-2xl p-6 flex items-start gap-4 shadow-sm"
+      className="bg-white border border-gray-100 rounded-xl sm:rounded-2xl p-4 sm:p-6 flex flex-col sm:flex-row items-start gap-3 sm:gap-4 shadow-sm"
       variants={itemAnim}
       aria-labelledby={`stat-${stat.id}-label`}
     >
       <div className="flex-shrink-0">
-        <div className="w-12 h-12 rounded-lg bg-[#FF7B00] text-white flex items-center justify-center">
-          <Icon className="w-5 h-5" aria-hidden="true" />
+        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-brand-orange text-white flex items-center justify-center">
+          <Icon className="w-4 h-4 sm:w-5 sm:h-5" aria-hidden="true" />
         </div>
       </div>
 
       <div className="flex-1">
-        <div className="flex items-baseline gap-2">
+        <div className="flex items-baseline gap-1 sm:gap-2">
           {/* Visible counter */}
           <div
-            className="text-2xl sm:text-3xl lg:text-4xl font-display font-extrabold text-brand-blue"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-extrabold text-brand-blue"
             aria-hidden="true"
           >
             {formatted}
-            <span className="text-xl text-gray-500 ml-1">{stat.suffix}</span>
+            <span className="text-base sm:text-xl text-gray-600 ml-0.5 sm:ml-1">{stat.suffix}</span>
           </div>
 
           {/* Hidden live region for screen readers */}
@@ -122,7 +122,7 @@ const StatCard = ({ stat, reduceMotion, itemAnim }) => {
           </div>
         </div>
 
-        <div id={`stat-${stat.id}-label`} className="mt-1 font-sans text-sm text-gray-600">
+        <div id={`stat-${stat.id}-label`} className="mt-1 font-sans text-xs sm:text-sm text-gray-600">
           {stat.label}
         </div>
       </div>
@@ -149,22 +149,22 @@ const StatsSection = () => {
       };
 
   return (
-    <section className="bg-white py-12 md:py-20 px-6 md:px-12 lg:px-20">
+    <section className="bg-white py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8 md:mb-12">
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-blue">
+        <div className="text-center mb-8 sm:mb-10 md:mb-12 px-4">
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-blue">
             Nos chiffres jusqu'à présent
           </h2>
-          <p className="mt-3 font-sans text-gray-900 max-w-2xl mx-auto">
-            Depuis notre lancement à Porto-Novo, nous avons déplacés plusieurs
-            d'usagers et disposons d'un réseau de chauffeurs fiable et très réactif.
+          <p className="mt-2 sm:mt-3 font-sans text-sm sm:text-base text-gray-900 max-w-2xl mx-auto">
+            Depuis notre lancement à Porto-Novo, nous avons déplacé plusieurs
+            usagers et disposons d'un réseau de chauffeurs fiable et très réactif.
           </p>
         </div>
 
         {/* Stats grid */}
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 items-stretch px-4"
           initial="hidden"
           animate="show"
           variants={container}

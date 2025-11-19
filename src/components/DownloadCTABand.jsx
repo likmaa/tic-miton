@@ -56,7 +56,7 @@ const DownloadCTABand = ({
                 <img
                   src={img.src}
                   alt="Illustration de l'application TIC Miton"
-                  className="w-full h-72 sm:h-80 md:h-96 lg:h-[28rem] object-cover object-top block rounded-t-3xl"
+                  className="w-full h-56 sm:h-72 md:h-80 lg:h-96 object-cover object-top block rounded-t-3xl"
                   loading="lazy"
                   decoding="async"
                   width={img.w || 1600}
@@ -69,7 +69,7 @@ const DownloadCTABand = ({
             <img
               src={backgroundImage}
               alt="Illustration de l'application TIC Miton"
-              className="w-full h-72 sm:h-80 md:h-96 lg:h-[28rem] object-cover object-top block rounded-t-3xl"
+              className="w-full h-56 sm:h-72 md:h-80 lg:h-96 object-cover object-top block rounded-t-3xl"
               loading="lazy"
               decoding="async"
             />
@@ -80,7 +80,7 @@ const DownloadCTABand = ({
         <div className="p-6 md:p-8 flex flex-col md:flex-row items-center md:justify-between gap-6 md:gap-8">
           {/* Left: headline + short text */}
           <div className="text-center md:text-left flex-1">
-            <h3 className="font-display text-2xl sm:text-3xl text-white font-extrabold leading-tight">
+            <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl text-white font-extrabold leading-tight">
               Téléchargez l'application TIC Miton
             </h3>
             <p className="mt-2 text-sm text-white/90 max-w-xl">

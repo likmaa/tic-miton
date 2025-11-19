@@ -18,11 +18,11 @@ export default function DriverHero({ className = '' }) {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className={`relative overflow-hidden bg-[#3650D0] text-white ${className}`}>
+    <section className={`relative overflow-hidden bg-brand-blue text-white ${className}`}>
       {/* Orange accents / halos */}
       <div className="pointer-events-none" aria-hidden>
-        <div className="absolute -top-16 -left-16 w-80 h-80 bg-[#FF7B00]/20 rounded-full blur-3xl" />
-        <div className="absolute -bottom-28 -right-24 w-[28rem] h-[28rem] bg-[#FF7B00]/10 rounded-full blur-3xl" />
+        <div className="absolute -top-16 -left-16 w-80 h-80 bg-brand-orange/20 rounded-full blur-3xl" />
+        <div className="absolute -bottom-28 -right-24 w-[28rem] h-[28rem] bg-brand-orange/10 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-6 md:px-12 lg:px-20 pt-20 pb-10">
@@ -35,12 +35,20 @@ export default function DriverHero({ className = '' }) {
         >
           <p className="font-sans text-white/80 text-sm tracking-wide">TIC MITON • Recrutement</p>
 
-          <h1 className="font-display font-extrabold text-4xl sm:text-5xl leading-tight mt-3">
-            <span className="block">Tu es bon au volant&nbsp;?</span>
-            <span className="block mt-1">
-              On a une voiture pour <span className="text-[#FF7B00]">toi&nbsp;!</span>
-            </span>
-          </h1>
+          <div className="mt-3">
+            <motion.h1
+              className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight text-white"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              Tu es bon au volant ?
+            </motion.h1>
+            <div className="mt-1">
+              <span className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight text-white">On a une voiture pour </span>
+              <span className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight text-brand-orange">toi&nbsp;!</span>
+            </div>
+          </div>
 
           <p className="mt-5 font-sans text-white/90 max-w-xl">
             Rejoins-nous en remplissant le formulaire ci-dessous. Notre équipe te contacte pour la validation et la formation.
@@ -50,7 +58,7 @@ export default function DriverHero({ className = '' }) {
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
             <a
               href="#apply"
-              className="inline-flex items-center justify-center gap-2 bg-[#FF7B00] text-white px-6 py-3 rounded-md font-sans font-semibold shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30"
+              className="inline-flex items-center justify-center gap-2 bg-brand-orange text-white px-6 py-3 rounded-md font-sans font-semibold shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30"
             >
               Postuler maintenant <ArrowRight className="w-5 h-5" />
             </a>
@@ -75,7 +83,7 @@ export default function DriverHero({ className = '' }) {
           className="relative h-[360px] md:h-[480px]"
         >
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-64 h-64 sm:w-80 sm:h-80 md:w-[24rem] md:h-[24rem] rounded-full bg-gradient-to-tr from-[#FF7B00]/20 to-transparent blur-2xl" aria-hidden />
+            <div className="w-64 h-64 sm:w-80 sm:h-80 md:w-[24rem] md:h-[24rem] rounded-full bg-gradient-to-tr from-brand-orange/20 to-transparent blur-2xl" aria-hidden />
           </div>
           <div className="relative h-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
             <img
@@ -84,7 +92,7 @@ export default function DriverHero({ className = '' }) {
               className="w-full h-full object-cover"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#3650D0]/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-blue/40 to-transparent" />
           </div>
         </motion.div>
       </div>

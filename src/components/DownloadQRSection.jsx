@@ -44,7 +44,7 @@ const DownloadCard = ({ item }) => {
         <h3 id={`download-${item.id}-title`} className="font-display text-xl md:text-2xl text-gray-900 font-extrabold">
           {item.title}
         </h3>
-        <p className="mt-2 text-sm text-gray-500">{item.subtitle}</p>
+        <p className="mt-2 text-sm text-gray-600">{item.subtitle}</p>
       </div>
 
       {/* CTA arrow */}
@@ -67,7 +67,7 @@ const DownloadQRSection = ({ items = DEFAULT_ITEMS, className = "" }) => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h2 className="font-display text-3xl md:text-3xl font-extrabold text-brand-blue">
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-blue">
             C'est plus facile avec l'app
           </h2>
         </div>
@@ -80,7 +80,7 @@ const DownloadQRSection = ({ items = DEFAULT_ITEMS, className = "" }) => {
         </div>
 
         {/* Note / hint */}
-        <p className="mt-6 text-sm text-gray-500">
+        <p className="mt-6 text-sm text-gray-600">
           Vous n'avez pas de scanner QR ? Appuyez sur le bouton pour accéder directement à la page de téléchargement.
         </p>
       </div>

@@ -20,13 +20,43 @@ import { useReducedMotion } from "framer-motion";
 */
 
 const DEFAULT_PARTNERS = [
-  // Remplace ces logos par tes assets locaux (import...) ou URLs réelles
-  { id: "p1", name: "Trip.com", logo: "https://via.placeholder.com/240x72?text=Trip.com", href: "#" },
-  { id: "p2", name: "GoDaddy", logo: "https://via.placeholder.com/240x72?text=GoDaddy", href: "#" },
-  { id: "p3", name: "Atomberg", logo: "https://via.placeholder.com/240x72?text=Atomberg", href: "#" },
-  { id: "p4", name: "Docusign", logo: "https://via.placeholder.com/240x72?text=Docusign", href: "#" },
-  { id: "p5", name: "Uber", logo: "https://via.placeholder.com/240x72?text=Uber", href: "#" },
-  { id: "p6", name: "Meta", logo: "https://via.placeholder.com/240x72?text=Meta", href: "#" },
+  // Entreprises et institutions béninoises/ouest-africaines
+  { 
+    id: "p1", 
+    name: "MTN Bénin", 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/MTN_Logo.svg/240px-MTN_Logo.svg.png", 
+    href: "https://www.mtn.bj" 
+  },
+  { 
+    id: "p2", 
+    name: "Moov Africa", 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Moov_africa_Logo.svg/240px-Moov_africa_Logo.svg.png", 
+    href: "https://www.moovafrica.bj" 
+  },
+  { 
+    id: "p3", 
+    name: "Ecobank", 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Ecobank_logo.svg/240px-Ecobank_logo.svg.png", 
+    href: "https://www.ecobank.com" 
+  },
+  { 
+    id: "p4", 
+    name: "BSIC Bénin", 
+    logo: "https://www.bsic-benin.com/sites/default/files/logo-bsic_0.png", 
+    href: "https://www.bsic-benin.com" 
+  },
+  { 
+    id: "p5", 
+    name: "SBEE", 
+    logo: "https://www.sbee.bj/sites/default/files/logo-sbee.png", 
+    href: "https://www.sbee.bj" 
+  },
+  { 
+    id: "p6", 
+    name: "Université d'Abomey-Calavi", 
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Logo_UAC.png/120px-Logo_UAC.png", 
+    href: "https://www.uac.bj" 
+  },
 ];
 
 const LogoItem = ({ partner, cardWidth }) => {
@@ -78,7 +108,7 @@ const PartnersMarqueeSection = ({
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <div className="mb-6 text-center">
           <div>
-            <p className="text-sm text-gray-500 font-sans">Partenaires</p>
+            <p className="text-sm text-gray-600 font-sans">Partenaires</p>
             <h3 className="mt-1 font-display text-2xl md:text-3xl font-extrabold text-brand-blue">
               Entreprises qui nous font confiance
             </h3>

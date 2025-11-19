@@ -220,12 +220,17 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
         {/* Left side: title + booking card */}
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           <p className="text-sm text-gray-700">
-            Porto‑Novo, BJ • <a href="#city" className="underline hover:text-[#3650D0]">Changer de ville</a>
+            Porto‑Novo, BJ • <a href="#city" className="underline hover:text-brand-blue">Changer de ville</a>
           </p>
 
-          <h1 className="mt-3 font-display font-extrabold text-4xl md:text-5xl lg:text-3xl leading-tight">
+          <motion.h1
+            className="mt-3 font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight text-brand-blue"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
             Vos déplacements, simplifiés
-          </h1>
+          </motion.h1>
           <p className="mt-3 text-gray-700 max-w-2xl">
             Déterminez le prix de votre course et réservez un trajet en quelques secondes avec des chauffeurs fiables et des prix transparents.
           </p>
@@ -287,14 +292,14 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
                       setPickupSugsLoading(false);
                     }, 300);
                   }}
-                  className="w-full pl-9 pr-12 py-3 rounded-lg bg-gray-50 border border-[#3650D0]/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3650D0]/30"
+                  className="w-full pl-9 pr-12 py-3 rounded-lg bg-gray-50 border border-brand-blue/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/30"
                 />
                 <button
                   type="button"
                   onClick={getCurrentLocation}
                   disabled={locating}
                   aria-busy={locating}
-                  className="absolute right-2 top-2 inline-flex items-center gap-1 px-3 py-1.5 rounded-md bg-white shadow-sm text-sm text-[#3650D0] hover:bg-[#3650D0]/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3650D0]/30 disabled:opacity-60"
+                  className="absolute right-2 top-2 inline-flex items-center gap-1 px-3 py-1.5 rounded-md bg-white shadow-sm text-sm text-brand-blue hover:bg-brand-blue/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/30 disabled:opacity-60"
                 >
                   <Navigation className="w-4 h-4" /> Localiser
                 </button>
@@ -354,7 +359,7 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
                       setDestSugsLoading(false);
                     }, 300);
                   }}
-                  className="w-full pl-9 pr-3 py-3 rounded-lg bg-gray-50 border border-[#3650D0]/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3650D0]/30"
+                  className="w-full pl-9 pr-3 py-3 rounded-lg bg-gray-50 border border-brand-blue/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/30"
                 />
                 {/* destination suggestions */}
                 {(destSugsLoading || destSugs.length > 0) && (
@@ -394,7 +399,7 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
                   aria-label="Prix du trajet"
                   value={price}
                   placeholder="Le prix s'affiche ici"
-                  className="w-full px-3 py-3 rounded-lg bg-gray-50 border border-[#3650D0]/30 text-gray-800 placeholder:text-gray-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3650D0]/30"
+                  className="w-full px-3 py-3 rounded-lg bg-gray-50 border border-brand-blue/30 text-gray-800 placeholder:text-gray-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/30"
                 />
               </label>
               {error && (
@@ -408,14 +413,14 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
                   onClick={handleSeePrice}
                   disabled={loadingPrice}
                   aria-busy={loadingPrice}
-                  className="inline-flex items-center justify-center gap-2 bg-[#FF7B00] text-white px-5 py-3 rounded-md font-semibold shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30 w-full sm:w-auto disabled:opacity-60"
+                  className="inline-flex items-center justify-center gap-2 bg-brand-orange text-white px-5 py-3 rounded-md font-semibold shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30 w-full sm:w-auto disabled:opacity-60"
                 >
                   {loadingPrice ? "Calcul..." : "Voir les prix"}
                 </button>
                 <button
                   type="button"
                   onClick={() => setShowStoreModal(true)}
-                  className="inline-flex items-center justify-center gap-2 bg-white text-[#3650D0] px-5 py-3 rounded-md font-semibold shadow-sm hover:bg-[#3650D0]/5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3650D0]/30 w-full sm:w-auto"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-brand-blue px-5 py-3 rounded-md font-semibold shadow-sm hover:bg-brand-blue/5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/30 w-full sm:w-auto"
                 >
                   Réserver
                 </button>
@@ -423,7 +428,7 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
                   type="button"
                   onClick={cancelAll}
                   disabled={!pickup && !destination && !price}
-                  className="inline-flex items-center justify-center gap-2 bg-white text-[#3650D0] px-5 py-3 rounded-md font-medium shadow-sm hover:bg-[#3650D0]/5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3650D0]/30 w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="inline-flex items-center justify-center gap-2 bg-white text-brand-blue px-5 py-3 rounded-md font-medium shadow-sm hover:bg-brand-blue/5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/30 w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Annuler
                 </button>
@@ -458,7 +463,7 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Ouvrir Google Play"
-                    className="inline-flex items-center gap-2 text-[#3650D0] hover:underline font-semibold"
+                    className="inline-flex items-center gap-2 text-brand-blue hover:underline font-semibold"
                   >
                     <Play className="w-5 h-5" /> Google Play
                   </a>
@@ -467,7 +472,7 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="Ouvrir l'App Store"
-                    className="inline-flex items-center gap-2 text-[#FF7B00] hover:underline font-semibold"
+                    className="inline-flex items-center gap-2 text-brand-orange hover:underline font-semibold"
                   >
                     <Apple className="w-5 h-5" /> App Store
                   </a>
@@ -480,7 +485,7 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
         {/* Right side: illustration */}
         <motion.div className="flex justify-center md:justify-end" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
           <div className="relative w-full max-w-xl md:max-w-2xl">
-            <div className="absolute -inset-6 rounded-3xl blur-3xl bg-gradient-to-tr from-[#3650D0]/10 to-[#FF7B00]/10" />
+            <div className="absolute -inset-6 rounded-3xl blur-3xl bg-gradient-to-tr from-brand-blue/10 to-brand-orange/10" />
             <img
               src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1740&auto=format&fit=crop"
               alt="Chauffeur VTC professionnel au volant"

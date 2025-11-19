@@ -208,7 +208,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
                 name="fullName"
                 value={form.fullName}
                 onChange={handleChange}
-                className={`mt-2 p-3 bg-gray-50 rounded-lg border font-sans ${errors.fullName ? "border-red-400" : "border-[#3650D0]/30"} focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30`}
+                className={`mt-2 p-3 bg-gray-50 rounded-lg border font-sans ${errors.fullName ? "border-red-400" : "border-brand-blue/30"} focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30`}
                 placeholder="Ex: Amadou Kouassi"
                 required
               />
@@ -222,7 +222,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
                 type="email"
                 value={form.email}
                 onChange={handleChange}
-                className={`mt-2 p-3 bg-gray-50 rounded-lg border font-sans ${errors.email ? "border-red-400" : "border-[#3650D0]/30"} focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30`}
+                className={`mt-2 p-3 bg-gray-50 rounded-lg border font-sans ${errors.email ? "border-red-400" : "border-brand-blue/30"} focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30`}
                 placeholder="exemple@domain.com"
                 required
               />
@@ -235,7 +235,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
                 name="phone"
                 value={form.phone}
                 onChange={handleChange}
-                className={`mt-2 p-3 bg-gray-50 rounded-lg border font-sans ${errors.phone ? "border-red-400" : "border-[#3650D0]/30"} focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30`}
+                className={`mt-2 p-3 bg-gray-50 rounded-lg border font-sans ${errors.phone ? "border-red-400" : "border-brand-blue/30"} focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30`}
                 placeholder="+229 01 XX XX XX XX"
                 required
               />
@@ -248,7 +248,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
                 name="city"
                 value={form.city}
                 onChange={handleChange}
-                className={`mt-2 p-3 bg-gray-50 rounded-lg border font-sans ${errors.city ? "border-red-400" : "border-[#3650D0]/30"} focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30`}
+                className={`mt-2 p-3 bg-gray-50 rounded-lg border font-sans ${errors.city ? "border-red-400" : "border-brand-blue/30"} focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30`}
                 placeholder="Porto‑Novo"
                 required
               />
@@ -263,7 +263,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
                 name="licenseNumber"
                 value={form.licenseNumber}
                 onChange={handleChange}
-                className={`mt-2 p-3 bg-gray-50 rounded-lg border font-sans ${errors.licenseNumber ? "border-red-400" : "border-[#3650D0]/30"} focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30`}
+                className={`mt-2 p-3 bg-gray-50 rounded-lg border font-sans ${errors.licenseNumber ? "border-red-400" : "border-brand-blue/30"} focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30`}
                 placeholder="Ex: AB123456"
                 required
               />
@@ -276,7 +276,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
                 name="plateNumber"
                 value={form.plateNumber}
                 onChange={handleChange}
-                className={`mt-2 p-3 bg-gray-50 rounded-lg border font-sans ${errors.plateNumber ? "border-red-400" : "border-[#3650D0]/30"} focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30`}
+                className={`mt-2 p-3 bg-gray-50 rounded-lg border font-sans ${errors.plateNumber ? "border-red-400" : "border-brand-blue/30"} focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30`}
                 placeholder="Ex: AB-1234"
                 required
               />
@@ -291,7 +291,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
                 type="file"
                 accept="image/*,application/pdf"
                 onChange={(e) => handleFile(setIdFile, e.target.files[0])}
-                className="mt-2 p-2 bg-[#3650D0]/5 rounded-lg border border-[#3650D0]/30 font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30 file:mr-3 file:rounded-md file:border-0 file:bg-[#3650D0] file:text-white file:px-4 file:py-2 file:font-sans file:font-semibold hover:file:bg-[#2f46c1]"
+                className="mt-2 p-2 bg-brand-blue/5 rounded-lg border border-brand-blue/30 font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30 file:mr-3 file:rounded-md file:border-0 file:bg-brand-blue file:text-white file:px-4 file:py-2 file:font-sans file:font-semibold hover:file:bg-[#2f46c1]"
                 aria-required
               />
               {idFile && <div className="mt-3"><FilePreview file={idFile} onRemove={removeIdFile} /></div>}
@@ -304,7 +304,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
                 type="file"
                 accept="image/*,application/pdf"
                 onChange={(e) => handleFile(setLicenseFile, e.target.files[0])}
-                className="mt-2 p-2 bg-[#3650D0]/5 rounded-lg border border-[#3650D0]/30 font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30 file:mr-3 file:rounded-md file:border-0 file:bg-[#3650D0] file:text-white file:px-4 file:py-2 file:font-sans file:font-semibold hover:file:bg-[#2f46c1]"
+                className="mt-2 p-2 bg-brand-blue/5 rounded-lg border border-brand-blue/30 font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30 file:mr-3 file:rounded-md file:border-0 file:bg-brand-blue file:text-white file:px-4 file:py-2 file:font-sans file:font-semibold hover:file:bg-[#2f46c1]"
                 aria-required
               />
               {licenseFile && <div className="mt-3"><FilePreview file={licenseFile} onRemove={removeLicenseFile} /></div>}
@@ -319,7 +319,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
               value={form.note}
               onChange={handleChange}
               rows={4}
-              className="mt-2 p-3 bg-gray-50 rounded-lg border border-[#3650D0]/30 font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30"
+              className="mt-2 p-3 bg-gray-50 rounded-lg border border-brand-blue/30 font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30"
               placeholder="Indiquez vos disponibilités ou autres informations utiles..."
             />
           </label>
@@ -334,7 +334,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
               className="mt-1"
             />
             <label htmlFor="consent" className="text-sm text-gray-700">
-              J'accepte que mes données soient utilisées pour le recrutement selon la <Link to="/privacy-policy" className="underline text-[#3650D0] hover:text-[#FF7B00]" target="_blank">politique de confidentialité</Link>.
+              J'accepte que mes données soient utilisées pour le recrutement selon la <Link to="/privacy-policy" className="underline text-brand-blue hover:text-brand-orange" target="_blank">politique de confidentialité</Link>.
             </label>
           </div>
           {errors.consent && <div className="text-xs text-red-600 mt-1">{errors.consent}</div>}
@@ -345,7 +345,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
               <button
                 type="submit"
                 disabled={status.state === "uploading"}
-                className="inline-flex items-center gap-3 bg-[#FF7B00] text-white px-5 py-3 rounded-md font-sans font-semibold shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] transition disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30"
+                className="inline-flex items-center gap-3 bg-brand-orange text-white px-5 py-3 rounded-md font-sans font-semibold shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] transition disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30"
               >
                 {status.state === "uploading" ? `Envoi... (${progress}%)` : "Envoyer ma candidature"}
               </button>
@@ -372,7 +372,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
               {status.state === "uploading" && (
                 <div className="mt-3 h-2 bg-gray-100 rounded overflow-hidden">
                   <div
-                    className="h-full bg-[#FF7B00] transition-all"
+                    className="h-full bg-brand-orange transition-all"
                     style={{ width: `${progress}%` }}
                     aria-hidden
                   />

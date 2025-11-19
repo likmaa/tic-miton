@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
-import { ShieldCheck, Tag, Zap, LifeBuoy, ArrowRight, X, Apple, Play } from "lucide-react";
+import { Link } from "react-router-dom";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { ShieldCheck, Tag, Zap, LifeBuoy, ArrowRight, X, Apple, Play, Sparkles } from "lucide-react";
 import LINKS from "../config/links";
 // Responsive, optimized sources via vite-imagetools
 import safetyPic from "../assets/features/safety.jpg?w=480;768;1200;1600&format=webp;avif;jpg&as=picture";
@@ -24,211 +25,291 @@ const features = [
   {
     id: "safety",
     title: "Sécurité prioritaire",
-    // 4 courtes lignes pour garantir l'aspect "quatre lignes" dans la description
-    lines: [
-      "Vérification complète des chauffeurs.",
-      "Trajets suivis en temps réel pour votre tranquillité.",
-      "Assistance 24/7 disponible localement.",
-      "Politique zéro tolérance pour les comportements à risque.",
+    points: [
+      "Chauffeurs vérifiés et formés",
+      "Suivi en temps réel",
+      "Assistance 24/7",
     ],
-    // Image optimisée responsive
     image: safetyPic,
     alt: "Chauffeur professionnel vérifié",
     Icon: ShieldCheck,
+    color: "#3650D0",
   },
   {
     id: "price",
     title: "Tarifs transparents",
-    lines: [
-      "Prix affichés avant confirmation.",
-      "Pas de frais cachés ni surprises en fin de course.",
-      "Promotions régulières pour les trajets fréquents.",
-      "Options économiques et partagées disponibles.",
+    points: [
+      "Prix clairs dès le départ",
+      "Aucun frais caché",
+      "Promotions régulières",
     ],
     image: payementPic,
     alt: "Paiement et reçu clair",
     Icon: Tag,
+    color: "#FF7B00",
   },
   {
     id: "speed",
     title: "Rapidité & optimisation",
-    lines: [
-      "Algorithmes d'optimisation pour réduire l'attente.",
-      "Réseau de chauffeurs disponibles rapidement en ville.",
-      "Itinéraires optimisés selon le trafic en temps réel.",
-      "Délais d'arrivée courts pour vos urgences quotidiennes.",
+    points: [
+      "Algorithmes intelligents",
+      "Réseau de chauffeurs étendu",
+      "Arrivée rapide garantie",
     ],
     image: puissancePic,
     alt: "Voiture rapide en ville",
     Icon: Zap,
+    color: "#3650D0",
   },
   {
     id: "support",
     title: "Support humain & local",
-    lines: [
-      "Équipe locale formée pour répondre rapidement.",
-      "Support téléphonique et chat intégrés dans l'app.",
-      "Gestion des incidents avec suivi personnalisé.",
-      "Satisfaction client au cœur de notre service.",
+    points: [
+      "Équipe locale dédiée",
+      "Disponible par téléphone et chat",
+      "Satisfaction prioritaire",
     ],
     image: supportPic,
     alt: "Agent support aidant un client",
     Icon: LifeBuoy,
+    color: "#FF7B00",
   },
 ];
+
+const FeatureCard = ({ feature, index }) => {
+  const [isFlipped, setIsFlipped] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const reduceMotion = useReducedMotion();
+
+  const handleMouseMove = (e) => {
+    if (reduceMotion) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  const Icon = feature.Icon;
+
+  // Image rendering logic
+  const renderImage = () => {
+    const hasPictureShape = feature.image && typeof feature.image === 'object' && ("sources" in feature.image || "img" in feature.image);
+    if (hasPictureShape) {
+      const rawSources = feature.image.sources;
+      const sources = Array.isArray(rawSources) ? rawSources : rawSources ? Object.values(rawSources) : [];
+      const img = feature.image.img || {};
+      return (
+        <picture>
+          {sources.map((source, idx) => (
+            <source key={idx} type={source.type} srcSet={source.srcset} sizes="(min-width: 768px) 50vw, 100vw" />
+          ))}
+          <img
+            src={img.src || (typeof feature.image === 'string' ? feature.image : '')}
+            alt={feature.alt}
+            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+            loading="lazy"
+            decoding="async"
+            width={img.w || 800}
+            height={img.h || 600}
+          />
+        </picture>
+      );
+    }
+    return (
+      <img
+        src={typeof feature.image === 'string' ? feature.image : ''}
+        alt={feature.alt}
+        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        loading="lazy"
+        decoding="async"
+        width="800"
+        height="600"
+      />
+    );
+  };
+
+  return (
+    <motion.div
+      initial={reduceMotion ? {} : { opacity: 0, y: 50 }}
+      whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      className="group relative"
+      onMouseMove={handleMouseMove}
+    >
+      {/* Glowing effect */}
+      {!reduceMotion && (
+        <div
+          className="pointer-events-none absolute -inset-1 rounded-3xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 blur-xl"
+          style={{
+            background: `radial-gradient(circle at ${mousePosition.x}px ${mousePosition.y}px, ${feature.color}40, transparent 60%)`,
+          }}
+        />
+      )}
+
+      {/* Card */}
+      <motion.div
+        className="relative h-full rounded-2xl overflow-hidden bg-white shadow-lg transition-all duration-500 group-hover:shadow-2xl"
+        whileHover={reduceMotion ? {} : { y: -8 }}
+        onClick={() => setIsFlipped(!isFlipped)}
+      >
+        {/* Front side */}
+        <div className={`relative h-full transition-opacity duration-500 ${isFlipped ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+          {/* Image with overlay */}
+          <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
+            {renderImage()}
+            <div className="absolute inset-0 bg-black/20" />
+            
+            {/* Floating icon */}
+            <motion.div
+              className="absolute top-4 right-4 sm:top-6 sm:right-6 w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-white/90 backdrop-blur-sm shadow-xl flex items-center justify-center"
+              whileHover={reduceMotion ? {} : { rotate: 360, scale: 1.1 }}
+              transition={{ duration: 0.6 }}
+            >
+              <Icon className="w-6 h-6 sm:w-8 sm:h-8" style={{ color: feature.color }} />
+            </motion.div>
+
+            {/* Sparkle effect */}
+            <motion.div
+              className="absolute top-4 left-4 sm:top-8 sm:left-8"
+              animate={reduceMotion ? {} : {
+                scale: [1, 1.2, 1],
+                opacity: [0.5, 1, 0.5],
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+            </motion.div>
+          </div>
+
+          {/* Content */}
+          <div className="p-5 sm:p-6 md:p-8">
+            <h3 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-brand-blue mb-3 sm:mb-4">
+              {feature.title}
+            </h3>
+            <ul className="space-y-2 mb-4 sm:mb-6">
+              {feature.points.map((point, idx) => (
+                <li key={idx} className="flex items-start gap-2 text-sm sm:text-base text-gray-600 font-sans">
+                  <span className="text-brand-blue mt-1">•</span>
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+            
+            {/* CTA */}
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-brand-blue text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-brand-blue/90 hover:text-[#FFCA80] transition-all group/btn font-sans"
+            >
+              <span className="group-hover/btn:text-[#FFCA80]">Découvrir</span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:text-[#FFCA80]" />
+            </Link>
+          </div>
+
+          {/* Bottom accent */}
+          <div className="absolute bottom-0 left-0 right-0 h-1" style={{ backgroundColor: feature.color }} />
+        </div>
+
+        {/* Back side (flipped) */}
+        <div 
+          className="absolute inset-0 p-6 md:p-8 flex flex-col justify-center items-center text-center text-white transition-opacity duration-500"
+          style={{ backgroundColor: feature.color, opacity: isFlipped ? 1 : 0, pointerEvents: isFlipped ? 'auto' : 'none' }}
+        >
+          <Icon className="w-20 h-20 mb-6 opacity-90" />
+          <h4 className="font-display text-2xl font-bold mb-4">{feature.title}</h4>
+          <p className="text-white/90 leading-relaxed">
+            {feature.description}
+          </p>
+          <button className="mt-8 px-6 py-3 bg-white/20 backdrop-blur-sm rounded-lg font-semibold hover:bg-white/30 transition-all">
+            En savoir plus
+          </button>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
 
 const FeaturesZSection = () => {
   const [showStoreModal, setShowStoreModal] = useState(false);
   const reduceMotion = useReducedMotion();
 
-  const containerVariants = reduceMotion
-    ? {}
-    : {
-        hidden: {},
-        show: { transition: { staggerChildren: 0.08 } },
-      };
-
-  const itemVariants = reduceMotion
-    ? {}
-    : {
-        hidden: { opacity: 0, y: 10 },
-        show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
-      };
-
   return (
-    <section className="bg-white py-16 px-6 md:px-12 lg:px-20">
-      <div className="max-w-7xl mx-auto">
+    <section className="relative bg-white py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 lg:px-20 overflow-hidden">
+      {/* Animated background elements */}
+      {!reduceMotion && (
+        <>
+          <motion.div
+            className="absolute top-20 left-10 w-72 h-72 bg-blue-100/40 rounded-full blur-3xl"
+            animate={{
+              x: [0, 50, 0],
+              y: [0, 30, 0],
+            }}
+            transition={{ duration: 20, repeat: Infinity }}
+          />
+          <motion.div
+            className="absolute bottom-20 right-10 w-96 h-96 bg-orange-100/40 rounded-full blur-3xl"
+            animate={{
+              x: [0, -50, 0],
+              y: [0, -30, 0],
+            }}
+            transition={{ duration: 25, repeat: Infinity }}
+          />
+        </>
+      )}
+
+      <div className="relative z-10 max-w-7xl mx-auto">
         {/* Header */}
-  <div className="text-center mb-12 md:mb-16">
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#3650D0]">
-            Ce qui nous distingue
-          </h2>
-          <p className="mt-3 font-sans text-gray-600 max-w-2xl mx-auto">
-            Sécurité, prix clairs, rapidité et support humain — tout ce qu'il faut pour voyager en confiance.
-          </p>
-        </div>
-
-        {/* Liste des features en "Z" */}
         <motion.div
-          className="flex flex-col gap-16 md:gap-20"
-          initial="hidden"
-          animate="show"
-          variants={reduceMotion ? undefined : containerVariants}
+          className="text-center mb-10 sm:mb-12 md:mb-16 lg:mb-20"
+          initial={reduceMotion ? {} : { opacity: 0, y: 30 }}
+          whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          {features.map((f, idx) => {
-            const isEven = idx % 2 === 1;
-            const Icon = f.Icon;
-
-            return (
-              <motion.article
-                key={f.id}
-                className={
-                  // mobile: stacked (flex-col), desktop: row with conditional reverse
-                  "w-full flex flex-col md:flex-row items-stretch gap-8 md:gap-12 " +
-                  (isEven ? "md:flex-row-reverse" : "")
-                }
-                variants={reduceMotion ? undefined : itemVariants}
-                aria-labelledby={`feature-${f.id}-title`}
-              >
-                {/* Image */}
-                <div className="md:w-1/2 w-full flex-shrink-0">
-                  <div className="w-full h-56 md:h-72 rounded-2xl overflow-hidden shadow-lg">
-                    {(() => {
-                      // Sécuriser l'accès aux données retournées par vite-imagetools (&as=picture)
-                      const hasPictureShape = f.image && typeof f.image === 'object' && ("sources" in f.image || "img" in f.image);
-                      if (hasPictureShape) {
-                        const rawSources = f.image.sources;
-                        const sources = Array.isArray(rawSources)
-                          ? rawSources
-                          : rawSources
-                            ? Object.values(rawSources)
-                            : [];
-                        const img = f.image.img || {};
-                        return (
-                          <picture>
-                            {sources.map((source, idx) => (
-                              <source key={idx} type={source.type} srcSet={source.srcset} sizes="(min-width: 1024px) 50vw, 100vw" />
-                            ))}
-                            <img
-                              src={img.src || (typeof f.image === 'string' ? f.image : '')}
-                              alt={f.alt}
-                              className="w-full h-full object-cover"
-                              loading="lazy"
-                              decoding="async"
-                              width={img.w || 1200}
-                              height={img.h || 800}
-                            />
-                          </picture>
-                        );
-                      }
-                      // Fallback sur un simple <img> si ce n'est pas un objet picture
-                      return (
-                        <img
-                          src={typeof f.image === 'string' ? f.image : ''}
-                          alt={f.alt}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                          decoding="async"
-                          width="1200"
-                          height="800"
-                        />
-                      );
-                    })()}
-                  </div>
-                </div>
-
-                {/* Texte */}
-                <div className="md:w-1/2 w-full flex flex-col justify-center p-2 md:px-8">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-lg bg-[#3650D0] text-white flex items-center justify-center">
-                      {Icon && <Icon className="w-6 h-6" aria-hidden="true" />}
-                    </div>
-
-                    <h3
-                      id={`feature-${f.id}-title`}
-                      className="font-display text-xl sm:text-2xl font-bold text-gray-900"
-                    >
-                      {f.title}
-                    </h3>
-                  </div>
-
-                  <div className="mt-6 font-sans text-gray-700 text-sm leading-7">
-                    {/* Force 4 lines: each entry of lines[] will be on its own line */}
-                    {f.lines.map((line, i) => (
-                      <p key={i} className="mb-2">
-                        {line}
-                      </p>
-                    ))}
-                  </div>
-
-                  <div className="mt-8">
-                    <a
-                      href={LINKS.features?.[f.id] || "#"}
-                      className="inline-flex items-center gap-2 text-sm font-sans font-semibold text-[#3650D0] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/20"
-                      aria-label={`En savoir plus sur ${f.title}`}
-                    >
-                      En savoir plus
-                      <ArrowRight className="w-4 h-4" />
-                    </a>
-                  </div>
-                </div>
-              </motion.article>
-            );
-          })}
+          <motion.div
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-blue/10 text-brand-blue font-semibold text-sm mb-4 sm:mb-6"
+            whileHover={reduceMotion ? {} : { scale: 1.05 }}
+          >
+            <Sparkles className="w-4 h-4" />
+            Nos Avantages
+          </motion.div>
+          
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-blue mb-4 sm:mb-6 px-4">
+            Ce qui nous rend unique
+          </h2>
+          <p className="mt-4 font-sans text-gray-600 text-base sm:text-lg max-w-3xl mx-auto px-4">
+            Une expérience de transport révolutionnaire combinant technologie de pointe et service humain exceptionnel
+          </p>
         </motion.div>
 
-        {/* Petit rappel CTA */}
-        <div className="mt-12 text-center">
-          <button
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mb-12 sm:mb-16">
+          {features.map((feature, index) => (
+            <FeatureCard key={feature.id} feature={feature} index={index} />
+          ))}
+        </div>
+
+        {/* CTA Section */}
+        <motion.div
+          className="text-center"
+          initial={reduceMotion ? {} : { opacity: 0, y: 30 }}
+          whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+        >
+          <motion.button
             type="button"
             onClick={() => setShowStoreModal(true)}
-            className="inline-flex items-center gap-2 text-sm font-sans font-semibold text-[#3650D0] hover:underline bg-transparent px-0 py-0 outline-none focus:outline-none hover:outline-none ring-0 focus:ring-0 border-0"
-            aria-label="Télécharger l'application"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-brand-orange text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:bg-[#e66f00] hover:text-[#FFCA80] transition-all"
+            whileHover={reduceMotion ? {} : { scale: 1.05, y: -2 }}
+            whileTap={reduceMotion ? {} : { scale: 0.98 }}
           >
-            Télécharger l'app
-            <ArrowRight className="w-4 h-4" />
-          </button>
-        </div>
+            <Sparkles className="w-5 h-5" />
+            Télécharger l'application
+            <ArrowRight className="w-5 h-5" />
+          </motion.button>
+        </motion.div>
       </div>
 
       {/* Store selection modal */}
@@ -252,7 +333,7 @@ const FeaturesZSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Ouvrir Google Play"
-                className="inline-flex items-center gap-2 text-[#3650D0] hover:underline font-semibold"
+                className="inline-flex items-center gap-2 text-brand-blue hover:underline font-semibold"
               >
                 <Play className="w-5 h-5" /> Google Play
               </a>
@@ -261,7 +342,7 @@ const FeaturesZSection = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Ouvrir l'App Store"
-                className="inline-flex items-center gap-2 text-[#FF7B00] hover:underline font-semibold"
+                className="inline-flex items-center gap-2 text-brand-orange hover:underline font-semibold"
               >
                 <Apple className="w-5 h-5" /> App Store
               </a>

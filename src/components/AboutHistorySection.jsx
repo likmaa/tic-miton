@@ -84,7 +84,7 @@ export default function AboutHistorySection({ className = "" }) {
             <div className="mt-4">
               <button
                 type="button"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-sans font-semibold text-[#3650D0] bg-white border border-[#3650D0] hover:bg-[#3650D0]/5 transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-sans font-semibold text-brand-blue bg-white border border-brand-blue hover:bg-brand-blue/5 transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30"
                 aria-expanded={expanded}
                 aria-controls={contentId}
                 onClick={() => setExpanded((v) => !v)}

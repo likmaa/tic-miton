@@ -111,7 +111,7 @@ const TestimonialCard = ({ t, cardWidth, onFocusChange }) => {
       tabIndex={0}
       onFocus={() => onFocusChange(true)}
       onBlur={() => onFocusChange(false)}
-      className={`${widthClass} flex-shrink-0 bg-white border border-gray-100 rounded-2xl p-6 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/20`}
+      className={`${widthClass} flex-shrink-0 bg-white border border-gray-100 rounded-2xl p-6 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/20`}
       aria-labelledby={`test-${t.id}-title`}
     >
       <div className="flex items-start gap-4">
@@ -214,7 +214,7 @@ const TestimonialsSection = ({
       <div className="max-w-7xl mx-auto relative">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-blue">
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-blue">
             Témoignages
           </h2>
           <p className="mt-3 font-sans text-gray-600 max-w-2xl mx-auto">
@@ -228,7 +228,7 @@ const TestimonialsSection = ({
             <button
               aria-pressed={isManuallyPaused}
               onClick={toggleManual}
-              className="inline-flex items-center gap-2 bg-white/90 text-gray-900 px-3 py-2 rounded-full shadow-sm hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/20"
+              className="inline-flex items-center gap-2 bg-white/90 text-gray-900 px-3 py-2 rounded-full shadow-sm hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/20"
             >
               {isManuallyPaused ? (
                 <>

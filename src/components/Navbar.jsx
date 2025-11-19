@@ -20,15 +20,22 @@ export default function Navbar() {
 
   return (
     <nav className="w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 fixed top-0 z-50 shadow-sm">
+    {/* Skip to main content - Accessibility */}
+    <a 
+      href="#main-content" 
+      className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-brand-blue text-white px-4 py-2 rounded-md z-[60] focus:outline-none focus:ring-4 focus:ring-brand-blue/50"
+    >
+      Aller au contenu principal
+    </a>
+    
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div className="flex justify-between items-center h-[44px] md:h-24 md:py-4">
-          {/* Logo */}
+  <div className="flex justify-between items-center h-16 md:h-18 lg:h-20 py-2 md:py-4">
           <div className="flex-shrink-0">
-            <Link to={PLACEHOLDER_LINKS.home} className="flex items-center gap-3">
+            <Link to={PLACEHOLDER_LINKS.home} className="flex items-center gap-2 sm:gap-3">
               <img
                 src={logoUrl}
                 alt="TIC Miton Logo"
-                className="h-7 md:h-12 w-auto object-contain"
+                className="h-8 sm:h-10 md:h-12 w-auto object-contain"
               />
               <div className="flex flex-col">
                 <div className="font-display font-bold text-2xl text-gray-900">
@@ -59,7 +66,7 @@ export default function Navbar() {
           <div className="flex items-center space-x-3">
             <button
               type="button"
-              className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-brand-blue hover:text-brand-blue hover:bg-gray-100/80 transition-all"
+              className="md:hidden inline-flex items-center justify-center p-3 rounded-md text-brand-blue hover:text-brand-blue hover:bg-gray-100/80 transition-all"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-expanded={isMobileMenuOpen}
               aria-controls="mobile-menu"
@@ -84,7 +91,7 @@ export default function Navbar() {
             {/* Contact CTA (bleu), rapproché du bouton Télécharger */}
             <a
               href={PLACEHOLDER_LINKS.whatsappUrl}
-              className="hidden sm:inline-flex items-center px-5 py-2.5 border border-transparent text-sm font-sans font-medium rounded-md text-white bg-[#3650D0] hover:bg-[#2b42b5] active:bg-[#263a9f] transition-all shadow-sm"
+              className="hidden sm:inline-flex items-center px-5 py-2.5 border border-transparent text-sm font-sans font-medium rounded-md text-white bg-brand-blue hover:bg-[#2b42b5] active:bg-[#263a9f] transition-all shadow-sm"
             >
               <span className="mr-2">
                 <MessageCircle className="h-5 w-5" />

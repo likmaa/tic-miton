@@ -36,10 +36,10 @@ function useCountTo(target, duration = 1600, reduceMotion = false, decimals = 0)
 }
 
 const DEFAULT_STATS = [
-  { id: "rides", label: "Trajets réalisés", value: 5200, suffix: "+" },
-  { id: "users", label: "Utilisateurs actifs", value: 1800, suffix: "+" },
-  { id: "cities", label: "Villes desservies", value: 3, suffix: "" },
-  { id: "drivers", label: "Chauffeurs partenaires", value: 120, suffix: "+" },
+  { id: "rides", label: "Trajets effectués", value: 800, suffix: "+" },
+  { id: "drivers", label: "Chauffeurs actifs", value: 20, suffix: "+" },
+  { id: "rating", label: "Note moyenne", value: 4.8, suffix: "/5" },
+  { id: "cities", label: "Villes desservies", value: 2, suffix: "" },
 ];
 
 const StatCard = ({ stat, duration, reduceMotion }) => {
@@ -52,12 +52,12 @@ const StatCard = ({ stat, duration, reduceMotion }) => {
     : new Intl.NumberFormat().format(counted);
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 p-6 shadow-sm flex flex-col items-start">
-      <div className="text-sm text-gray-500 font-sans">{stat.label}</div>
+    <div className="bg-white rounded-2xl border border-brand-blue/20 p-6 shadow-sm flex flex-col items-start">
+      <div className="text-sm text-brand-blue font-sans font-semibold">{stat.label}</div>
       <div className="mt-3 flex items-baseline gap-3">
-        <div className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-gray-900">
+        <div className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-brand-blue">
           {formatted}
-          {stat.suffix && <span className="text-2xl text-gray-500 ml-1">{stat.suffix}</span>}
+          {stat.suffix && <span className="text-2xl text-brand-blue/70 ml-1">{stat.suffix}</span>}
         </div>
         {stat.delta && <div className="text-sm text-emerald-500 font-medium">{stat.delta}</div>}
       </div>
@@ -79,7 +79,7 @@ const AboutStatsSection = ({
 
   return (
     <section
-      className={`relative overflow-hidden py-16 px-6 md:px-12 lg:px-20 bg-[#3650D0] ${className}`}
+      className={`relative overflow-hidden py-16 px-6 md:px-12 lg:px-20 bg-brand-blue ${className}`}
       aria-labelledby="stats-heading"
     >
       {/* orange radial gradients with very low opacity over blue background */}
@@ -105,12 +105,11 @@ const AboutStatsSection = ({
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center md:text-left mb-8">
           <p className="text-sm text-white/80 font-sans">Nos chiffres en action</p>
-          <h2 id="stats-heading" className="font-display text-3xl sm:text-4xl lg:text-3xl font-extrabold text-white">
-            Impact mesurable, croissance réelle
+          <h2 id="stats-heading" className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white">
+            TIC Miton en chiffres
           </h2>
           <p className="mt-3 text-white/80 font-sans max-w-2xl">
-            Chiffres réels issus de notre activité locale — trajets, utilisateurs, chauffeurs et villes couvertes.
-            Nous partageons ces indicateurs pour rester transparents avec notre communauté.
+            Chiffres réels issus de notre activité locale — trajets, chauffeurs, satisfaction et villes couvertes.
           </p>
         </div>
 
@@ -123,7 +122,7 @@ const AboutStatsSection = ({
         <div className="mt-8 text-center md:text-left">
           <a
             href="#download"
-            className="inline-flex items-center gap-3 bg-[#FF7B00] text-white px-5 py-3 rounded-md font-sans font-semibold shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30"
+            className="inline-flex items-center gap-3 bg-brand-orange text-white px-5 py-3 rounded-md font-sans font-semibold shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30"
             aria-label="Télécharger l'application"
           >
             Télécharger l'application

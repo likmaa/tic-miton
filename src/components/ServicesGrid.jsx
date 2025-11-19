@@ -35,7 +35,7 @@ export default function ServicesGrid() {
     <section id="services" className="bg-white py-12 sm:py-16">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center max-w-3xl mx-auto">
-          <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-[#3650D0]">Ce que nous offrons</h2>
+          <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-brand-blue">Ce que nous offrons</h2>
           <p className="mt-3 text-gray-700">Des services clairs, pensés pour simplifier votre quotidien. Choisissez, réservez, démmarrez.</p>
         </motion.div>
 
@@ -53,7 +53,7 @@ export default function ServicesGrid() {
                 className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6 hover:shadow-md transition"
               >
                 <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-md bg-[#3650D0]/10 text-[#3650D0]">
+                  <div className="p-3 rounded-md bg-brand-blue/10 text-brand-blue">
                     <Icon className="w-6 h-6" />
                   </div>
                   <div>
@@ -63,7 +63,7 @@ export default function ServicesGrid() {
                       <button
                         type="button"
                         onClick={() => setShowStoreModal(true)}
-                        className="inline-flex items-center gap-2 text-[#3650D0] hover:underline font-semibold bg-transparent px-0 py-0 outline-none focus:outline-none hover:outline-none ring-0 focus:ring-0 hover:ring-0 border-0 hover:border-transparent rounded-md appearance-none"
+                        className="inline-flex items-center gap-2 text-brand-blue hover:underline font-semibold bg-transparent px-0 py-0 outline-none focus:outline-none hover:outline-none ring-0 focus:ring-0 hover:ring-0 border-0 hover:border-transparent rounded-md appearance-none"
                         aria-label={`${s.cta}`}
                       >
                         {s.cta} <ArrowRight className="w-4 h-4" />
@@ -97,7 +97,7 @@ export default function ServicesGrid() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Ouvrir Google Play"
-                  className="inline-flex items-center gap-2 text-[#3650D0] hover:underline font-semibold"
+                  className="inline-flex items-center gap-2 text-brand-blue hover:underline font-semibold"
                 >
                   <Play className="w-5 h-5" /> Google Play
                 </a>
@@ -106,7 +106,7 @@ export default function ServicesGrid() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Ouvrir l'App Store"
-                  className="inline-flex items-center gap-2 text-[#FF7B00] hover:underline font-semibold"
+                  className="inline-flex items-center gap-2 text-brand-orange hover:underline font-semibold"
                 >
                   <Apple className="w-5 h-5" /> App Store
                 </a>

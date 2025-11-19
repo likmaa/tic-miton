@@ -50,11 +50,32 @@
     font-size: 1rem;
     font-weight: 500;
     font-family: inherit;
-    background-color: #f9f9f9;
     cursor: pointer;
     transition: border-color 0.25s;
   }
   button:hover { border-color: #646cff; }
-  button:focus, button:focus-visible { outline: 4px auto -webkit-focus-ring-color; }
+  button:focus,
+  button:focus-visible { outline: 4px auto -webkit-focus-ring-color; }
+}
+
+/* Utility classes for consistency */
+@layer components {
+  /* Section titles standardized */
+  .section-title {
+    @apply font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold;
+  }
+  
+  .hero-title {
+    @apply font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold;
+  }
+  
+  /* Section containers standardized */
+  .section-container {
+    @apply py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 lg:px-20;
+  }
+  
+  .section-container-compact {
+    @apply py-10 sm:py-12 md:py-14 px-4 sm:px-6 md:px-12 lg:px-20;
+  }
 }
 

@@ -111,7 +111,7 @@ const FAQItem = ({
           aria-controls={contentId}
           aria-expanded={isOpen}
           onClick={() => onToggle(index)}
-          className="w-full text-left px-4 py-5 md:px-6 md:py-6 flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/20"
+          className="w-full text-left px-4 py-5 md:px-6 md:py-6 flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/20"
         >
           <div>
             <div className="flex items-center gap-3">
@@ -125,7 +125,7 @@ const FAQItem = ({
           <span
             aria-hidden="true"
             className={`inline-flex items-center justify-center w-9 h-9 rounded-full border border-gray-200 ${
-              isOpen ? "bg-[#3650D0] text-white" : "bg-white text-gray-500"
+              isOpen ? "bg-brand-blue text-white" : "bg-white text-gray-600"
             }`}
           >
             <svg
@@ -223,7 +223,7 @@ const FAQSection = ({ items = DEFAULT_ITEMS, className = "" }) => {
     <section className={`bg-white py-16 px-6 md:px-12 lg:px-20 ${className}`}>
       <div className="max-w-7xl mx-auto">
         <div className="mb-10 text-center">
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-brand-blue">
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-blue">
             Foire aux questions
           </h2>
           <p className="mt-3 font-sans text-gray-600 max-w-2xl mx-auto">
@@ -243,7 +243,7 @@ const FAQSection = ({ items = DEFAULT_ITEMS, className = "" }) => {
                   aria-expanded={openIndex === idx}
                   onClick={() => toggle(idx)}
                   onKeyDown={(e) => onHeaderKeyDown(e, idx)}
-                  className="w-full text-left px-4 py-5 md:px-6 md:py-6 flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/20"
+                  className="w-full text-left px-4 py-5 md:px-6 md:py-6 flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/20"
                 >
                   <span className="font-display text-base md:text-lg text-gray-900 font-semibold">
                     {it.q}
@@ -254,8 +254,8 @@ const FAQSection = ({ items = DEFAULT_ITEMS, className = "" }) => {
                     aria-hidden="true"
                     className={`inline-flex items-center justify-center w-9 h-9 rounded-full border ${
                       openIndex === idx
-                        ? "bg-[#3650D0] text-white border-[#3650D0]"
-                        : "bg-white text-gray-500 border-gray-200"
+                        ? "bg-brand-blue text-white border-brand-blue"
+                        : "bg-white text-gray-600 border-gray-200"
                     }`}
                   >
                     <svg
@@ -302,7 +302,7 @@ const FAQSection = ({ items = DEFAULT_ITEMS, className = "" }) => {
             href={PLACEHOLDER_LINKS.whatsappUrl}
             whileHover={reducedMotion ? {} : { scale: 1.05 }}
             whileTap={reducedMotion ? {} : { scale: 0.97 }}
-            className="bg-[#3650D0] text-white px-8 py-4 rounded-md font-sans font-semibold flex items-center justify-center gap-2 shadow-lg hover:shadow-2xl hover:bg-[#2b42b5] transition-all"
+            className="bg-brand-blue text-white px-8 py-4 rounded-md font-sans font-semibold flex items-center justify-center gap-2 shadow-lg hover:shadow-2xl hover:bg-[#2b42b5] transition-all"
             aria-label="Contacter le support TIC Miton"
           >
             Contact WhatsApp

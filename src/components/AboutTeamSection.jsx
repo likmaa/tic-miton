@@ -175,7 +175,7 @@ const AboutTeamSection = ({ members = DEFAULT_MEMBERS, className = "" }) => {
           openProfile(m);
         }
       }}
-      className="w-[16rem] sm:w-[18rem] md:w-[20rem] flex-shrink-0 bg-white rounded-2xl border border-gray-100 p-5 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/20"
+      className="w-[16rem] sm:w-[18rem] md:w-[20rem] flex-shrink-0 bg-white rounded-2xl border border-gray-100 p-5 shadow-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/20"
       aria-labelledby={`team-${m.id}-title`}
     >
       <div className="flex items-center gap-4 w-full">
@@ -256,7 +256,7 @@ const AboutTeamSection = ({ members = DEFAULT_MEMBERS, className = "" }) => {
                       href={ceo.linkedin}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-sans font-semibold text-[#3650D0] bg-white border border-[#3650D0] hover:bg-[#3650D0]/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-sans font-semibold text-brand-blue bg-white border border-brand-blue hover:bg-brand-blue/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30"
                     >
                       LinkedIn
                     </a>
@@ -264,7 +264,7 @@ const AboutTeamSection = ({ members = DEFAULT_MEMBERS, className = "" }) => {
                   <button
                     type="button"
                     onClick={() => openProfile(ceo)}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-sans font-semibold text-[#3650D0] bg-white border border-[#3650D0] hover:bg-[#3650D0]/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-sans font-semibold text-brand-blue bg-white border border-brand-blue hover:bg-brand-blue/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30"
                   >
                     Voir le profil
                   </button>
@@ -288,7 +288,7 @@ const AboutTeamSection = ({ members = DEFAULT_MEMBERS, className = "" }) => {
                 <div className="mt-3 flex items-center gap-2">
                   <button
                     type="button"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-sans text-sm font-semibold text-[#3650D0] bg-white border border-[#3650D0] hover:bg-[#3650D0]/5 transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full font-sans text-sm font-semibold text-brand-blue bg-white border border-brand-blue hover:bg-brand-blue/5 transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30"
                     aria-expanded={ceoExpanded}
                     aria-controls={ceoContentId}
                     onClick={() => setCeoExpanded((v) => !v)}
@@ -301,7 +301,7 @@ const AboutTeamSection = ({ members = DEFAULT_MEMBERS, className = "" }) => {
                         href={ceo.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-sans font-semibold text-[#3650D0] bg-white border border-[#3650D0] hover:bg-[#3650D0]/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-sans font-semibold text-brand-blue bg-white border border-brand-blue hover:bg-brand-blue/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30"
                       >
                         LinkedIn
                       </a>
@@ -309,7 +309,7 @@ const AboutTeamSection = ({ members = DEFAULT_MEMBERS, className = "" }) => {
                     <button
                       type="button"
                       onClick={() => openProfile(ceo)}
-                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-sans font-semibold text-[#3650D0] bg-white border border-[#3650D0] hover:bg-[#3650D0]/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-sans font-semibold text-brand-blue bg-white border border-brand-blue hover:bg-brand-blue/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30"
                     >
                       Voir le profil
                     </button>
@@ -367,7 +367,7 @@ const AboutTeamSection = ({ members = DEFAULT_MEMBERS, className = "" }) => {
             onMouseLeave={(e) => { e.stopPropagation(); }}
             onFocus={(e) => { e.stopPropagation(); }}
             onBlur={(e) => { e.stopPropagation(); }}
-            className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-2 bg-white/90 text-gray-900 px-3 py-2 rounded-full shadow-sm hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/20"
+            className="absolute bottom-3 right-3 z-20 inline-flex items-center gap-2 bg-white/90 text-gray-900 px-3 py-2 rounded-full shadow-sm hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/20"
           >
             {isManuallyPaused ? (
               <>

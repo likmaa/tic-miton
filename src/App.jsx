@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import StructuredData from './components/StructuredData'
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
 import ScrollControls from './components/ScrollControls'
@@ -16,9 +17,10 @@ const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="bg-white text-gray-900">
+      <StructuredData />
       <Navbar />
-  <main className="pt-[44px] md:pt-14">
+  <main id="main-content" className="pt-16 md:pt-18 lg:pt-20">
         <Suspense fallback={<div className="py-20 text-center text-gray-600">Chargement…</div>}>
           <Routes>
             <Route path="/" element={<Home />} />

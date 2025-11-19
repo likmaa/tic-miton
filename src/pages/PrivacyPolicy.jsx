@@ -6,7 +6,7 @@ export default function PrivacyPolicy() {
   return (
     <div className="bg-white min-h-screen">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-[#3650D0] to-[#2b42b5] text-white py-16 md:py-24">
+      <section className="bg-gradient-to-br from-brand-blue to-[#2b42b5] text-white py-16 md:py-24">
         <div className="max-w-4xl mx-auto px-6 md:px-12">
           <div className="flex items-center gap-3 mb-6">
             <Shield className="w-12 h-12 text-[#FFCA80]" />
@@ -31,7 +31,7 @@ export default function PrivacyPolicy() {
           {/* 1. Collecte des données */}
           <div className="mb-12">
             <div className="flex items-start gap-4 mb-4">
-              <Database className="w-8 h-8 text-[#3650D0] flex-shrink-0 mt-1" />
+              <Database className="w-8 h-8 text-brand-blue flex-shrink-0 mt-1" />
               <div>
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mt-0">
                   1. Collecte des données
@@ -55,7 +55,7 @@ export default function PrivacyPolicy() {
           {/* 2. Utilisation des données */}
           <div className="mb-12">
             <div className="flex items-start gap-4 mb-4">
-              <Eye className="w-8 h-8 text-[#3650D0] flex-shrink-0 mt-1" />
+              <Eye className="w-8 h-8 text-brand-blue flex-shrink-0 mt-1" />
               <div>
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mt-0">
                   2. Utilisation des données
@@ -81,7 +81,7 @@ export default function PrivacyPolicy() {
           {/* 3. Protection des données */}
           <div className="mb-12">
             <div className="flex items-start gap-4 mb-4">
-              <Lock className="w-8 h-8 text-[#3650D0] flex-shrink-0 mt-1" />
+              <Lock className="w-8 h-8 text-brand-blue flex-shrink-0 mt-1" />
               <div>
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mt-0">
                   3. Protection des données
@@ -106,7 +106,7 @@ export default function PrivacyPolicy() {
           {/* 4. Partage des données */}
           <div className="mb-12">
             <div className="flex items-start gap-4 mb-4">
-              <UserCheck className="w-8 h-8 text-[#3650D0] flex-shrink-0 mt-1" />
+              <UserCheck className="w-8 h-8 text-brand-blue flex-shrink-0 mt-1" />
               <div>
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mt-0">
                   4. Partage des données
@@ -131,7 +131,7 @@ export default function PrivacyPolicy() {
           {/* 5. Vos droits */}
           <div className="mb-12">
             <div className="flex items-start gap-4 mb-4">
-              <Shield className="w-8 h-8 text-[#3650D0] flex-shrink-0 mt-1" />
+              <Shield className="w-8 h-8 text-brand-blue flex-shrink-0 mt-1" />
               <div>
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mt-0">
                   5. Vos droits
@@ -151,7 +151,7 @@ export default function PrivacyPolicy() {
                 <li><strong>Droit de limitation :</strong> limiter le traitement de vos données</li>
               </ul>
               <p>
-                Pour exercer ces droits, contactez-nous à l'adresse : <a href="mailto:privacy@ticmiton.com" className="text-[#3650D0] hover:text-[#FF7B00] underline">privacy@ticmiton.com</a>
+                Pour exercer ces droits, contactez-nous à l'adresse : <a href="mailto:privacy@ticmiton.com" className="text-brand-blue hover:text-brand-orange underline">privacy@ticmiton.com</a>
               </p>
             </div>
           </div>
@@ -159,7 +159,7 @@ export default function PrivacyPolicy() {
           {/* 6. Cookies */}
           <div className="mb-12">
             <div className="flex items-start gap-4 mb-4">
-              <Database className="w-8 h-8 text-[#3650D0] flex-shrink-0 mt-1" />
+              <Database className="w-8 h-8 text-brand-blue flex-shrink-0 mt-1" />
               <div>
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mt-0">
                   6. Cookies et technologies similaires
@@ -185,7 +185,7 @@ export default function PrivacyPolicy() {
           {/* 7. Conservation des données */}
           <div className="mb-12">
             <div className="flex items-start gap-4 mb-4">
-              <Lock className="w-8 h-8 text-[#3650D0] flex-shrink-0 mt-1" />
+              <Lock className="w-8 h-8 text-brand-blue flex-shrink-0 mt-1" />
               <div>
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mt-0">
                   7. Conservation des données
@@ -207,7 +207,7 @@ export default function PrivacyPolicy() {
           {/* 8. Contact */}
           <div className="mb-12">
             <div className="flex items-start gap-4 mb-4">
-              <Mail className="w-8 h-8 text-[#3650D0] flex-shrink-0 mt-1" />
+              <Mail className="w-8 h-8 text-brand-blue flex-shrink-0 mt-1" />
               <div>
                 <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mt-0">
                   8. Nous contacter
@@ -220,8 +220,8 @@ export default function PrivacyPolicy() {
               </p>
               <div className="bg-gray-50 p-6 rounded-lg border border-gray-200">
                 <p className="font-semibold text-gray-900 mb-2">TIC Miton</p>
-                <p>Email : <a href="mailto:privacy@ticmiton.com" className="text-[#3650D0] hover:text-[#FF7B00] underline">privacy@ticmiton.com</a></p>
-                <p>Téléphone : <a href="tel:+2290157792662" className="text-[#3650D0] hover:text-[#FF7B00] underline">+229 01 57 79 26 62</a></p>
+                <p>Email : <a href="mailto:privacy@ticmiton.com" className="text-brand-blue hover:text-brand-orange underline">privacy@ticmiton.com</a></p>
+                <p>Téléphone : <a href="tel:+2290157792662" className="text-brand-blue hover:text-brand-orange underline">+229 01 57 79 26 62</a></p>
                 <p>Adresse : Porto-Novo, Bénin</p>
               </div>
             </div>
@@ -250,7 +250,7 @@ export default function PrivacyPolicy() {
         <div className="mt-12 pt-8 border-t border-gray-200 text-center">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 bg-[#3650D0] text-white px-6 py-3 rounded-md font-sans font-semibold hover:bg-[#2b42b5] transition"
+            className="inline-flex items-center gap-2 bg-brand-blue text-white px-6 py-3 rounded-md font-sans font-semibold hover:bg-[#2b42b5] transition"
           >
             ← Retour à l'accueil
           </Link>

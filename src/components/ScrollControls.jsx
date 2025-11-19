@@ -44,7 +44,7 @@ export default function ScrollControls({ threshold = 120 }) {
           aria-label="Aller en haut"
           title="Haut"
           className={
-            "shadow-md transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30 rounded-full p-3 bg-[#3650D0] text-white hover:bg-[#2b42b5] " +
+            "shadow-md transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30 rounded-full p-3 bg-brand-blue text-white hover:bg-[#2b42b5] " +
             (atTop ? "opacity-70" : "opacity-100")
           }
         >
@@ -58,7 +58,7 @@ export default function ScrollControls({ threshold = 120 }) {
           aria-label="Aller en bas"
           title="Bas"
           className={
-            "shadow-md transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30 rounded-full p-3 bg-[#FF7B00] text-white hover:bg-[#e66f00] hover:text-[#FFCA80] " +
+            "shadow-md transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30 rounded-full p-3 bg-brand-orange text-white hover:bg-[#e66f00] hover:text-[#FFCA80] " +
             (atBottom ? "opacity-70" : "opacity-100")
           }
         >

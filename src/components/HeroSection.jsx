@@ -9,9 +9,9 @@ const HeroSection = () => {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section className="bg-white pt-4 pb-12 md:py-20 px-4 md:px-12 lg:px-20">
+    <section className="bg-white pt-20 sm:pt-24 md:pt-28 pb-8 sm:pb-12 md:pb-20 px-4 md:px-12 lg:px-20">
       {/* Conteneur principal */}
-  <div className="relative overflow-hidden bg-[#3650D0] rounded-3xl p-8 sm:p-12 md:p-16 lg:p-20 min-h-[520px] md:min-h-[620px] lg:min-h-[720px] text-white flex items-center">
+  <div className="relative overflow-hidden bg-brand-blue rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 xl:p-20 min-h-[480px] sm:min-h-[520px] md:min-h-[620px] lg:min-h-[720px] text-white flex items-center">
 
         {/* Aurora WebGL background */}
         <Aurora
@@ -23,20 +23,29 @@ const HeroSection = () => {
 
         {/* CONTENT + IMAGE LAYOUT */}
         <div className="relative z-10 h-full w-full">
-          <div className="max-w-7xl mx-auto grid h-full w-full gap-8 lg:gap-16 xl:gap-24 lg:grid-cols-2 items-center lg:justify-items-start">
+          <div className="max-w-7xl mx-auto grid h-full w-full gap-6 sm:gap-8 lg:gap-12 xl:gap-16 lg:grid-cols-2 items-center lg:justify-items-start">
         
         {/* CONTENT */}
         <motion.div
-          className="relative z-10 max-w-4xl space-y-6 mx-auto lg:mx-0 text-center lg:text-left lg:pr-8 xl:pr-12"
+          className="relative z-10 max-w-4xl space-y-4 sm:space-y-6 mx-auto lg:mx-0 text-center lg:text-left lg:pr-4 xl:pr-8"
           initial={shouldReduceMotion ? {} : { opacity: 0, y: 40 }}
           animate={shouldReduceMotion ? {} : { opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
         >
-          <h1
-            className="font-display font-extrabold text-3xl sm:text-5xl md:text-5xl lg:text-6xl leading-tight tracking-tight [text-wrap:balance] break-words bg-gradient-to-r from-white via-[#BFDFFF] to-[#66B2FF] bg-[length:200%_auto] text-transparent bg-clip-text animate-gradient"
+          <motion.h1
+            className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-tight tracking-tight text-white"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 0.8,
+              delay: 0.2,
+              ease: [0.25, 0.4, 0.25, 1],
+            }}
           >
-            Votre ville, votre chauffeur.
-          </h1>
+            Votre ville,
+            <br />
+            votre chauffeur.
+          </motion.h1>
           
           <p className="font-sans text-white/90 text-base md:text-lg max-w-[50ch] mx-auto lg:mx-0">
             TIC Miton est votre solution simple et sûre pour tous vos trajets.
@@ -44,21 +53,21 @@ const HeroSection = () => {
             en quelques clics.
           </p>
 
-          <div className="flex flex-col sm:flex-row flex-wrap gap-4 justify-center lg:justify-start pt-4">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start pt-2 sm:pt-4">
             {/* CTA Button */}
             <motion.a
               href={PLACEHOLDER_LINKS.downloadUrl}
               whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
               whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
-              className="bg-[#FF7B00] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-md font-sans font-semibold text-base sm:text-lg flex items-center justify-center gap-2 shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30 transition"
+              className="bg-brand-orange text-white px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-md font-sans font-semibold text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30 transition"
               aria-label="Télécharger l'application TIC Miton"
             >
               Télécharger l'application
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </motion.a>
 
             {/* Store Badges */}
-            <div className="flex items-center justify-center gap-4">
+            <div className="flex items-center justify-center gap-3 sm:gap-4">
               <a
                 href={PLACEHOLDER_LINKS.playStoreUrl}
                 aria-label="Télécharger sur le Play Store"

@@ -75,9 +75,14 @@ const AboutHero = ({
         <div className="p-6 md:p-8 flex flex-col md:flex-row items-center md:justify-between gap-6 md:gap-8">
           {/* Left: Titre + texte */}
           <div className="text-center md:text-left flex-1">
-            <h1 id="about-hero-title" className="font-display text-2xl sm:text-3xl text-white font-extrabold leading-tight">
+            <motion.h1
+              className="font-display text-2xl sm:text-3xl text-white font-extrabold leading-tight"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
               {title}
-            </h1>
+            </motion.h1>
             <p className="mt-2 text-sm text-white/90 max-w-xl">{lead}</p>
           </div>
 

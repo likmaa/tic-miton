@@ -6,6 +6,7 @@ import AboutPartnersSection from '../components/AboutPartnersSection';
 import AboutHistorySection from '../components/AboutHistorySection';
 import AboutTeamSection from '../components/AboutTeamSection';
 import DownloadQRSection from '../components/DownloadQRSection';
+import SEO from '../components/SEO';
 import LINKS from '../config/links';
 import aboutImage from '../assets/features/Image B10.jpg?w=640;960;1440;1920&format=webp;avif;jpg&as=picture';
 import { Link } from 'react-router-dom';
@@ -13,6 +14,11 @@ import { Link } from 'react-router-dom';
 export default function About() {
   return (
     <div>
+      <SEO 
+        title="À Propos de TIC Miton - Notre Histoire et Mission | VTC Porto-Novo"
+        description="Découvrez TIC Miton, le service VTC local de Porto-Novo. Notre mission : rendre le transport accessible, sûr et fiable pour tous au Bénin."
+        keywords="à propos TIC Miton, histoire TIC Miton, mission transport Bénin, entreprise VTC Porto-Novo, équipe TIC Miton"
+      />
       <AboutHero image={aboutImage} imagePosition="center 50%" />
       <AboutMissionSection />
       <AboutHistorySection />
@@ -39,9 +45,9 @@ export default function About() {
       />
       {/* CTA Recrutement court */}
       <section className="py-14 px-6 md:px-12 lg:px-20">
-        <div className="max-w-5xl mx-auto rounded-2xl bg-[#3650D0] text-white p-8 md:p-10 relative overflow-hidden">
-          <div className="absolute -top-10 -left-10 w-48 h-48 bg-[#FF7B00]/20 rounded-full blur-2xl" />
-          <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-[#FF7B00]/10 rounded-full blur-2xl" />
+        <div className="max-w-5xl mx-auto rounded-2xl bg-brand-blue text-white p-8 md:p-10 relative overflow-hidden">
+          <div className="absolute -top-10 -left-10 w-48 h-48 bg-brand-orange/20 rounded-full blur-2xl" />
+          <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-brand-orange/10 rounded-full blur-2xl" />
           <div className="relative z-10 grid md:grid-cols-3 gap-6 items-center">
             <div className="md:col-span-2">
               <h3 className="font-display text-2xl md:text-3xl font-extrabold">Rejoignez l'équipe de nos chauffeurs</h3>
@@ -50,7 +56,7 @@ export default function About() {
             <div className="flex md:justify-end">
               <Link
                 to="/devenir-chauffeur"
-                className="inline-flex items-center gap-2 bg-white text-[#3650D0] px-5 py-3 rounded-md font-semibold shadow-lg hover:shadow-xl hover:bg-gray-50 transition"
+                className="inline-flex items-center gap-2 bg-white text-brand-blue px-5 py-3 rounded-md font-semibold shadow-lg hover:shadow-xl hover:bg-gray-50 transition"
               >
                 Devenir chauffeur
                 <span aria-hidden>→</span>

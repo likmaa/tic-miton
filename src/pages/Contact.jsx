@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Mail, Phone, MapPin, Send, MessageCircle } from "lucide-react";
+import SEO from "../components/SEO";
 import LINKS from "../config/links";
 import FORMS from "../config/forms";
 
@@ -51,11 +52,16 @@ export default function Contact() {
 
   return (
     <section className="bg-white">
+      <SEO 
+        title="Contactez TIC Miton - Support et Service Client | Porto-Novo"
+        description="Besoin d'aide ou d'informations ? Contactez l'équipe TIC Miton à Porto-Novo. Support disponible 24/7 par téléphone, WhatsApp ou email."
+        keywords="contact TIC Miton, support client Porto-Novo, service client VTC, aide TIC Miton, contacter chauffeur"
+      />
       {/* Hero */}
       <div className="bg-gradient-to-b from-white to-gray-50 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-16">
           <motion.div initial={reduceMotion ? undefined : "hidden"} animate={reduceMotion ? undefined : "visible"} variants={fadeUp} className="max-w-3xl">
-            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#3650D0]">Contact</h1>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-blue">Contact</h1>
             <p className="mt-4 text-gray-600">Une question, un partenariat ou besoin d'aide ? Écrivez-nous et on vous répond rapidement.</p>
           </motion.div>
         </div>
@@ -75,23 +81,23 @@ export default function Contact() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="block text-sm text-gray-700 font-sans">Nom complet</label>
-                <input name="name" value={form.name} onChange={onChange} required className="mt-2 p-3 bg-gray-50 rounded-lg border border-[#3650D0]/30 font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30 w-full" />
+                <input name="name" value={form.name} onChange={onChange} required className="mt-2 p-3 bg-gray-50 rounded-lg border border-brand-blue/30 font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30 w-full" />
               </div>
               <div>
                 <label className="block text-sm text-gray-700 font-sans">E-mail</label>
-                <input type="email" name="email" value={form.email} onChange={onChange} required className="mt-2 p-3 bg-gray-50 rounded-lg border border-[#3650D0]/30 font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30 w-full" />
+                <input type="email" name="email" value={form.email} onChange={onChange} required className="mt-2 p-3 bg-gray-50 rounded-lg border border-brand-blue/30 font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30 w-full" />
               </div>
               <div>
                 <label className="block text-sm text-gray-700 font-sans">Téléphone</label>
-                <input name="phone" value={form.phone} onChange={onChange} className="mt-2 p-3 bg-gray-50 rounded-lg border border-[#3650D0]/30 font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30 w-full" />
+                <input name="phone" value={form.phone} onChange={onChange} className="mt-2 p-3 bg-gray-50 rounded-lg border border-brand-blue/30 font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30 w-full" />
               </div>
               <div>
                 <label className="block text-sm text-gray-700 font-sans">Sujet</label>
-                <input name="subject" value={form.subject} onChange={onChange} className="mt-2 p-3 bg-gray-50 rounded-lg border border-[#3650D0]/30 font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30 w-full" />
+                <input name="subject" value={form.subject} onChange={onChange} className="mt-2 p-3 bg-gray-50 rounded-lg border border-brand-blue/30 font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30 w-full" />
               </div>
               <div className="md:col-span-2">
                 <label className="block text-sm text-gray-700 font-sans">Message</label>
-                <textarea name="message" value={form.message} onChange={onChange} rows={6} required className="mt-2 p-3 bg-gray-50 rounded-lg border border-[#3650D0]/30 font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30 w-full" />
+                <textarea name="message" value={form.message} onChange={onChange} rows={6} required className="mt-2 p-3 bg-gray-50 rounded-lg border border-brand-blue/30 font-sans focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30 w-full" />
               </div>
             </div>
 
@@ -99,7 +105,7 @@ export default function Contact() {
               <button
                 type="submit"
                 disabled={status.sending}
-                className="inline-flex items-center gap-3 bg-[#FF7B00] text-white px-5 py-3 rounded-md font-sans font-semibold shadow-lg hover:bg-[#e66f00] transition disabled:opacity-60 focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30"
+                className="inline-flex items-center gap-3 bg-brand-orange text-white px-5 py-3 rounded-md font-sans font-semibold shadow-lg hover:bg-[#e66f00] transition disabled:opacity-60 focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30"
               >
                 Envoyer <Send className="w-4 h-4" />
               </button>
@@ -117,9 +123,9 @@ export default function Contact() {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
               <h3 className="font-sans text-lg font-bold text-gray-900">Coordonnées</h3>
               <ul className="mt-4 space-y-3 text-gray-700">
-                 <li className="flex items-center gap-2"><Mail className="w-5 h-5 text-[#3650D0]" /> {LINKS.supportEmail}</li>
-                <li className="flex items-center gap-2"><Phone className="w-5 h-5 text-[#3650D0]" /> +229 01 57 79 26 62</li>
-                <li className="flex items-center gap-2"><MapPin className="w-5 h-5 text-[#3650D0]" /> Cotonou, Bénin</li>
+                 <li className="flex items-center gap-2"><Mail className="w-5 h-5 text-brand-blue" /> {LINKS.supportEmail}</li>
+                <li className="flex items-center gap-2"><Phone className="w-5 h-5 text-brand-blue" /> +229 01 57 79 26 62</li>
+                <li className="flex items-center gap-2"><MapPin className="w-5 h-5 text-brand-blue" /> Cotonou, Bénin</li>
               </ul>
             </div>
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
@@ -127,7 +133,7 @@ export default function Contact() {
               <p className="mt-1 text-gray-600">Discutez avec nous directement.</p>
               <a
                 href={LINKS.whatsappUrl}
-                className="mt-4 inline-flex items-center gap-2 text-[#3650D0] font-semibold hover:underline"
+                className="mt-4 inline-flex items-center gap-2 text-brand-blue font-semibold hover:underline"
               >
                 Ouvrir WhatsApp <MessageCircle className="w-4 h-4" />
               </a>

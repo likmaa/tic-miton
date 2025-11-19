@@ -77,21 +77,21 @@ export default function ServicesHowItWorks() {
         {/* Header aligné au design Home */}
         <div className="mb-10 md:mb-14 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
           <div className="md:col-span-1">
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#3650D0]">Comment ça marche</h2>
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-blue">Comment ça marche</h2>
             <p className="mt-3 font-sans text-gray-600 text-base max-w-md">
               Les étapes clés pour chaque service, détaillées simplement.
             </p>
             <div className="mt-6 flex flex-col sm:flex-row sm:items-center gap-3">
               <a
                 href={LINKS.order}
-                className="inline-flex items-center gap-2 bg-[#3650D0] text-white px-5 py-3 rounded-md font-sans font-semibold shadow hover:bg-[#2b42b5] transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/30"
+                className="inline-flex items-center gap-2 bg-brand-blue text-white px-5 py-3 rounded-md font-sans font-semibold shadow hover:bg-[#2b42b5] transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/30"
               >
                 Commander maintenant
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a
                 href={LINKS.features.all}
-                className="inline-flex items-center justify-center px-4 py-3 rounded-md border border-gray-200 text-gray-700 font-sans text-sm hover:bg-gray-50 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/20"
+                className="inline-flex items-center justify-center px-4 py-3 rounded-md border border-gray-200 text-gray-700 font-sans text-sm hover:bg-gray-50 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/20"
               >
                 En savoir plus
               </a>
@@ -117,14 +117,14 @@ export default function ServicesHowItWorks() {
                     <div className="flex items-center gap-6 w-full">
                       {/* Number bubble */}
                       <div className="flex-shrink-0">
-                        <div className="w-16 h-16 rounded-2xl bg-[#3650D0] text-white flex items-center justify-center font-display font-bold text-2xl">
+                        <div className="w-16 h-16 rounded-2xl bg-brand-blue text-white flex items-center justify-center font-display font-bold text-2xl">
                           {card.id}
                         </div>
                       </div>
                       {/* Icon circle */}
                       <div className="ml-1">
                         <div className="w-16 h-16 rounded-2xl bg-white/60 border border-gray-100 flex items-center justify-center shadow-sm">
-                          <Icon className="w-7 h-7 text-[#3650D0]" aria-hidden />
+                          <Icon className="w-7 h-7 text-brand-blue" aria-hidden />
                         </div>
                       </div>
                     </div>
@@ -143,14 +143,14 @@ export default function ServicesHowItWorks() {
                         initial={reduceMotion ? undefined : { opacity: 0, y: 8 }}
                         animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
                         transition={{ duration: 0.35, ease: "easeOut" }}
-                        className="rounded-2xl border border-[#3650D0]/20 bg-[#3650D0]/10 shadow-sm p-5 transition flex flex-col"
+                        className="rounded-2xl border border-brand-blue/20 bg-brand-blue/10 shadow-sm p-5 transition flex flex-col"
                       >
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 rounded-xl bg-white text-[#3650D0] flex items-center justify-center font-sans font-semibold text-sm">
+                          <div className="w-10 h-10 rounded-xl bg-white text-brand-blue flex items-center justify-center font-sans font-semibold text-sm">
                             {activeIdx + 1}
                           </div>
                           <div className="w-9 h-9 rounded-lg bg-white border border-gray-100 flex items-center justify-center shadow-sm">
-                            <StepIcon className="w-5 h-5 text-[#3650D0]" aria-hidden />
+                            <StepIcon className="w-5 h-5 text-brand-blue" aria-hidden />
                           </div>
                         </div>
                         <div className="mt-4">
@@ -160,7 +160,7 @@ export default function ServicesHowItWorks() {
                             <button
                               type="button"
                               onClick={() => setShowStoreModal(true)}
-                              className="inline-flex items-center gap-2 text-[#3650D0] font-semibold hover:underline bg-transparent px-0 py-0 outline-none focus:outline-none ring-0 border-0"
+                              className="inline-flex items-center gap-2 text-brand-blue font-semibold hover:underline bg-transparent px-0 py-0 outline-none focus:outline-none ring-0 border-0"
                               aria-label="Ouvrir le modal de stores"
                             >
                               Je veux essayer
@@ -176,7 +176,7 @@ export default function ServicesHowItWorks() {
                       <button
                         type="button"
                         onClick={() => goNext(card.key)}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-gray-200 text-gray-700 text-sm hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#3650D0]/20"
+                        className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-gray-200 text-gray-700 text-sm hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/20"
                         aria-label={`Aller à l'étape suivante pour ${card.title}`}
                       >
                         Étape suivante
@@ -203,7 +203,7 @@ export default function ServicesHowItWorks() {
           <div className="flex items-center gap-3">
             <a
               href={LINKS.downloadUrl}
-              className="inline-flex items-center gap-2 bg-[#FF7B00] text-white px-4 py-2 rounded-md text-sm font-sans font-semibold hover:bg-[#e56a00] hover:text-[#FFCA80] transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30"
+              className="inline-flex items-center gap-2 bg-brand-orange text-white px-4 py-2 rounded-md text-sm font-sans font-semibold hover:bg-[#e56a00] hover:text-[#FFCA80] transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30"
             >
               Télécharger l'app
             </a>
@@ -231,7 +231,7 @@ export default function ServicesHowItWorks() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Ouvrir Google Play"
-                className="inline-flex items-center gap-2 text-[#3650D0] hover:underline font-semibold"
+                className="inline-flex items-center gap-2 text-brand-blue hover:underline font-semibold"
               >
                 <Play className="w-5 h-5" /> Google Play
               </a>
@@ -240,7 +240,7 @@ export default function ServicesHowItWorks() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Ouvrir l'App Store"
-                className="inline-flex items-center gap-2 text-[#FF7B00] hover:underline font-semibold"
+                className="inline-flex items-center gap-2 text-brand-orange hover:underline font-semibold"
               >
                 <Apple className="w-5 h-5" /> App Store
               </a>

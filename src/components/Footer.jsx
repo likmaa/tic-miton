@@ -16,10 +16,10 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative text-white bg-[#3650D0] rounded-t-3xl overflow-hidden">
+    <footer className="relative text-white bg-brand-blue rounded-t-3xl overflow-hidden">
       {/* Orange radial accents to match CTA chauffeur */}
-      <div className="absolute -top-16 -left-16 w-80 h-80 bg-[#FF7B00]/20 rounded-full blur-3xl" aria-hidden />
-      <div className="absolute -bottom-24 -right-20 w-[28rem] h-[28rem] bg-[#FF7B00]/10 rounded-full blur-3xl" aria-hidden />
+      <div className="absolute -top-16 -left-16 w-80 h-80 bg-brand-orange/20 rounded-full blur-3xl" aria-hidden />
+      <div className="absolute -bottom-24 -right-20 w-[28rem] h-[28rem] bg-brand-orange/10 rounded-full blur-3xl" aria-hidden />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 py-16 md:py-20 space-y-16">
         {/* Newsletter Section */}
@@ -30,7 +30,7 @@ const Footer = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold">
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold">
             Restez connectés à <span className="text-[#FFCA80]">TIC Miton</span> 
           </h2>
           <p className="font-sans text-white/80 max-w-3xl mx-auto">
@@ -52,7 +52,7 @@ const Footer = () => {
               whileHover={reduceMotion ? undefined : { scale: 1.05 }}
               whileTap={reduceMotion ? undefined : { scale: 0.95 }}
               type="submit"
-              className="bg-[#FF7B00] text-white font-sans font-semibold px-6 py-3 rounded-md flex items-center justify-center gap-2 shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30 transition"
+              className="bg-brand-orange text-white font-sans font-semibold px-6 py-3 rounded-md flex items-center justify-center gap-2 shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30 transition"
             >
               S’abonner <Send className="w-4 h-4" />
             </motion.button>
@@ -64,25 +64,25 @@ const Footer = () => {
 
         {/* Footer Links Section */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-4 gap-10 text-center md:text-left"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-10 text-center md:text-left px-4"
           initial={reduceMotion ? undefined : { opacity: 0, y: 40 }}
           whileInView={reduceMotion ? undefined : { opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           viewport={{ once: true }}
         >
           {/* Brand Info */}
-          <div className="space-y-4">
-            <h3 className="font-display text-2xl font-bold">TIC Miton</h3>
-            <p className="font-sans text-white/70 text-sm leading-relaxed">
+          <div className="space-y-3 sm:space-y-4">
+            <h3 className="font-display text-xl sm:text-2xl font-bold">TIC Miton</h3>
+            <p className="font-sans text-white/70 text-xs sm:text-sm leading-relaxed">
               Simplifiez vos déplacements avec TIC Miton, votre compagnon de mobilité intelligente et fiable.
             </p>
             {/* Phone CTA */}
             <div>
               <a
                 href="tel:+2290157792662"
-                className="inline-flex items-center gap-2 bg-[#FF7B00] text-white px-4 py-2 rounded-md font-sans font-semibold shadow hover:bg-[#e66f00] hover:text-[#FFCA80] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30"
+                className="inline-flex items-center gap-2 bg-brand-orange text-white px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base rounded-md font-sans font-semibold shadow hover:bg-[#e66f00] hover:text-[#FFCA80] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30"
               >
-                <PhoneCall className="w-4 h-4" /> +229 0157792662
+                <PhoneCall className="w-3 h-3 sm:w-4 sm:h-4" /> +229 0157792662
               </a>
             </div>
           </div>
@@ -95,7 +95,7 @@ const Footer = () => {
                 <li key={item.label}>
                   <Link
                     to={item.to}
-                    className="font-sans text-white/90 hover:text-[#FF7B00] transition-colors duration-200"
+                    className="font-sans text-white/90 hover:text-brand-orange transition-colors duration-200"
                   >
                     {item.label}
                   </Link>
@@ -113,7 +113,7 @@ const Footer = () => {
                   key={i}
                   href="#"
                   whileHover={reduceMotion ? undefined : { scale: 1.12 }}
-                  className="p-2 rounded-full transition bg-white/10 hover:bg-white/20 text-white/90 hover:text-[#FF7B00] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#FF7B00]/30"
+                  className="p-2 rounded-full transition bg-white/10 hover:bg-white/20 text-white/90 hover:text-brand-orange focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/30"
                   aria-label={`Lien ${Icon.name}`}
                 >
                   <Icon className="w-5 h-5" />
@@ -128,7 +128,7 @@ const Footer = () => {
             <div className="flex flex-col gap-3">
               <a
                 href={PLACEHOLDER_LINKS.playStoreUrl}
-                className="bg-white text-[#3650D0] px-4 py-2 rounded-md font-sans font-semibold text-sm hover:bg-white/90 transition text-center"
+                className="bg-white text-brand-blue px-4 py-2 rounded-md font-sans font-semibold text-sm hover:bg-white/90 transition text-center"
                 aria-label="Télécharger sur le Play Store"
                 rel="noopener noreferrer"
               >
@@ -136,7 +136,7 @@ const Footer = () => {
               </a>
               <a
                 href={PLACEHOLDER_LINKS.appStoreUrl}
-                className="bg-white text-[#3650D0] px-4 py-2 rounded-md font-sans font-semibold text-sm hover:bg-white/90 transition text-center"
+                className="bg-white text-brand-blue px-4 py-2 rounded-md font-sans font-semibold text-sm hover:bg-white/90 transition text-center"
                 aria-label="Télécharger sur l'App Store"
                 rel="noopener noreferrer"
               >
