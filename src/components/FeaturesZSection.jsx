@@ -4,10 +4,11 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { ShieldCheck, Tag, Zap, LifeBuoy, ArrowRight, X, Apple, Play, Sparkles } from "lucide-react";
 import LINKS from "../config/links";
 // Responsive, optimized sources via vite-imagetools
-import safetyPic from "../assets/features/safety.jpg?w=480;768;1200;1600&format=webp;avif;jpg&quality=100&as=picture";
-import payementPic from "../assets/features/payement.jpg?w=480;768;1200;1600&format=webp;avif;jpg&quality=100&as=picture";
-import puissancePic from "../assets/features/puissance.jpeg?w=480;768;1200;1600&format=webp;avif;jpg&quality=100&as=picture";
-import supportPic from "../assets/features/support.jpg?w=480;768;1200;1600&format=webp;avif;jpg&quality=100&as=picture";
+// Mixed quality: feature images 65, remove largest 1600 for weight reduction
+import safetyPic from "../assets/features/safety.jpg?w=480;768;1200&format=webp;avif;jpg&quality=65&as=picture";
+import payementPic from "../assets/features/payement.jpg?w=480;768;1200&format=webp;avif;jpg&quality=65&as=picture";
+import puissancePic from "../assets/features/puissance.jpeg?w=480;768;1200&format=webp;avif;jpg&quality=65&as=picture";
+import supportPic from "../assets/features/support.jpg?w=480;768;1200&format=webp;avif;jpg&quality=65&as=picture";
 
 /*
   FeaturesZSection.jsx

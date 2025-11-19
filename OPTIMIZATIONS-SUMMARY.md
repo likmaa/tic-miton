@@ -282,3 +282,35 @@ Pour changer les couleurs du site:
 **Dernière mise à jour:** Session d'optimisations complète  
 **Status:** ✅ Toutes les optimisations priorité haute et moyenne (phase 1) complétées  
 **Build:** ✅ Validé et fonctionnel
+
+---
+
+## 📦 Session Additionnelle (Nov 2025) – Performance & Livraison
+
+### Image Strategy Rollback & Mixed Profile
+- Reverted from universal `quality=100` (excessive payload) to category-based:
+   - Hero & banners: quality 70, widths capped (removed 2000px variant where unnecessary)
+   - Feature & mission/vision/valeurs/history images: quality 65, widths 480/768/1200 (dropped 1600)
+   - Avatars: quality 80 (single width 600)
+- Added `fetchpriority="high"` to Hero LCP image to improve prioritization.
+
+### Code Splitting
+- Introduced `React.lazy` + `Suspense` for `Aurora` WebGL background to defer heavy shader logic until after initial paint.
+
+### Font Loading Optimization
+- Switched blocking Google Fonts `<link>` to preload + media="print" swap pattern + `<noscript>` fallback (reduces render blocking, prevents FOIT).
+
+### Favicon Cache Busting
+- Versioned icons (`*-v2` filenames) wired in `index.html` & `site.webmanifest` for hard reload propagation.
+
+### Remaining / Next Steps
+1. Populate real bitmap content for versioned icons (currently placeholders if empty).
+2. Add Lighthouse automation script + append metrics (LCP, CLS, TBT) to this summary.
+3. Consider further lazy loading for non-critical sections (Testimonials, Services) after interaction.
+4. Optionally drop additional large decorative variants >1200px if not contributing to clarity.
+5. Implement analytics & smart store redirect (pending from earlier roadmap).
+
+### Build Snapshot
+Production build successful post-changes. Main bundle unchanged except for lazy `Aurora`; image payload trimmed with reduced quality & width sets.
+
+---

@@ -3,7 +3,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Apple, Play } from "lucide-react";
 import PLACEHOLDER_LINKS from "../config/links";
 // Image bannière responsive (par défaut), remplaçable via prop
-import downPic from "../assets/features/Down.jpeg?w=864;1200;1600;2000&format=webp;avif;jpg&quality=100&as=picture";
+// Mixed quality: home banner 70 and drop largest width for performance
+import downPic from "../assets/features/Down.jpeg?w=864;1200;1600&format=webp;avif;jpg&quality=70&as=picture";
 
 
 

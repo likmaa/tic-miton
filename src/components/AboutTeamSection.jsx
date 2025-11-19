@@ -2,12 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { Play, Pause } from "lucide-react";
-import MalikAvatar from "../assets/features/IMG_2670.jpeg?w=600&format=webp&quality=100";
-import DGAvatar from "../assets/features/DG.png?w=600&format=webp&quality=100";
-import DGAAvatar from "../assets/features/dga.png?w=600&format=webp&quality=100";
-import AdissaAvatar from "../assets/adissa.png?w=600&format=webp&quality=100";
-import FeAvatar from "../assets/features/fe.png?w=600&format=webp&quality=100";
-import HAvatar from "../assets/features/h.png?w=600&format=webp&quality=100";
+// Mixed quality: avatars to 80 for balance (retain single width 600)
+import MalikAvatar from "../assets/features/IMG_2670.jpeg?w=600&format=webp&quality=80";
+import DGAvatar from "../assets/features/DG.png?w=600&format=webp&quality=80";
+import DGAAvatar from "../assets/features/dga.png?w=600&format=webp&quality=80";
+import AdissaAvatar from "../assets/adissa.png?w=600&format=webp&quality=80";
+import FeAvatar from "../assets/features/fe.png?w=600&format=webp&quality=80";
+import HAvatar from "../assets/features/h.png?w=600&format=webp&quality=80";
 
 
 

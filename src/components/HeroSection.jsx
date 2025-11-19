@@ -1,10 +1,10 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Apple, Play } from "lucide-react";
 import PLACEHOLDER_LINKS from "../config/links";
-import Aurora from "./Aurora";
-// Fine-tune widths (drop 560, keep balanced steps) & slightly lower quality for further reduction
-import phonePicture from "../assets/Mockup.png?w=360;420;520;640;800;960&format=avif;webp&quality=100&as=picture";
+const AuroraLazy = React.lazy(() => import("./Aurora"));
+// Mixed quality profile: hero moderate quality 70
+import phonePicture from "../assets/Mockup.png?w=360;420;520;640;800;960&format=avif;webp&quality=70&as=picture";
 
 const HeroSection = () => {
   const shouldReduceMotion = useReducedMotion();
@@ -14,13 +14,15 @@ const HeroSection = () => {
       {/* Conteneur principal */}
   <div className="relative overflow-hidden bg-brand-blue rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 lg:p-16 xl:p-20 min-h-[480px] sm:min-h-[520px] md:min-h-[620px] lg:min-h-[720px] text-white flex items-center">
 
-        {/* Aurora WebGL background */}
-        <Aurora
-          colorStops={["#3650D0", "#FF7B00", "#FFFFFF"]}
-          blend={0.6}
-          amplitude={1.25}
-          speed={0.65}
-        />
+        {/* Aurora WebGL background (lazy) */}
+        <Suspense fallback={null}>
+          <AuroraLazy
+            colorStops={["#3650D0", "#FF7B00", "#FFFFFF"]}
+            blend={0.6}
+            amplitude={1.25}
+            speed={0.65}
+          />
+        </Suspense>
 
         {/* CONTENT + IMAGE LAYOUT */}
         <div className="relative z-10 h-full w-full">
@@ -122,6 +124,7 @@ const HeroSection = () => {
                   className="w-[280px] sm:w-[360px] md:w-[420px] lg:w-[520px] xl:w-[560px] drop-shadow-2xl pointer-events-none select-none will-change-transform"
                   decoding="async"
                   loading="eager"
+                  fetchpriority="high"
                   width={img.w || undefined}
                   height={img.h || undefined}
                   animate={shouldReduceMotion ? undefined : { y: [0, -8, 0], rotate: [0, -1.5, 0, 1.5, 0] }}

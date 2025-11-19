@@ -1,9 +1,10 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Globe, Users, Sparkles } from "lucide-react";
-import missionImage from "../assets/features/Mission.png?w=480;768;1200;1600&format=webp;avif;jpg&quality=100&as=picture";
-import visionImage from "../assets/features/vision.png?w=480;768;1200;1600&format=webp;avif;jpg&quality=100&as=picture";
-import valeursImage from "../assets/features/valeurs.png?w=480;768;1200;1600&format=webp;avif;jpg&quality=100&as=picture";
+// Mixed quality profile: reduce to 65 and drop 1600px width variant
+import missionImage from "../assets/features/Mission.png?w=480;768;1200&format=webp;avif;jpg&quality=65&as=picture";
+import visionImage from "../assets/features/vision.png?w=480;768;1200&format=webp;avif;jpg&quality=65&as=picture";
+import valeursImage from "../assets/features/valeurs.png?w=480;768;1200&format=webp;avif;jpg&quality=65&as=picture";
 
 
 

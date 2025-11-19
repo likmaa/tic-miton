@@ -2,7 +2,8 @@ import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
 // Optimized responsive hero image (limit widths, lower quality)
-import aboutHeroImg from "../assets/Mockup.png?w=640;960;1200&format=avif;webp&quality=100&as=picture";
+// Mixed quality: about hero 70
+import aboutHeroImg from "../assets/Mockup.png?w=640;960;1200&format=avif;webp&quality=70&as=picture";
 import LINKS from "../config/links";
 
 const AboutHero = ({

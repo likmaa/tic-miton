@@ -3,7 +3,8 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { MessageCircle, ArrowRight } from 'lucide-react';
 import LINKS from '../config/links';
 // Responsive driver hero image (multi-format, multi-width)
-import driverHeroImage from '../assets/hh.jpeg?w=480;640;768;960;1200&format=avif;webp;jpg&quality=100&as=picture';
+// Mixed quality: driver hero 70
+import driverHeroImage from '../assets/hh.jpeg?w=480;640;768;960;1200&format=avif;webp;jpg&quality=70&as=picture';
 
 /*
   DriverHero.jsx

@@ -2,10 +2,11 @@
 <html lang="fr">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512.png" />
+  <!-- Versioned icons for cache busting (v2) -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32-v2.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192-v2.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512-v2.png" />
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#3650D0" />
     
@@ -40,7 +41,12 @@
     <!-- Fonts: Unbounded (display) & Titillium Web (sans) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
+    <!-- Preload critical font weights (swap to avoid FOIT) -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&family=Unbounded:wght@700;800&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&family=Unbounded:wght@700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
+    </noscript>
     
     <title>TIC Miton - Service VTC à Porto-Novo, Bénin | Transport Fiable et Sécurisé</title>
   </head>
