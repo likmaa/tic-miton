@@ -149,6 +149,11 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
     setError("");
     // Clear computed price as requested
     setPrice("");
+    // Clear input fields
+    setPickup("");
+    setDestination("");
+    setPickupCoords(null);
+    setDestinationCoords(null);
   };
 
   const getCurrentLocation = () => {
@@ -403,7 +408,7 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
                   onClick={handleSeePrice}
                   disabled={loadingPrice}
                   aria-busy={loadingPrice}
-                  className="inline-flex items-center justify-center gap-2 bg-[#FF7B00] text-white px-5 py-3 rounded-md font-semibold shadow-lg hover:bg-[#e66f00] transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30 w-full sm:w-auto disabled:opacity-60"
+                  className="inline-flex items-center justify-center gap-2 bg-[#FF7B00] text-white px-5 py-3 rounded-md font-semibold shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30 w-full sm:w-auto disabled:opacity-60"
                 >
                   {loadingPrice ? "Calcul..." : "Voir les prix"}
                 </button>
@@ -417,8 +422,8 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
                 <button
                   type="button"
                   onClick={cancelAll}
-                  disabled={!(pickupSugsLoading || destSugsLoading || loadingPrice)}
-                  className="inline-flex items-center justify-center gap-2 bg-white text-[#3650D0] px-5 py-3 rounded-md font-medium shadow-sm hover:bg-[#3650D0]/5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3650D0]/30 w-full sm:w-auto disabled:opacity-50"
+                  disabled={!pickup && !destination && !price}
+                  className="inline-flex items-center justify-center gap-2 bg-white text-[#3650D0] px-5 py-3 rounded-md font-medium shadow-sm hover:bg-[#3650D0]/5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-[#3650D0]/30 w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   Annuler
                 </button>
@@ -477,8 +482,8 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
           <div className="relative w-full max-w-xl md:max-w-2xl">
             <div className="absolute -inset-6 rounded-3xl blur-3xl bg-gradient-to-tr from-[#3650D0]/10 to-[#FF7B00]/10" />
             <img
-              src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=1760&auto=format&fit=crop"
-              alt="Illustration mobilité urbaine"
+              src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1740&auto=format&fit=crop"
+              alt="Chauffeur VTC professionnel au volant"
               className="relative w-full h-[320px] sm:h-[380px] md:h-[460px] object-cover rounded-3xl border border-gray-100 shadow-xl"
               loading="lazy"
             />

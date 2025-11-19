@@ -94,7 +94,7 @@ export default function Navbar() {
 
             <a
               href={PLACEHOLDER_LINKS.downloadUrl}
-              className="hidden sm:inline-flex items-center px-6 py-2.5 border border-transparent text-sm font-sans font-medium rounded-md text-white bg-brand-orange hover:bg-[#e56a00] active:bg-[#cc5f00] transition-all shadow-sm"
+              className="hidden sm:inline-flex items-center px-6 py-2.5 border border-transparent text-sm font-sans font-medium rounded-md text-white bg-brand-orange hover:bg-[#e56a00] hover:text-[#FFCA80] active:bg-[#cc5f00] transition-all shadow-sm"
             >
               <span className="mr-2">
                 <svg 

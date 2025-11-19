@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { MessageCircle, ArrowRight } from 'lucide-react';
 import LINKS from '../config/links';
+import driverHeroImage from '../assets/hh.jpeg';
 
 /*
   DriverHero.jsx
@@ -49,7 +50,7 @@ export default function DriverHero({ className = '' }) {
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
             <a
               href="#apply"
-              className="inline-flex items-center justify-center gap-2 bg-[#FF7B00] text-white px-6 py-3 rounded-md font-sans font-semibold shadow-lg hover:bg-[#e66f00] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30"
+              className="inline-flex items-center justify-center gap-2 bg-[#FF7B00] text-white px-6 py-3 rounded-md font-sans font-semibold shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30"
             >
               Postuler maintenant <ArrowRight className="w-5 h-5" />
             </a>
@@ -67,13 +68,25 @@ export default function DriverHero({ className = '' }) {
         </motion.div>
 
         {/* Right: Visual placeholder (image slot) */}
-        <div className="relative h-[360px] md:h-[480px]">
+        <motion.div
+          initial={reduceMotion ? undefined : { opacity: 0, scale: 0.95 }}
+          animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
+          className="relative h-[360px] md:h-[480px]"
+        >
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-64 h-64 sm:w-80 sm:h-80 md:w-[24rem] md:h-[24rem] rounded-full bg-gradient-to-tr from-white/15 to-transparent blur-2xl" aria-hidden />
+            <div className="w-64 h-64 sm:w-80 sm:h-80 md:w-[24rem] md:h-[24rem] rounded-full bg-gradient-to-tr from-[#FF7B00]/20 to-transparent blur-2xl" aria-hidden />
           </div>
-          {/* Optional: add an image by placing it as background in this box */}
-          <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/5 to-white/0 border border-white/10" />
-        </div>
+          <div className="relative h-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+            <img
+              src={driverHeroImage}
+              alt="Chauffeur TIC Miton professionnel"
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#3650D0]/40 to-transparent" />
+          </div>
+        </motion.div>
       </div>
       {/* Bottom info bar removed per request */}
     </section>

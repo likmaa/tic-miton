@@ -12,6 +12,7 @@ const DevenirChauffeur = lazy(() => import('./pages/DevenirChauffeur'))
 const Services = lazy(() => import('./pages/Services'))
 const Contact = lazy(() => import('./pages/Contact'))
 const Download = lazy(() => import('./pages/Download'))
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
 
 export default function App() {
   return (
@@ -26,6 +27,7 @@ export default function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/download" element={<Download />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           </Routes>
         </Suspense>
       </main>

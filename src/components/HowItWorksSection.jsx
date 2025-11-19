@@ -154,7 +154,7 @@ const HowItWorksSection = () => {
           <div className="flex items-center gap-3">
             <a
               href={PLACEHOLDER_LINKS.downloadUrl}
-              className="inline-flex items-center gap-2 bg-[#FF7B00] text-white px-4 py-2 rounded-md text-sm font-sans font-semibold hover:bg-[#e56a00] transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30"
+              className="inline-flex items-center gap-2 bg-[#FF7B00] text-white px-4 py-2 rounded-md text-sm font-sans font-semibold hover:bg-[#e56a00] hover:text-[#FFCA80] transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30"
             >
               Télécharger l'app
             </a>

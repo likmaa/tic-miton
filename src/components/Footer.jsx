@@ -52,7 +52,7 @@ const Footer = () => {
               whileHover={reduceMotion ? undefined : { scale: 1.05 }}
               whileTap={reduceMotion ? undefined : { scale: 0.95 }}
               type="submit"
-              className="bg-[#FF7B00] text-white font-sans font-semibold px-6 py-3 rounded-md flex items-center justify-center gap-2 shadow-lg hover:bg-[#e66f00] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30 transition"
+              className="bg-[#FF7B00] text-white font-sans font-semibold px-6 py-3 rounded-md flex items-center justify-center gap-2 shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30 transition"
             >
               S’abonner <Send className="w-4 h-4" />
             </motion.button>
@@ -80,7 +80,7 @@ const Footer = () => {
             <div>
               <a
                 href="tel:+2290157792662"
-                className="inline-flex items-center gap-2 bg-[#FF7B00] text-white px-4 py-2 rounded-md font-sans font-semibold shadow hover:bg-[#e66f00] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30"
+                className="inline-flex items-center gap-2 bg-[#FF7B00] text-white px-4 py-2 rounded-md font-sans font-semibold shadow hover:bg-[#e66f00] hover:text-[#FFCA80] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30"
               >
                 <PhoneCall className="w-4 h-4" /> +229 0157792662
               </a>
@@ -151,7 +151,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="text-center text-white/60 text-sm">
-          © {new Date().getFullYear()} TIC Miton — Tous droits réservés. | Politique de confidentialité
+          © {new Date().getFullYear()} TIC Miton — Tous droits réservés. | <Link to="/privacy-policy" className="hover:text-[#FFCA80] transition-colors">Politique de confidentialité</Link>
         </div>
       </div>
     </footer>

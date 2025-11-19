@@ -50,7 +50,7 @@ const HeroSection = () => {
               href={PLACEHOLDER_LINKS.downloadUrl}
               whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
               whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
-              className="bg-[#FF7B00] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-md font-sans font-semibold text-base sm:text-lg flex items-center justify-center gap-2 shadow-lg hover:bg-[#e66f00] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30 transition"
+              className="bg-[#FF7B00] text-white px-6 py-3 sm:px-8 sm:py-4 rounded-md font-sans font-semibold text-base sm:text-lg flex items-center justify-center gap-2 shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30 transition"
               aria-label="Télécharger l'application TIC Miton"
             >
               Télécharger l'application

@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import LINKS from "../config/links";
 
 
@@ -333,7 +334,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
               className="mt-1"
             />
             <label htmlFor="consent" className="text-sm text-gray-700">
-              J'accepte que mes données soient utilisées pour le recrutement selon la <a className="underline" href="#privacy">politique de confidentialité</a>.
+              J'accepte que mes données soient utilisées pour le recrutement selon la <Link to="/privacy-policy" className="underline text-[#3650D0] hover:text-[#FF7B00]" target="_blank">politique de confidentialité</Link>.
             </label>
           </div>
           {errors.consent && <div className="text-xs text-red-600 mt-1">{errors.consent}</div>}
@@ -344,7 +345,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
               <button
                 type="submit"
                 disabled={status.state === "uploading"}
-                className="inline-flex items-center gap-3 bg-[#FF7B00] text-white px-5 py-3 rounded-md font-sans font-semibold shadow-lg hover:bg-[#e66f00] transition disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30"
+                className="inline-flex items-center gap-3 bg-[#FF7B00] text-white px-5 py-3 rounded-md font-sans font-semibold shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] transition disabled:opacity-60 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30"
               >
                 {status.state === "uploading" ? `Envoi... (${progress}%)` : "Envoyer ma candidature"}
               </button>

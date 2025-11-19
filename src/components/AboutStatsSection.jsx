@@ -123,7 +123,7 @@ const AboutStatsSection = ({
         <div className="mt-8 text-center md:text-left">
           <a
             href="#download"
-            className="inline-flex items-center gap-3 bg-[#FF7B00] text-white px-5 py-3 rounded-md font-sans font-semibold shadow-lg hover:bg-[#e66f00] transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30"
+            className="inline-flex items-center gap-3 bg-[#FF7B00] text-white px-5 py-3 rounded-md font-sans font-semibold shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30"
             aria-label="Télécharger l'application"
           >
             Télécharger l'application

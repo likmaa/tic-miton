@@ -58,7 +58,7 @@ export default function ScrollControls({ threshold = 120 }) {
           aria-label="Aller en bas"
           title="Bas"
           className={
-            "shadow-md transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30 rounded-full p-3 bg-[#FF7B00] text-white hover:bg-[#e66f00] " +
+            "shadow-md transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-[#FF7B00]/30 rounded-full p-3 bg-[#FF7B00] text-white hover:bg-[#e66f00] hover:text-[#FFCA80] " +
             (atBottom ? "opacity-70" : "opacity-100")
           }
         >
