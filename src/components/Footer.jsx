@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
-import { Facebook, Instagram, Twitter, Linkedin, Send, PhoneCall } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Send, PhoneCall } from "lucide-react";
 import PLACEHOLDER_LINKS from "../config/links";
 
 const Footer = () => {
@@ -108,7 +108,7 @@ const Footer = () => {
           <div>
             <h4 className="font-sans font-semibold text-lg mb-4">Réseaux sociaux</h4>
             <div className="flex justify-center md:justify-start gap-4">
-              {[Facebook, Instagram, Twitter, Linkedin].map((Icon, i) => (
+              {[Facebook, Instagram, Linkedin].map((Icon, i) => (
                 <motion.a
                   key={i}
                   href="#"
