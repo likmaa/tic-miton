@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import LINKS from "../config/links";
 
@@ -19,13 +19,31 @@ const ACCEPTED_FILE_TYPES = ["image/jpeg", "image/png", "application/pdf", "imag
 
 const FilePreview = ({ file, onRemove }) => {
   const isImage = file.type && file.type.startsWith("image/");
+  
+  // Créer l'URL et la nettoyer automatiquement pour éviter les memory leaks
+  const previewUrl = useMemo(() => {
+    return isImage ? URL.createObjectURL(file) : null;
+  }, [file, isImage]);
+  
+  useEffect(() => {
+    // Nettoyer l'URL quand le composant est démonté ou le fichier change
+    return () => {
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl);
+      }
+    };
+  }, [previewUrl]);
+  
   return (
   <div className="flex items-center gap-3 bg-gray-50 border border-gray-200 rounded-md p-2">
       {isImage ? (
         <img
-          src={URL.createObjectURL(file)}
+          src={previewUrl}
           alt={file.name}
           className="w-12 h-12 object-cover rounded"
+          width={48}
+          height={48}
+          decoding="async"
         />
       ) : (
         <div className="w-12 h-12 flex items-center justify-center bg-white rounded text-sm text-gray-600 border border-gray-200">

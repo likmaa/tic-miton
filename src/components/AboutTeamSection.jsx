@@ -68,9 +68,9 @@ Mon rôle est d'aligner tout le monde, de clarifier qui fait quoi et d'assurer u
     role: "Directeur Technique",
     avatar: HAvatar,
     quote: "Construire une base robuste, évolutive et sûre.",
-    bio: `Je dirige l'ingénierie au quotidien : qualité du code, fiabilité, sécurité et livraison des fonctionnalités.
+    bio: `Je m'occupe de l'ingénierie au niveau des chauffeurs : recrutement, formation, qualité de service et suivi terrain.
 
-Nous itérons par petits incréments, testons sérieusement et monitorons en production pour garantir une expérience stable et performante.`,
+Mon objectif est de garantir que chaque chauffeur TiC offre une expérience professionnelle, sécurisée et agréable à nos utilisateurs.`,
     linkedin: "#",
   },
   {
@@ -188,7 +188,10 @@ const AboutTeamSection = ({ members = DEFAULT_MEMBERS, className = "" }) => {
           src={m.avatar}
           alt={`${m.name} avatar`}
           className="w-14 h-14 rounded-full object-cover border-2 border-white shadow-sm scale-110"
+          width={56}
+          height={56}
           loading="lazy"
+          decoding="async"
           style={{ objectPosition: 'center 30%' }}
         />
         <div className="flex-1">

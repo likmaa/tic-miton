@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { MessageCircle } from 'lucide-react'
 import PLACEHOLDER_LINKS from "../config/links"
-import logoUrl from "../assets/logo-tic.png"
+import logoUrl from "../assets/logo-tic.webp";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
@@ -36,6 +36,9 @@ export default function Navbar() {
                 src={logoUrl}
                 alt="TIC Miton Logo"
                 className="h-8 sm:h-10 md:h-12 w-auto object-contain"
+                width={2034}
+                height={743}
+                decoding="async"
               />
               <div className="flex flex-col">
                 <div className="font-display font-bold text-2xl text-gray-900">
