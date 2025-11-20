@@ -5,7 +5,7 @@ import PLACEHOLDER_LINKS from "../config/links";
 // Image bannière responsive (par défaut), remplaçable via prop
 // Responsive banner with reduced quality to shrink transfer size
 // Mixed quality: download banner 70
-import downPic from "../assets/features/Down.jpeg?w=640;864;1200&format=avif;webp;jpg&quality=70&as=picture";
+import downPic from "../assets/features/Down.jpeg?w=640;864;1200&format=avif;webp;jpg&quality=100&as=picture";
 
 
 
