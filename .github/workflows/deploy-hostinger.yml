@@ -101,13 +101,15 @@ jobs:
           set +e
           host="${{ steps.ftp_host.outputs.host }}"
           # List root
-          ROOT_LIST=$(curl -s --disable-eprt --ftp-pasv --user "$FTP_USER:$FTP_PASS" "ftp://$host/" 2>/dev/null || true)
+          ROOT_LIST=$(curl -s --disable-eprt --ftp-pasv --list-only --user "$FTP_USER:$FTP_PASS" "ftp://$host/" 2>/dev/null | tr -d '\r' || true)
+          echo "Remote root entries: $(echo "$ROOT_LIST" | tr '\n' ' ')"
           server_dir="/public_html/"
-          if echo "$ROOT_LIST" | grep -q "^public_html$"; then
+          if echo "$ROOT_LIST" | grep -E -q "(^|\n)public_html(\n|$)"; then
             server_dir="/public_html/"
-          elif echo "$ROOT_LIST" | grep -q "^domains$"; then
+          elif echo "$ROOT_LIST" | grep -E -q "(^|\n)domains(\n|$)"; then
             # Try Hostinger addon domain path
-            DOM_LIST=$(curl -s --disable-eprt --ftp-pasv --user "$FTP_USER:$FTP_PASS" "ftp://$host/domains/ticmiton.com/public_html/" 2>/dev/null || true)
+            DOM_LIST=$(curl -s --disable-eprt --ftp-pasv --list-only --user "$FTP_USER:$FTP_PASS" "ftp://$host/domains/ticmiton.com/public_html/" 2>/dev/null | tr -d '\r' || true)
+            echo "domains/ticmiton.com/public_html entries: $(echo "$DOM_LIST" | tr '\n' ' ')"
             if [ -n "$DOM_LIST" ]; then
               server_dir="/domains/ticmiton.com/public_html/"
             fi
