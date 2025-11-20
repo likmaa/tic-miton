@@ -2,6 +2,7 @@ import React, { useState, useRef, useCallback, useMemo } from "react";
 import { motion } from "framer-motion";
 import { CircleDot, Square, X, Navigation, Apple, Play } from "lucide-react";
 import LINKS from "../config/links";
+import servicesHeroImg from "../assets/features/safety.jpg?w=864;1200;1600&format=avif;webp&quality=70&as=picture";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -150,11 +151,14 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
     setError("");
     // Clear computed price as requested
     setPrice("");
-    // Clear input fields
+    // Clear input fields and coords
     setPickup("");
     setDestination("");
     setPickupCoords(null);
     setDestinationCoords(null);
+    // Reset locating and close modal if open
+    setLocating(false);
+    setShowStoreModal(false);
   };
 
   const getCurrentLocation = () => {
@@ -215,6 +219,15 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
       setLoadingPrice(false);
     }
   };
+  const canCancel =
+    Boolean(pickup || destination || price || error) ||
+    locating ||
+    loadingPrice ||
+    pickupSugsLoading ||
+    destSugsLoading ||
+    pickupSugs.length > 0 ||
+    destSugs.length > 0;
+
   return (
     <section className="bg-white text-brand-blue overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12 py-12 md:py-20 grid md:grid-cols-2 gap-10 items-center">
@@ -428,8 +441,8 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
                 <button
                   type="button"
                   onClick={cancelAll}
-                  disabled={!pickup && !destination && !price}
-                  className="inline-flex items-center justify-center gap-2 bg-white text-brand-blue px-5 py-3 rounded-md font-medium shadow-sm hover:bg-brand-blue/5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/30 w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                  disabled={!canCancel}
+                  className="inline-flex items-center justify-center gap-2 bg-white text-brand-blue px-5 py-3 rounded-md font-medium shadow-sm hover:bg-brand-blue/5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/30 w-full sm:w-auto disabled:opacity-50"
                 >
                   Annuler
                 </button>
@@ -487,12 +500,45 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
         <motion.div className="flex justify-center md:justify-end" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
           <div className="relative w-full max-w-xl md:max-w-2xl">
             <div className="absolute -inset-6 rounded-3xl blur-3xl bg-gradient-to-tr from-brand-blue/10 to-brand-orange/10" />
-            <img
-              src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1740&auto=format&fit=crop"
-              alt="Chauffeur VTC professionnel au volant"
-              className="relative w-full h-[320px] sm:h-[380px] md:h-[460px] object-cover rounded-3xl border border-gray-100 shadow-xl"
-              loading="lazy"
-            />
+            {(() => {
+              const hasPictureShape = servicesHeroImg && typeof servicesHeroImg === 'object' && ("sources" in servicesHeroImg || "img" in servicesHeroImg);
+              if (hasPictureShape) {
+                const rawSources = servicesHeroImg.sources;
+                const sources = Array.isArray(rawSources)
+                  ? rawSources
+                  : rawSources
+                    ? Object.values(rawSources)
+                    : [];
+                const img = servicesHeroImg.img || {};
+                return (
+                  <picture>
+                    {sources.map((source, idx) => (
+                      <source key={idx} type={source.type} srcSet={source.srcset} sizes="(min-width: 768px) 36rem, 100vw" />
+                    ))}
+                    <img
+                      src={img.src || (typeof servicesHeroImg === 'string' ? servicesHeroImg : '')}
+                      alt="Illustration de nos services"
+                      className="relative w-full h-[320px] sm:h-[380px] md:h-[460px] object-cover rounded-3xl border border-gray-100 shadow-xl"
+                      loading="lazy"
+                      decoding="async"
+                      width={img.w || 1600}
+                      height={img.h || 900}
+                    />
+                  </picture>
+                );
+              }
+              return (
+                <img
+                  src={typeof servicesHeroImg === 'string' ? servicesHeroImg : ''}
+                  alt="Illustration de nos services"
+                  className="relative w-full h-[320px] sm:h-[380px] md:h-[460px] object-cover rounded-3xl border border-gray-100 shadow-xl"
+                  loading="lazy"
+                  decoding="async"
+                  width="1600"
+                  height="900"
+                />
+              );
+            })()}
           </div>
         </motion.div>
       </div>
