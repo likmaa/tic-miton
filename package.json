@@ -8,7 +8,9 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "optimize:images": "node scripts/optimize-images.js"
+    "optimize:images": "node scripts/optimize-images.js",
+    "lh": "node scripts/run-lighthouse.mjs",
+    "lh:ci": "npm run build && node scripts/run-lighthouse.mjs --append"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -38,6 +40,8 @@
     "sharp": "^0.34.5",
     "tailwindcss": "^3.4.0",
     "vite": "^7.1.12",
-    "vite-imagetools": "^9.0.0"
+    "vite-imagetools": "^9.0.0",
+    "lighthouse": "^12.1.0",
+    "chrome-launcher": "^1.0.0"
   }
 }

@@ -1,6 +1,7 @@
 import React, { Suspense } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Apple, Play } from "lucide-react";
+import { getStoreUrl, trackEvent } from "../utils/storeRedirect";
 import PLACEHOLDER_LINKS from "../config/links";
 const AuroraLazy = React.lazy(() => import("./Aurora"));
 // Mixed quality profile: hero moderate quality 70
@@ -60,6 +61,12 @@ const HeroSection = () => {
             {/* CTA Button */}
             <motion.a
               href={PLACEHOLDER_LINKS.downloadUrl}
+              onClick={(e) => {
+                e.preventDefault();
+                const target = getStoreUrl({ playStoreUrl: PLACEHOLDER_LINKS.playStoreUrl, appStoreUrl: PLACEHOLDER_LINKS.appStoreUrl, fallback: PLACEHOLDER_LINKS.downloadUrl });
+                trackEvent('cta_click', { source: 'hero', resolved: target });
+                window.location.href = target;
+              }}
               whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
               whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
               className="bg-brand-orange text-white px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-md font-sans font-semibold text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30 transition"

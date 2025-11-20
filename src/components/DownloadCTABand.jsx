@@ -1,6 +1,7 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Apple, Play } from "lucide-react";
+import { getStoreUrl, trackEvent } from "../utils/storeRedirect";
 import PLACEHOLDER_LINKS from "../config/links";
 // Image bannière responsive (par défaut), remplaçable via prop
 // Responsive banner with reduced quality to shrink transfer size
@@ -96,6 +97,12 @@ const DownloadCTABand = ({
           <div className="flex flex-col sm:flex-row items-center gap-3 md:gap-4">
             <motion.a
               href={downloadUrl}
+              onClick={(e) => {
+                e.preventDefault();
+                const target = getStoreUrl({ playStoreUrl, appStoreUrl, fallback: downloadUrl });
+                trackEvent('cta_click', { source: 'download_band', resolved: target });
+                window.location.href = target;
+              }}
               whileHover={reduceMotion ? {} : { scale: 1.05 }}
               whileTap={reduceMotion ? {} : { scale: 0.97 }}
               aria-label="Télécharger l'application TIC Miton"

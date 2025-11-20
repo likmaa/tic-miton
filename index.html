@@ -49,6 +49,10 @@
     </noscript>
     
     <title>TIC Miton - Service VTC à Porto-Novo, Bénin | Transport Fiable et Sécurisé</title>
+    <script>
+      // Lightweight analytics & global tracker
+      window.ticAnalytics = { events: [], track: function(name, data){ this.events.push({name, data, ts: Date.now()}); if(location.hostname==='localhost'){ console.log('[analytics]', name, data); } } };
+    </script>
   </head>
   <body>
     <div id="root"></div>
