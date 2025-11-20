@@ -16,11 +16,10 @@ export function trackEvent(name, data = {}) {
     window.ticAnalytics = window.ticAnalytics || { events: [] };
     window.ticAnalytics.events.push({ name, data, ts: Date.now() });
     // For now just log; can be replaced by real endpoint.
-    if (process.env.NODE_ENV !== 'production') {
-      // eslint-disable-next-line no-console
+    if (import.meta.env.MODE !== 'production') {
       console.log('[analytics]', name, data);
     }
-  } catch (e) {
+  } catch {
     // swallow
   }
 }

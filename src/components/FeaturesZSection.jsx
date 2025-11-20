@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { ShieldCheck, Tag, Zap, LifeBuoy, ArrowRight, X, Apple, Play, Sparkles } from "lucide-react";
 import LINKS from "../config/links";
 // Responsive, optimized sources via vite-imagetools

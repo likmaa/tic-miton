@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useMemo } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
 import { CircleDot, Square, X, Navigation, Apple, Play } from "lucide-react";
 import LINKS from "../config/links";
