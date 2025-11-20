@@ -9,6 +9,12 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     
+    env:
+      # GitHub secrets are validated at runtime, not build time
+      FTP_SERVER: ${{ secrets.FTP_SERVER }}
+      FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+      FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -85,8 +91,6 @@ jobs:
       - name: Normalize FTP host and quick connectivity check
         id: ftp_host
         shell: bash
-        env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
         run: |
           if [ -z "$FTP_SERVER" ]; then
             echo "Error: FTP_SERVER secret not set"
@@ -109,14 +113,13 @@ jobs:
       - name: Detect remote webroot directory
         id: detect_webroot
         shell: bash
-        env:
-          FTP_USER: ${{ secrets.FTP_USERNAME }}
-          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
         run: |
-          if [ -z "$FTP_USER" ] || [ -z "$FTP_PASS" ]; then
+          if [ -z "$FTP_USERNAME" ] || [ -z "$FTP_PASSWORD" ]; then
             echo "Error: FTP credentials not set"
             exit 1
           fi
+          FTP_USER="$FTP_USERNAME"
+          FTP_PASS="$FTP_PASSWORD"
           set +e
           host="${{ steps.ftp_host.outputs.host }}"
           # List root
@@ -137,9 +140,6 @@ jobs:
 
       - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        env:
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         with:
           server: ${{ steps.ftp_host.outputs.host }}
           username: ${{ env.FTP_USERNAME }}
@@ -154,9 +154,6 @@ jobs:
       - name: Fallback deploy to alternate Hostinger path
         if: always()
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        env:
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         with:
           server: ${{ steps.ftp_host.outputs.host }}
           username: ${{ env.FTP_USERNAME }}
