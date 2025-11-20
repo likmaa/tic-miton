@@ -85,8 +85,14 @@ jobs:
       - name: Normalize FTP host and quick connectivity check
         id: ftp_host
         shell: bash
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
         run: |
-          host="${{ secrets.FTP_SERVER }}"
+          if [ -z "$FTP_SERVER" ]; then
+            echo "Error: FTP_SERVER secret not set"
+            exit 1
+          fi
+          host="$FTP_SERVER"
           # strip protocol prefix if present and any trailing slash
           host="${host#ftp://}"
           host="${host#ftps://}"
@@ -107,6 +113,10 @@ jobs:
           FTP_USER: ${{ secrets.FTP_USERNAME }}
           FTP_PASS: ${{ secrets.FTP_PASSWORD }}
         run: |
+          if [ -z "$FTP_USER" ] || [ -z "$FTP_PASS" ]; then
+            echo "Error: FTP credentials not set"
+            exit 1
+          fi
           set +e
           host="${{ steps.ftp_host.outputs.host }}"
           # List root
@@ -127,10 +137,13 @@ jobs:
 
       - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         with:
           server: ${{ steps.ftp_host.outputs.host }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          username: ${{ env.FTP_USERNAME }}
+          password: ${{ env.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: ${{ steps.detect_webroot.outputs.dir }}
           dangerous-clean-slate: true
@@ -141,10 +154,13 @@ jobs:
       - name: Fallback deploy to alternate Hostinger path
         if: always()
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        env:
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         with:
           server: ${{ steps.ftp_host.outputs.host }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
+          username: ${{ env.FTP_USERNAME }}
+          password: ${{ env.FTP_PASSWORD }}
           local-dir: ./dist/
           # Choose the alternate directory: if primary is public_html, try domains path; else try public_html
           server-dir: ${{ steps.detect_webroot.outputs.dir == '/public_html/' && '/domains/ticmiton.com/public_html/' || '/public_html/' }}
