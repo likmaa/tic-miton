@@ -52,9 +52,9 @@ export default function Download() {
   return (
     <section className="py-14 px-6 md:px-12 lg:px-20">
       <SEO 
-        title="Télécharger l'Application TIC Miton - Android & iOS | Porto-Novo"
-        description="Téléchargez l'application mobile TIC Miton sur Android et iOS. Commandez vos courses VTC facilement depuis votre smartphone à Porto-Novo."
-        keywords="télécharger TIC Miton, application VTC Porto-Novo, app TIC Miton Android, app TIC Miton iOS, téléchargement app transport"
+        title="Télécharger App TIC Miton | Android & iOS - VTC Porto-Novo"
+        description="Téléchargez gratuitement l'application TIC Miton sur Google Play Store et App Store. Réservez vos courses VTC à Porto-Novo en quelques secondes. Compatible Android et iPhone."
+        keywords="télécharger TIC Miton, app VTC Porto-Novo gratuit, download TIC Miton Android, TIC Miton iOS iPhone, application transport Bénin, Play Store, App Store"
       />
       <div className="max-w-3xl mx-auto rounded-2xl border border-gray-200 p-6 md:p-8">
         <h1 className="font-display text-2xl md:text-3xl font-extrabold text-gray-900">

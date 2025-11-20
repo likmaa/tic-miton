@@ -314,3 +314,14 @@ Pour changer les couleurs du site:
 Production build successful post-changes. Main bundle unchanged except for lazy `Aurora`; image payload trimmed with reduced quality & width sets.
 
 ---
+
+---
+## 🔍 Lighthouse Audit (11/20/2025, 7:08:15 AM)
+Performance Score: 41
+LCP: 5.60s
+CLS: 0.004
+TBT: 3327.0000000000005ms
+FCP: 2.78s
+TTI: 7.07s
+Report file: lighthouse/report-2025-11-20T06-08-15-027Z.json
+---

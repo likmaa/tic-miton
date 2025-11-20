@@ -8,9 +8,9 @@ export default function DevenirChauffeur() {
   return (
     <div className="bg-white">
       <SEO 
-        title="Devenir Chauffeur Partenaire - TIC Miton | Recrutement Porto-Novo"
-        description="Rejoignez TIC Miton comme chauffeur partenaire à Porto-Novo. Gagnez un revenu stable, travaillez à votre rythme avec notre flotte de véhicules."
-        keywords="devenir chauffeur VTC, recrutement chauffeur Porto-Novo, emploi chauffeur Bénin, partenaire TIC Miton, travail chauffeur"
+        title="Devenir Chauffeur VTC Porto-Novo | Recrutement & Inscription TIC Miton"
+        description="Rejoignez TIC Miton comme chauffeur partenaire à Porto-Novo. Revenus attractifs, flexibilité horaire, formations gratuites. Postulez en ligne avec votre permis et carte grise."
+        keywords="devenir chauffeur VTC Porto-Novo, recrutement chauffeur Bénin, emploi VTC, inscription chauffeur TIC Miton, partenaire transport, job chauffeur Porto-Novo"
       />
       <DriverHero />
       <div id="apply">

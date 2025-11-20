@@ -15,9 +15,9 @@ export default function About() {
   return (
     <div>
       <SEO 
-        title="À Propos de TIC Miton - Notre Histoire et Mission | VTC Porto-Novo"
-        description="Découvrez TIC Miton, le service VTC local de Porto-Novo. Notre mission : rendre le transport accessible, sûr et fiable pour tous au Bénin."
-        keywords="à propos TIC Miton, histoire TIC Miton, mission transport Bénin, entreprise VTC Porto-Novo, équipe TIC Miton"
+        title="À Propos TIC Miton | Histoire, Mission & Équipe - VTC Porto-Novo Bénin"
+        description="TIC Miton révolutionne le transport à Porto-Novo depuis 2023. Découvrez notre mission de mobilité accessible, notre équipe passionnée et nos valeurs : sécurité, transparence, innovation."
+        keywords="à propos TIC Miton, histoire startup VTC Bénin, mission transport Porto-Novo, équipe TIC Miton, entreprise locale, valeurs TIC Miton"
       />
       <AboutHero image={aboutImage} imagePosition="center 50%" />
       <AboutMissionSection />

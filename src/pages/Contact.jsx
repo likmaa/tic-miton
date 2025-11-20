@@ -53,9 +53,9 @@ export default function Contact() {
   return (
     <section className="bg-white">
       <SEO 
-        title="Contactez TIC Miton - Support et Service Client | Porto-Novo"
-        description="Besoin d'aide ou d'informations ? Contactez l'équipe TIC Miton à Porto-Novo. Support disponible 24/7 par téléphone, WhatsApp ou email."
-        keywords="contact TIC Miton, support client Porto-Novo, service client VTC, aide TIC Miton, contacter chauffeur"
+        title="Contact TIC Miton Porto-Novo | Service Client 24/7 - WhatsApp, Email, Téléphone"
+        description="Contactez TIC Miton pour toute question, réclamation ou partenariat. Support client disponible 24h/24 par téléphone +229-01-57-79-26-62, WhatsApp et email contact@ticmiton.com"
+        keywords="contact TIC Miton, numéro téléphone VTC Porto-Novo, WhatsApp TIC Miton, email support client, service client 24/7, aide course VTC"
       />
       {/* Hero */}
       <div className="bg-gradient-to-b from-white to-gray-50 border-b border-gray-100">

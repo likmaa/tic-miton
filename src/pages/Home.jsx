@@ -16,9 +16,9 @@ export default function Home() {
   return (
     <>
       <SEO 
-        title="TIC Miton - Service VTC à Porto-Novo, Bénin | Transport Fiable et Sécurisé"
-        description="Votre ville, votre chauffeur. TIC Miton est votre solution simple et sûre pour tous vos trajets à Porto-Novo. Chauffeurs vérifiés, tarifs transparents, disponible 24/7."
-        keywords="VTC Porto-Novo, transport Bénin, taxi Porto-Novo, TIC Miton, chauffeur privé, course en ligne, livraison Porto-Novo, transport sécurisé"
+        title="TIC Miton - VTC Porto-Novo | Réservez votre Course en Ligne 24/7"
+        description="Service de transport VTC fiable à Porto-Novo, Bénin. Réservez votre course en quelques clics, chauffeurs professionnels vérifiés, tarifs transparents. Téléchargez l'app TIC Miton."
+        keywords="VTC Porto-Novo, réserver course Porto-Novo, transport Bénin, taxi en ligne, TIC Miton app, chauffeur privé Porto-Novo, livraison rapide, VTC Cotonou"
       />
       <HeroSection />
       <StatsSection />

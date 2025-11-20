@@ -12,9 +12,9 @@ export default function Services() {
   return (
     <main className="font-sans antialiased">
       <SEO 
-        title="Nos Services - TIC Miton | VTC, Livraison et Transport à Porto-Novo"
-        description="Découvrez nos services de transport : courses VTC, livraison express, trajets quotidiens à Porto-Novo. Tarifs transparents et chauffeurs professionnels."
-        keywords="services VTC Porto-Novo, livraison Porto-Novo, transport à la demande, course VTC Bénin, taxi services"
+        title="Services VTC Porto-Novo | Courses, Livraison, Trajets Quotidiens - TIC Miton"
+        description="Services de transport VTC à Porto-Novo : courses à la demande, livraison rapide de colis, abonnements trajets domicile-travail. Tarifs clairs, paiement Mobile Money. Téléchargez TIC Miton."
+        keywords="VTC Porto-Novo, livraison express Bénin, course à la demande, taxi professionnel, trajets quotidiens, transport domicile-travail, livraison colis Porto-Novo"
       />
       <ServicesHero />
       <StatsSection />
