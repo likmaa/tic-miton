@@ -73,6 +73,15 @@ jobs:
           </IfModule>
           EOF
 
+      - name: Create deployment marker
+        run: |
+          COMMIT_SHA="${{ github.sha }}"
+          DATE=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+          echo "commit=$COMMIT_SHA" > dist/version.txt
+          echo "date=$DATE" >> dist/version.txt
+          echo "app=tic-miton" >> dist/version.txt
+          echo "Detected by browser => open /version.txt after deploy" >> dist/version.txt
+
       - name: Normalize FTP host and quick connectivity check
         id: ftp_host
         shell: bash
@@ -128,3 +137,18 @@ jobs:
           protocol: ftp
           port: 21
           log-level: standard
+
+      - name: Fallback deploy to alternate Hostinger path
+        if: always()
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ steps.ftp_host.outputs.host }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./dist/
+          # Choose the alternate directory: if primary is public_html, try domains path; else try public_html
+          server-dir: ${{ steps.detect_webroot.outputs.dir == '/public_html/' && '/domains/ticmiton.com/public_html/' || '/public_html/' }}
+          dangerous-clean-slate: false
+          protocol: ftp
+          port: 21
+          log-level: minimal
