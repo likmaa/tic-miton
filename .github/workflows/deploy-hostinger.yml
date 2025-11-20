@@ -73,12 +73,32 @@ jobs:
           </IfModule>
           EOF
 
+      - name: Normalize FTP host and quick connectivity check
+        id: ftp_host
+        shell: bash
+        run: |
+          host="${{ secrets.FTP_SERVER }}"
+          # strip protocol prefix if present and any trailing slash
+          host="${host#ftp://}"
+          host="${host#ftps://}"
+          host="${host%/}"
+          # emit normalized host for later steps without printing it to logs
+          echo "host=$host" >> "$GITHUB_OUTPUT"
+          # Best-effort: check if TCP/21 is reachable without leaking host in logs
+          if command -v nc >/dev/null 2>&1; then
+            nc -z -w 5 "$host" 21 >/dev/null 2>&1 && echo "FTP port reachable" || echo "Warning: FTP port not reachable from runner"
+          else
+            echo "nc not available; skipping port check"
+          fi
+
       - name: Deploy to Hostinger via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: ${{ secrets.FTP_SERVER }}
+          server: ${{ steps.ftp_host.outputs.host }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: /public_html/
           dangerous-clean-slate: true
+          protocol: ftp
+          port: 21
