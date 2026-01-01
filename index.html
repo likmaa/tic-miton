@@ -1,64 +1,85 @@
 <!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
+
+<head>
+  <meta charset="UTF-8" />
   <!-- Versioned icons for cache busting (v2) -->
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32-v2.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="192x192" href="/android-chrome-192x192-v2.png" />
   <link rel="icon" type="image/png" sizes="512x512" href="/android-chrome-512x512-v2.png" />
-    <link rel="manifest" href="/site.webmanifest" />
-    <meta name="theme-color" content="#3650D0" />
-    
-    <!-- SEO Meta Tags -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="TIC Miton - Votre service de transport VTC à Porto-Novo, Bénin. Chauffeurs vérifiés, tarifs transparents, disponible 24/7. Commandez votre course en quelques clics." />
-    <meta name="keywords" content="VTC Porto-Novo, transport Bénin, taxi Porto-Novo, TIC Miton, chauffeur privé, course en ligne, livraison Porto-Novo" />
-    <meta name="author" content="TIC Miton" />
-    <meta name="robots" content="index, follow" />
-    <meta name="language" content="French" />
-    <meta name="geo.region" content="BJ-BO" />
-    <meta name="geo.placename" content="Porto-Novo" />
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://ticmiton.com/" />
-    <meta property="og:title" content="TIC Miton - Service VTC à Porto-Novo, Bénin" />
-    <meta property="og:description" content="Votre ville, votre chauffeur. Service de transport fiable et sécurisé à Porto-Novo. Tarifs transparents, chauffeurs vérifiés." />
-    <meta property="og:image" content="https://ticmiton.com/og-image.jpg" />
-    <meta property="og:locale" content="fr_BJ" />
-    
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content="https://ticmiton.com/" />
-    <meta name="twitter:title" content="TIC Miton - Service VTC à Porto-Novo, Bénin" />
-    <meta name="twitter:description" content="Votre ville, votre chauffeur. Service de transport fiable et sécurisé à Porto-Novo." />
-    <meta name="twitter:image" content="https://ticmiton.com/twitter-image.jpg" />
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://ticmiton.com/" />
-    
-    <!-- Fonts: Unbounded (display) & Titillium Web (sans) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Preload critical font weights (swap to avoid FOIT) -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&family=Unbounded:wght@700;800&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&family=Unbounded:wght@700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-    <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700&family=Unbounded:wght@700;800&display=swap" rel="stylesheet">
-    </noscript>
-    
-    <!-- Preload LCP hero image (WebP priority) -->
-    <link rel="preload" as="image" href="/src/assets/Mockup.png?w=640&format=webp&quality=70" type="image/webp" imagesrcset="/src/assets/Mockup.png?w=360&format=webp&quality=70 360w, /src/assets/Mockup.png?w=520&format=webp&quality=70 520w, /src/assets/Mockup.png?w=640&format=webp&quality=70 640w" imagesizes="(max-width: 768px) 360px, (max-width: 1024px) 520px, 640px">
-    
-    <title>TIC Miton - Service VTC à Porto-Novo, Bénin | Transport Fiable et Sécurisé</title>
-    <script>
-      // Lightweight analytics & global tracker
-      window.ticAnalytics = { events: [], track: function(name, data){ this.events.push({name, data, ts: Date.now()}); if(location.hostname==='localhost'){ console.log('[analytics]', name, data); } } };
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+  <link rel="manifest" href="/site.webmanifest" />
+  <meta name="theme-color" content="#3650D0" />
+
+  <!-- SEO Meta Tags -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="TIC Miton - Votre service de transport VTC à Porto-Novo, Bénin. Chauffeurs vérifiés, tarifs transparents, disponible 24/7. Commandez votre course en quelques clics." />
+  <meta name="keywords"
+    content="VTC Porto-Novo, transport Bénin, taxi Porto-Novo, TIC Miton, chauffeur privé, course en ligne, livraison Porto-Novo" />
+  <meta name="author" content="TIC Miton" />
+  <meta name="robots" content="index, follow" />
+  <meta name="language" content="French" />
+  <meta name="geo.region" content="BJ-BO" />
+  <meta name="geo.placename" content="Porto-Novo" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://ticmiton.com/" />
+  <meta property="og:title" content="TIC Miton - Service VTC à Porto-Novo, Bénin" />
+  <meta property="og:description"
+    content="Votre ville, votre chauffeur. Service de transport fiable et sécurisé à Porto-Novo. Tarifs transparents, chauffeurs vérifiés." />
+  <meta property="og:image" content="https://ticmiton.com/og-image.jpg" />
+  <meta property="og:locale" content="fr_BJ" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://ticmiton.com/" />
+  <meta name="twitter:title" content="TIC Miton - Service VTC à Porto-Novo, Bénin" />
+  <meta name="twitter:description"
+    content="Votre ville, votre chauffeur. Service de transport fiable et sécurisé à Porto-Novo." />
+  <meta name="twitter:image" content="https://ticmiton.com/twitter-image.jpg" />
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://ticmiton.com/" />
+
+  <!-- Fonts: Titillium Web (sans) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://www.google-analytics.com">
+  <!-- Preload critical font weights (swap to avoid FOIT) -->
+  <link rel="preload" as="style"
+    href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700;800;900&display=swap">
+  <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700;800;900&display=swap"
+    rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet">
+  </noscript>
+
+  <!-- Preload LCP hero image (WebP priority) -->
+  <link rel="preload" as="image" href="/src/assets/Mockup.png?w=640&format=webp&quality=70" type="image/webp"
+    imagesrcset="/src/assets/Mockup.png?w=360&format=webp&quality=70 360w, /src/assets/Mockup.png?w=520&format=webp&quality=70 520w, /src/assets/Mockup.png?w=640&format=webp&quality=70 640w"
+    imagesizes="(max-width: 768px) 360px, (max-width: 1024px) 520px, 640px">
+
+  <title>TIC Miton - Service VTC à Porto-Novo, Bénin | Transport Fiable et Sécurisé</title>
+
+  <!-- Google Analytics (GA4) Placeholder -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=GA_ID"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'GA_ID');
+
+    // Lightweight analytics & global tracker
+    window.ticAnalytics = { events: [], track: function (name, data) { this.events.push({ name, data, ts: Date.now() }); if (location.hostname === 'localhost') { console.log('[analytics]', name, data); } } };
+  </script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>

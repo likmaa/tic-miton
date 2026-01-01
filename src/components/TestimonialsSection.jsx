@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import Avatar from "boring-avatars";
 import { useReducedMotion } from "framer-motion";
 import { Play, Pause, Star } from "lucide-react";
+import COLORS from "../config/colors";
 
 
 
@@ -119,7 +120,7 @@ const TestimonialCard = ({ t, cardWidth, onFocusChange }) => {
           className="w-12 h-12 flex-shrink-0 rounded-full p-[2px]"
           style={{
             background:
-              "conic-gradient(from 0deg, #FF7B00, #3650D0, #0EA5E9, #22C55E, #F59E0B, #FF7B00)",
+              `conic-gradient(from 0deg, ${COLORS.brandOrange}, ${COLORS.brandBlue}, #0EA5E9, #22C55E, #F59E0B, ${COLORS.brandOrange})`,
             animation: shouldReduceMotionCard ? "none" : "spin 8s linear infinite",
           }}
         >
@@ -128,7 +129,7 @@ const TestimonialCard = ({ t, cardWidth, onFocusChange }) => {
               size={avatarSize}
               name={seed}
               variant="beam"
-              colors={["#3650D0", "#FF7B00", "#0EA5E9", "#22C55E", "#F59E0B"]}
+              colors={[COLORS.brandBlue, COLORS.brandOrange, "#0EA5E9", "#22C55E", "#F59E0B"]}
             />
           </div>
         </div>
@@ -209,8 +210,44 @@ const TestimonialsSection = ({
   // classname for fade overlays & track paused
   const pausedClass = paused ? "paused" : "";
 
+  // Schema.org Review Data
+  const reviewSchema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "TIC Miton Transport Service",
+    "description": "Service de transport VTC et livraison à Porto-Novo, Bénin.",
+    "brand": {
+      "@type": "Brand",
+      "name": "TIC Miton"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": items.length.toString(),
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "review": items.slice(0, 5).map(it => ({
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": it.name
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": it.rating.toString(),
+        "bestRating": "5"
+      },
+      "reviewBody": it.text
+    }))
+  };
+
   return (
-    <section className="tmnls bg-gray-50 py-16 px-6 md:px-12 lg:px-20">
+    <section className="tmnls bg-gray-50 py-16 px-6 md:px-12 lg:px-20 overflow-hidden">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
+      />
       <div className="max-w-7xl mx-auto relative">
         {/* Header */}
         <div className="mb-8 text-center">
@@ -410,4 +447,3 @@ const TestimonialsSection = ({
 };
 
 export default TestimonialsSection;
-

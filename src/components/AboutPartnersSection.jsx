@@ -21,41 +21,41 @@ import { useReducedMotion } from "framer-motion";
 
 const DEFAULT_PARTNERS = [
   // Entreprises et institutions béninoises/ouest-africaines
-  { 
-    id: "p1", 
-    name: "MTN Bénin", 
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/MTN_Logo.svg/240px-MTN_Logo.svg.png", 
-    href: "https://www.mtn.bj" 
+  {
+    id: "p1",
+    name: "MTN Bénin",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/MTN_Logo.svg/240px-MTN_Logo.svg.png",
+    href: "https://www.mtn.bj"
   },
-  { 
-    id: "p2", 
-    name: "Moov Africa", 
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Moov_africa_Logo.svg/240px-Moov_africa_Logo.svg.png", 
-    href: "https://www.moovafrica.bj" 
+  {
+    id: "p2",
+    name: "Moov Africa",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Moov_africa_Logo.svg/240px-Moov_africa_Logo.svg.png",
+    href: "https://www.moovafrica.bj"
   },
-  { 
-    id: "p3", 
-    name: "Ecobank", 
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Ecobank_logo.svg/240px-Ecobank_logo.svg.png", 
-    href: "https://www.ecobank.com" 
+  {
+    id: "p3",
+    name: "Ecobank",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Ecobank_logo.svg/240px-Ecobank_logo.svg.png",
+    href: "https://www.ecobank.com"
   },
-  { 
-    id: "p4", 
-    name: "BSIC Bénin", 
-    logo: "https://www.bsic-benin.com/sites/default/files/logo-bsic_0.png", 
-    href: "https://www.bsic-benin.com" 
+  {
+    id: "p4",
+    name: "BSIC Bénin",
+    logo: "https://www.bsic-benin.com/sites/default/files/logo-bsic_0.png",
+    href: "https://www.bsic-benin.com"
   },
-  { 
-    id: "p5", 
-    name: "SBEE", 
-    logo: "https://www.sbee.bj/sites/default/files/logo-sbee.png", 
-    href: "https://www.sbee.bj" 
+  {
+    id: "p5",
+    name: "SBEE",
+    logo: "https://www.sbee.bj/sites/default/files/logo-sbee.png",
+    href: "https://www.sbee.bj"
   },
-  { 
-    id: "p6", 
-    name: "Université d'Abomey-Calavi", 
-    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Logo_UAC.png/120px-Logo_UAC.png", 
-    href: "https://www.uac.bj" 
+  {
+    id: "p6",
+    name: "Université d'Abomey-Calavi",
+    logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Logo_UAC.png/120px-Logo_UAC.png",
+    href: "https://www.uac.bj"
   },
 ];
 
@@ -109,9 +109,9 @@ const PartnersMarqueeSection = ({
         <div className="mb-6 text-center">
           <div>
             <p className="text-sm text-gray-600 font-sans">Partenaires</p>
-            <h3 className="mt-1 font-display text-2xl md:text-3xl font-extrabold text-brand-blue">
-              Entreprises qui nous font confiance
-            </h3>
+            <h2 className="section-title text-brand-blue tracking-tight">
+              Ils nous font confiance
+            </h2>
           </div>
 
           {showControls && (

@@ -1,7 +1,8 @@
 import React, { useState, useRef, useCallback } from "react";
 import { motion } from "framer-motion";
-import { CircleDot, Square, X, Navigation, Apple, Play } from "lucide-react";
+import { CircleDot, Square, Navigation, X } from "lucide-react";
 import LINKS from "../config/links";
+import { getStoreUrl, trackEvent } from "../utils/storeRedirect";
 import servicesHeroImg from "../assets/features/safety.jpg?w=864;1200;1600&format=avif;webp&quality=70&as=picture";
 
 const fadeUp = {
@@ -25,7 +26,6 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
   const [destSugsLoading, setDestSugsLoading] = useState(false);
   const pickupTimerRef = useRef(null);
   const destTimerRef = useRef(null);
-  const [showStoreModal, setShowStoreModal] = useState(false);
 
   // Benin bounding box (left,top,right,bottom) in lon,lat
   const BENIN_VIEWBOX = "0.75,12.6,3.95,6.0";
@@ -47,7 +47,7 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
   const normalize = useCallback((s) => s.trim().toLowerCase(), []);
   const formatPrice = useCallback((amount) =>
     new Intl.NumberFormat("fr-FR", { maximumFractionDigits: 0 }).format(Math.round(amount)) + " " + currency,
-  [currency]);
+    [currency]);
 
   // Simple distance estimator (km). Replace with real geocoding/distance API later.
   const estimateDistanceKm = useCallback((from, to) => {
@@ -156,9 +156,8 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
     setDestination("");
     setPickupCoords(null);
     setDestinationCoords(null);
-    // Reset locating and close modal if open
+    // Reset locating
     setLocating(false);
-    setShowStoreModal(false);
   };
 
   const getCurrentLocation = () => {
@@ -219,6 +218,17 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
       setLoadingPrice(false);
     }
   };
+
+  const handleBooking = () => {
+    const target = getStoreUrl({
+      playStoreUrl: LINKS.playStoreUrl,
+      appStoreUrl: LINKS.appStoreUrl,
+      fallback: LINKS.downloadUrl
+    });
+    trackEvent('cta_click', { source: 'services_hero_booking', resolved: target });
+    window.location.href = target;
+  };
+
   const canCancel =
     Boolean(pickup || destination || price || error) ||
     locating ||
@@ -238,12 +248,12 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
           </p>
 
           <motion.h1
-            className="mt-3 font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight text-brand-blue"
+            className="hero-title text-brand-blue"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            Vos déplacements, simplifiés
+            Des services pensés pour vous
           </motion.h1>
           <p className="mt-3 text-gray-700 max-w-2xl">
             Déterminez le prix de votre course et réservez un trajet en quelques secondes avec des chauffeurs fiables et des prix transparents.
@@ -413,7 +423,7 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
                   aria-label="Prix du trajet"
                   value={price}
                   placeholder="Le prix s'affiche ici"
-                  className="w-full px-3 py-3 rounded-lg bg-gray-50 border border-brand-blue/30 text-gray-800 placeholder:text-gray-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/30"
+                  className="w-full px-3 py-3 rounded-lg bg-gray-50 border border-brand-blue/30 text-gray-800 placeholder:text-gray-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/30"
                 />
               </label>
               {error && (
@@ -433,7 +443,7 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
                 </button>
                 <button
                   type="button"
-                  onClick={() => setShowStoreModal(true)}
+                  onClick={handleBooking}
                   className="inline-flex items-center justify-center gap-2 bg-white text-brand-blue px-5 py-3 rounded-md font-semibold shadow-sm hover:bg-brand-blue/5 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue/30 w-full sm:w-auto"
                 >
                   Réserver
@@ -449,51 +459,6 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
               </div>
             </div>
           </div>
-          {/* store modal */}
-          {showStoreModal && (
-            <div
-              className="fixed inset-0 z-40 flex items-center justify-center"
-              aria-labelledby="store-modal-title"
-              role="dialog"
-              aria-modal="true"
-            >
-              <div className="absolute inset-0 bg-black/40" onClick={() => setShowStoreModal(false)} />
-              <div className="relative z-50 w-full max-w-md mx-auto rounded-2xl bg-white shadow-xl p-6">
-                <button
-                  type="button"
-                  className="absolute top-3 right-3 p-2 rounded hover:bg-gray-100"
-                  aria-label="Fermer"
-                  onClick={() => setShowStoreModal(false)}
-                >
-                  <X className="w-5 h-5 text-gray-600" />
-                </button>
-                <h3 id="store-modal-title" className="font-display text-xl font-bold text-gray-900">
-                  Télécharger l'application
-                </h3>
-                <p className="mt-2 text-gray-600">Choisissez votre store pour continuer la réservation.</p>
-                <div className="mt-5 flex flex-wrap gap-4 items-center">
-                  <a
-                    href={LINKS.playStoreUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Ouvrir Google Play"
-                    className="inline-flex items-center gap-2 text-brand-blue hover:underline font-semibold"
-                  >
-                    <Play className="w-5 h-5" /> Google Play
-                  </a>
-                  <a
-                    href={LINKS.appStoreUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="Ouvrir l'App Store"
-                    className="inline-flex items-center gap-2 text-brand-orange hover:underline font-semibold"
-                  >
-                    <Apple className="w-5 h-5" /> App Store
-                  </a>
-                </div>
-              </div>
-            </div>
-          )}
         </motion.div>
 
         {/* Right side: illustration */}

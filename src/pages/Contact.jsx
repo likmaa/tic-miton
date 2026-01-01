@@ -52,7 +52,7 @@ export default function Contact() {
 
   return (
     <section className="bg-white">
-      <SEO 
+      <SEO
         title="Contact TIC Miton Porto-Novo | Service Client 24/7 - WhatsApp, Email, Téléphone"
         description="Contactez TIC Miton pour toute question, réclamation ou partenariat. Support client disponible 24h/24 par téléphone +229-01-57-79-26-62, WhatsApp et email contact@ticmiton.com"
         keywords="contact TIC Miton, numéro téléphone VTC Porto-Novo, WhatsApp TIC Miton, email support client, service client 24/7, aide course VTC"
@@ -61,7 +61,7 @@ export default function Contact() {
       <div className="bg-gradient-to-b from-white to-gray-50 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 md:px-12 lg:px-20 py-16">
           <motion.div initial={reduceMotion ? undefined : "hidden"} animate={reduceMotion ? undefined : "visible"} variants={fadeUp} className="max-w-3xl">
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-brand-blue">Contact</h1>
+            <h1 className="hero-title text-brand-blue">Contact</h1>
             <p className="mt-4 text-gray-600">Une question, un partenariat ou besoin d'aide ? Écrivez-nous et on vous répond rapidement.</p>
           </motion.div>
         </div>
@@ -123,7 +123,7 @@ export default function Contact() {
             <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-6">
               <h3 className="font-sans text-lg font-bold text-gray-900">Coordonnées</h3>
               <ul className="mt-4 space-y-3 text-gray-700">
-                 <li className="flex items-center gap-2"><Mail className="w-5 h-5 text-brand-blue" /> {LINKS.supportEmail}</li>
+                <li className="flex items-center gap-2"><Mail className="w-5 h-5 text-brand-blue" /> {LINKS.supportEmail}</li>
                 <li className="flex items-center gap-2"><Phone className="w-5 h-5 text-brand-blue" /> +229 01 57 79 26 62</li>
                 <li className="flex items-center gap-2"><MapPin className="w-5 h-5 text-brand-blue" /> Cotonou, Bénin</li>
               </ul>

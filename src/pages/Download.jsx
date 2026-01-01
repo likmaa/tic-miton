@@ -31,8 +31,8 @@ export default function Download() {
     if (redirected) return;
     const apkUrl = (manifest?.android?.url
       ? (manifest.android.url.startsWith("http")
-          ? manifest.android.url
-          : `${import.meta.env.BASE_URL || "/"}${manifest.android.url.replace(/^\//, "")}`)
+        ? manifest.android.url
+        : `${import.meta.env.BASE_URL || "/"}${manifest.android.url.replace(/^\//, "")}`)
       : ANDROID_APK_URL);
 
     if (isAndroid && apkUrl) {
@@ -51,13 +51,13 @@ export default function Download() {
 
   return (
     <section className="py-14 px-6 md:px-12 lg:px-20">
-      <SEO 
+      <SEO
         title="Télécharger App TIC Miton | Android & iOS - VTC Porto-Novo"
         description="Téléchargez gratuitement l'application TIC Miton sur Google Play Store et App Store. Réservez vos courses VTC à Porto-Novo en quelques secondes. Compatible Android et iPhone."
         keywords="télécharger TIC Miton, app VTC Porto-Novo gratuit, download TIC Miton Android, TIC Miton iOS iPhone, application transport Bénin, Play Store, App Store"
       />
       <div className="max-w-3xl mx-auto rounded-2xl border border-gray-200 p-6 md:p-8">
-        <h1 className="font-display text-2xl md:text-3xl font-extrabold text-gray-900">
+        <h1 className="section-title text-gray-900">
           Téléchargement de l'application
         </h1>
         <p className="mt-2 text-gray-600">
@@ -68,8 +68,8 @@ export default function Download() {
           <a
             href={(manifest?.android?.url
               ? (manifest.android.url.startsWith("http")
-                  ? manifest.android.url
-                  : `${import.meta.env.BASE_URL || "/"}${manifest.android.url.replace(/^\//, "")}`)
+                ? manifest.android.url
+                : `${import.meta.env.BASE_URL || "/"}${manifest.android.url.replace(/^\//, "")}`)
               : ANDROID_APK_URL)}
             className="inline-flex items-center justify-center rounded-md bg-brand-orange text-white px-5 py-3 font-sans font-semibold hover:bg-[#e56a00] transition"
           >
@@ -102,7 +102,7 @@ export default function Download() {
               {manifest.android && (
                 <div className="mt-3 text-gray-700">
                   <div className="font-semibold text-gray-900">Android</div>
-                  <div className="mt-1">Taille: {typeof manifest.android.sizeBytes === 'number' ? `${(manifest.android.sizeBytes/1048576).toFixed(1)} MB` : '—'}</div>
+                  <div className="mt-1">Taille: {typeof manifest.android.sizeBytes === 'number' ? `${(manifest.android.sizeBytes / 1048576).toFixed(1)} MB` : '—'}</div>
                   {manifest.android.sha256 && (
                     <div className="mt-1 break-all">SHA-256: {manifest.android.sha256}</div>
                   )}

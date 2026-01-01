@@ -7,29 +7,39 @@ import logoUrl from "../assets/logo-tic.webp";
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-  // Fermer le menu mobile lors du défilement
+  // Debounce helper
+  const debounce = (fn, delay) => {
+    let timeoutId;
+    return (...args) => {
+      if (timeoutId) clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => fn(...args), delay);
+    };
+  };
+
+  // Fermer le menu mobile lors du défilement (debounced pour performance)
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = debounce(() => {
       if (isMobileMenuOpen) {
-        setIsMobileMenuOpen(false)
+        setIsMobileMenuOpen(false);
       }
-    }
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [isMobileMenuOpen])
+    }, 100);
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isMobileMenuOpen]);
 
   return (
     <nav className="w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 fixed top-0 z-50 shadow-sm">
-    {/* Skip to main content - Accessibility */}
-    <a 
-      href="#main-content" 
-      className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-brand-blue text-white px-4 py-2 rounded-md z-[60] focus:outline-none focus:ring-4 focus:ring-brand-blue/50"
-    >
-      Aller au contenu principal
-    </a>
-    
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-  <div className="flex justify-between items-center h-16 md:h-18 lg:h-20 py-2 md:py-4">
+      {/* Skip to main content - Accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 bg-brand-blue text-white px-4 py-2 rounded-md z-[60] focus:outline-none focus:ring-4 focus:ring-brand-blue/50"
+      >
+        Aller au contenu principal
+      </a>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16 md:h-18 lg:h-20 py-2 md:py-4">
           <div className="flex-shrink-0">
             <Link to={PLACEHOLDER_LINKS.home} className="flex items-center gap-2 sm:gap-3">
               <img
@@ -41,9 +51,9 @@ export default function Navbar() {
                 decoding="async"
               />
               <div className="flex flex-col">
-                <div className="font-display font-bold text-2xl text-gray-900">
+                <div className="font-sans font-bold text-2xl text-gray-900">
                 </div>
-                
+
               </div>
             </Link>
           </div>
@@ -107,17 +117,17 @@ export default function Navbar() {
               className="hidden sm:inline-flex items-center px-6 py-2.5 border border-transparent text-sm font-sans font-medium rounded-md text-white bg-brand-orange hover:bg-[#e56a00] hover:text-[#FFCA80] active:bg-[#cc5f00] transition-all shadow-sm"
             >
               <span className="mr-2">
-                <svg 
-                  className="h-5 w-5" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
+                <svg
+                  className="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" 
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
                   />
                 </svg>
               </span>
@@ -129,38 +139,37 @@ export default function Navbar() {
         {/* Mobile menu, show/hide based on menu state */}
         <div
           id="mobile-menu"
-          className={`md:hidden transition-all duration-200 ease-in-out ${
-            isMobileMenuOpen
-              ? "block opacity-100 translate-y-0"
-              : "hidden opacity-0 -translate-y-2 pointer-events-none"
-          }`}
+          className={`md:hidden transition-all duration-200 ease-in-out ${isMobileMenuOpen
+            ? "block opacity-100 translate-y-0"
+            : "hidden opacity-0 -translate-y-2 pointer-events-none"
+            }`}
           aria-hidden={!isMobileMenuOpen}
         >
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white/95 backdrop-blur-sm shadow-lg rounded-b-md">
             <Link
               to={PLACEHOLDER_LINKS.features.all}
-              className="block px-3 py-2 rounded text-base font-sans text-gray-600 hover:text-brand-blue hover:bg-gray-50/80 transition-all"
+              className="block px-3 py-3 rounded text-base font-sans text-gray-600 hover:text-brand-blue hover:bg-gray-50/80 transition-all"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Services
             </Link>
             <Link
               to={PLACEHOLDER_LINKS.about}
-              className="block px-3 py-2 rounded text-base font-sans text-gray-600 hover:text-brand-blue hover:bg-gray-50/80 transition-all"
+              className="block px-3 py-3 rounded text-base font-sans text-gray-600 hover:text-brand-blue hover:bg-gray-50/80 transition-all"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               À Propos
             </Link>
             <Link
               to={PLACEHOLDER_LINKS.driver}
-              className="block px-3 py-2 rounded text-base font-sans text-gray-600 hover:text-brand-blue hover:bg-gray-50/80 transition-all"
+              className="block px-3 py-3 rounded text-base font-sans text-gray-600 hover:text-brand-blue hover:bg-gray-50/80 transition-all"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Devenir chauffeur
             </Link>
             <Link
               to={PLACEHOLDER_LINKS.contact}
-              className="block px-3 py-2 rounded text-base font-sans text-gray-600 hover:text-brand-blue hover:bg-gray-50/80 transition-all"
+              className="block px-3 py-3 rounded text-base font-sans text-gray-600 hover:text-brand-blue hover:bg-gray-50/80 transition-all"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Contact

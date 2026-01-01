@@ -19,12 +19,12 @@ const ACCEPTED_FILE_TYPES = ["image/jpeg", "image/png", "application/pdf", "imag
 
 const FilePreview = ({ file, onRemove }) => {
   const isImage = file.type && file.type.startsWith("image/");
-  
+
   // Créer l'URL et la nettoyer automatiquement pour éviter les memory leaks
   const previewUrl = useMemo(() => {
     return isImage ? URL.createObjectURL(file) : null;
   }, [file, isImage]);
-  
+
   useEffect(() => {
     // Nettoyer l'URL quand le composant est démonté ou le fichier change
     return () => {
@@ -33,9 +33,9 @@ const FilePreview = ({ file, onRemove }) => {
       }
     };
   }, [previewUrl]);
-  
+
   return (
-  <div className="flex items-center gap-3 bg-gray-50 border border-gray-200 rounded-md p-2">
+    <div className="flex items-center gap-3 bg-gray-50 border border-gray-200 rounded-md p-2">
       {isImage ? (
         <img
           src={previewUrl}
@@ -52,7 +52,7 @@ const FilePreview = ({ file, onRemove }) => {
       )}
       <div className="flex-1 min-w-0">
         <div className="text-sm font-medium text-gray-900 truncate">{file.name}</div>
-        <div className="text-xs text-gray-500">{(file.size / 1024).toFixed(0)} KB</div>
+        <div className="text-sm text-gray-600">{(file.size / 1024).toFixed(0)} KB</div>
       </div>
       <button
         type="button"
@@ -67,11 +67,11 @@ const FilePreview = ({ file, onRemove }) => {
 };
 
 const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }) => {
-  
+
   const [form, setForm] = useState(initialState);
   const [idFile, setIdFile] = useState(null);
   const [licenseFile, setLicenseFile] = useState(null);
-  
+
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState({ state: "idle", message: "" }); // idle | uploading | success | error
   const [progress, setProgress] = useState(0);
@@ -108,7 +108,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
     setErrors((prev) => ({ ...prev, files: undefined }));
   };
 
-  
+
 
   const removeIdFile = () => setIdFile(null);
   const removeLicenseFile = () => setLicenseFile(null);
@@ -117,7 +117,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
     setForm(initialState);
     setIdFile(null);
     setLicenseFile(null);
-    
+
     setErrors({});
     setStatus({ state: "idle", message: "" });
     setProgress(0);
@@ -210,7 +210,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
     <section className={`bg-white py-12 px-6 md:px-12 lg:px-20 ${className}`} aria-labelledby="recruit-heading">
       <div className="max-w-4xl mx-auto">
         <div className="mb-6 text-center">
-          <h2 id="recruit-heading" className="font-display text-3xl md:text-4xl font-extrabold text-brand-blue">
+          <h2 id="apply-heading" className="section-title text-brand-blue mb-4">
             Devenir chauffeur partenaire
           </h2>
           <p className="mt-2 text-gray-900 font-sans max-w-2xl mx-auto">
@@ -230,7 +230,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
                 placeholder="Ex: Amadou Kouassi"
                 required
               />
-              {errors.fullName && <div className="text-xs text-red-600 mt-1">{errors.fullName}</div>}
+              {errors.licenseNumber && <div className="text-sm text-red-600 mt-1">{errors.licenseNumber}</div>}
             </label>
 
             <label className="flex flex-col">
@@ -244,7 +244,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
                 placeholder="exemple@domain.com"
                 required
               />
-              {errors.email && <div className="text-xs text-red-600 mt-1">{errors.email}</div>}
+              {errors.email && <div className="text-sm text-red-600 mt-1">{errors.email}</div>}
             </label>
 
             <label className="flex flex-col">
@@ -257,7 +257,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
                 placeholder="+229 01 XX XX XX XX"
                 required
               />
-              {errors.phone && <div className="text-xs text-red-600 mt-1">{errors.phone}</div>}
+              {errors.phone && <div className="text-sm text-red-600 mt-1">{errors.phone}</div>}
             </label>
 
             <label className="flex flex-col">
@@ -270,7 +270,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
                 placeholder="Porto‑Novo"
                 required
               />
-              {errors.city && <div className="text-xs text-red-600 mt-1">{errors.city}</div>}
+              {errors.city && <div className="text-sm text-red-600 mt-1">{errors.city}</div>}
             </label>
           </fieldset>
 
@@ -285,7 +285,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
                 placeholder="Ex: AB123456"
                 required
               />
-              {errors.licenseNumber && <div className="text-xs text-red-600 mt-1">{errors.licenseNumber}</div>}
+              {errors.licenseNumber && <div className="text-sm text-red-600 mt-1">{errors.licenseNumber}</div>}
             </label>
 
             <label className="flex flex-col">
@@ -298,7 +298,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
                 placeholder="Ex: AB-1234"
                 required
               />
-              {errors.plateNumber && <div className="text-xs text-red-600 mt-1">{errors.plateNumber}</div>}
+              {errors.plateNumber && <div className="text-sm text-red-600 mt-1">{errors.plateNumber}</div>}
             </label>
           </fieldset>
 
@@ -313,7 +313,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
                 aria-required
               />
               {idFile && <div className="mt-3"><FilePreview file={idFile} onRemove={removeIdFile} /></div>}
-              {errors.idFile && <div className="text-xs text-red-600 mt-1">{errors.idFile}</div>}
+              {errors.idFile && <div className="text-sm text-red-600 mt-1">{errors.idFile}</div>}
             </label>
 
             <label className="flex flex-col md:col-span-1">
@@ -326,7 +326,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
                 aria-required
               />
               {licenseFile && <div className="mt-3"><FilePreview file={licenseFile} onRemove={removeLicenseFile} /></div>}
-              {errors.licenseFile && <div className="text-xs text-red-600 mt-1">{errors.licenseFile}</div>}
+              {errors.licenseFile && <div className="text-sm text-red-600 mt-1">{errors.licenseFile}</div>}
             </label>
           </fieldset>
 
@@ -355,7 +355,7 @@ const DriverRecruitmentForm = ({ apiEndpoint = null, onSuccess, className = "" }
               J'accepte que mes données soient utilisées pour le recrutement selon la <Link to="/privacy-policy" className="underline text-brand-blue hover:text-brand-orange" target="_blank">politique de confidentialité</Link>.
             </label>
           </div>
-          {errors.consent && <div className="text-xs text-red-600 mt-1">{errors.consent}</div>}
+          {errors.consent && <div className="text-sm text-red-600 mt-1">{errors.consent}</div>}
 
           {/* submission area */}
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">

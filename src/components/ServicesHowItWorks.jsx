@@ -1,11 +1,11 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Zap, Car, Package, ArrowRight, MapPin, Smartphone, CheckCircle, X, Apple, Play } from "lucide-react";
+import { Zap, Car, Package, ArrowRight, MapPin, Smartphone, CheckCircle } from "lucide-react";
 import LINKS from "../config/links";
+import { getStoreUrl, trackEvent } from "../utils/storeRedirect";
 
 export default function ServicesHowItWorks() {
   const reduceMotion = useReducedMotion();
-  const [showStoreModal, setShowStoreModal] = React.useState(false);
 
   const cards = [
     {
@@ -62,6 +62,16 @@ export default function ServicesHowItWorks() {
     });
   };
 
+  const handleBooking = (source) => {
+    const target = getStoreUrl({
+      playStoreUrl: LINKS.playStoreUrl,
+      appStoreUrl: LINKS.appStoreUrl,
+      fallback: LINKS.downloadUrl
+    });
+    trackEvent('cta_click', { source: `services_how_it_works_${source}`, resolved: target });
+    window.location.href = target;
+  };
+
   const containerAnim = {
     hidden: { opacity: 0, y: 16 },
     show: { opacity: 1, y: 0, transition: { staggerChildren: 0.08 } },
@@ -77,7 +87,9 @@ export default function ServicesHowItWorks() {
         {/* Header aligné au design Home */}
         <div className="mb-10 md:mb-14 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
           <div className="md:col-span-1">
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-blue">Comment ça marche</h2>
+            <h2 className="section-title text-brand-blue mb-6">
+              Comment ça marche ?
+            </h2>
             <p className="mt-3 font-sans text-gray-600 text-base max-w-md">
               Les étapes clés pour chaque service, détaillées simplement.
             </p>
@@ -93,7 +105,7 @@ export default function ServicesHowItWorks() {
                 href={LINKS.features.all}
                 className="inline-flex items-center justify-center px-4 py-3 rounded-md border border-gray-200 text-gray-700 font-sans text-sm hover:bg-gray-50 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/20"
               >
-                En savoir plus
+                Explorer nos offres
               </a>
             </div>
           </div>
@@ -117,7 +129,7 @@ export default function ServicesHowItWorks() {
                     <div className="flex items-center gap-6 w-full">
                       {/* Number bubble */}
                       <div className="flex-shrink-0">
-                        <div className="w-16 h-16 rounded-2xl bg-brand-blue text-white flex items-center justify-center font-display font-bold text-2xl">
+                        <div className="w-12 h-12 rounded-xl bg-brand-blue text-white flex items-center justify-center font-sans font-bold text-lg">
                           {card.id}
                         </div>
                       </div>
@@ -159,9 +171,9 @@ export default function ServicesHowItWorks() {
                           <div className="mt-4 pt-1">
                             <button
                               type="button"
-                              onClick={() => setShowStoreModal(true)}
+                              onClick={() => handleBooking(`step_try_${card.key}`)}
                               className="inline-flex items-center gap-2 text-brand-blue font-semibold hover:underline bg-transparent px-0 py-0 outline-none focus:outline-none ring-0 border-0"
-                              aria-label="Ouvrir le modal de stores"
+                              aria-label="Essayer ce service"
                             >
                               Je veux essayer
                               <ArrowRight className="w-4 h-4" />
@@ -176,13 +188,13 @@ export default function ServicesHowItWorks() {
                       <button
                         type="button"
                         onClick={() => goNext(card.key)}
-                        className="inline-flex items-center gap-2 px-4 py-2 rounded-md border border-gray-200 text-gray-700 text-sm hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/20"
+                        className="inline-flex items-center gap-2 px-4 py-3 rounded-md border border-gray-200 text-gray-700 text-sm hover:bg-gray-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/20"
                         aria-label={`Aller à l'étape suivante pour ${card.title}`}
                       >
                         Étape suivante
                         <ArrowRight className="w-4 h-4" />
                       </button>
-                      <span className="ml-4 text-xs md:text-sm text-gray-500 font-sans font-medium">{activeIdx + 1}/{steps.length}</span>
+                      <span className="ml-4 text-sm text-gray-600 font-sans font-medium">{activeIdx + 1}/{steps.length}</span>
                     </div>
                   </motion.article>
                 );
@@ -201,53 +213,16 @@ export default function ServicesHowItWorks() {
             <div className="text-sm text-gray-600 font-sans">Chauffeurs vérifiés</div>
           </div>
           <div className="flex items-center gap-3">
-            <a
-              href={LINKS.downloadUrl}
-              className="inline-flex items-center gap-2 bg-brand-orange text-white px-4 py-2 rounded-md text-sm font-sans font-semibold hover:bg-[#e56a00] hover:text-[#FFCA80] transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30"
+            <button
+              type="button"
+              onClick={() => handleBooking('trust_band')}
+              className="inline-flex items-center gap-2 bg-brand-orange text-white px-4 py-3 rounded-md text-sm font-sans font-semibold hover:bg-[#e56a00] hover:text-[#FFCA80] transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30"
             >
               Télécharger l'app
-            </a>
+            </button>
           </div>
         </div>
       </div>
-      {/* Store selection modal (même expérience que Hero/ServicesGrid) */}
-      {showStoreModal && (
-        <div className="fixed inset-0 z-40 flex items-center justify-center" role="dialog" aria-modal="true" aria-labelledby="store-modal-title">
-          <div className="absolute inset-0 bg-black/40" onClick={() => setShowStoreModal(false)} />
-          <div className="relative z-50 w-full max-w-md mx-auto rounded-2xl bg-white shadow-xl p-6">
-            <button
-              type="button"
-              className="absolute top-3 right-3 p-2 rounded hover:bg-gray-100"
-              aria-label="Fermer"
-              onClick={() => setShowStoreModal(false)}
-            >
-              <X className="w-5 h-5 text-gray-600" />
-            </button>
-            <h3 id="store-modal-title" className="font-display text-xl font-bold text-gray-900">Télécharger l'application</h3>
-            <p className="mt-2 text-gray-600">Choisissez votre store pour continuer.</p>
-            <div className="mt-5 flex flex-wrap gap-4 items-center">
-              <a
-                href={LINKS.playStoreUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Ouvrir Google Play"
-                className="inline-flex items-center gap-2 text-brand-blue hover:underline font-semibold"
-              >
-                <Play className="w-5 h-5" /> Google Play
-              </a>
-              <a
-                href={LINKS.appStoreUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Ouvrir l'App Store"
-                className="inline-flex items-center gap-2 text-brand-orange hover:underline font-semibold"
-              >
-                <Apple className="w-5 h-5" /> App Store
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 }

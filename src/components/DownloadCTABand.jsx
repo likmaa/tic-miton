@@ -29,6 +29,8 @@ const DownloadCTABand = ({
   playStoreUrl = PLACEHOLDER_LINKS.playStoreUrl,
   appStoreUrl = PLACEHOLDER_LINKS.appStoreUrl,
   backgroundImage = downPic,
+  label = "Télécharger l'app",
+  ariaLabel = "Télécharger l'application TIC Miton",
   className = "",
 }) => {
   const reduceMotion = useReducedMotion();
@@ -85,9 +87,9 @@ const DownloadCTABand = ({
         <div className="p-6 md:p-8 flex flex-col md:flex-row items-center md:justify-between gap-6 md:gap-8">
           {/* Left: headline + short text */}
           <div className="text-center md:text-left flex-1">
-            <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl text-white font-extrabold leading-tight">
+            <h2 className="section-title text-white font-bold leading-tight">
               Téléchargez l'application TIC Miton
-            </h3>
+            </h2>
             <p className="mt-2 text-sm text-white/90 max-w-xl">
               Commandez un trajet ou une livraison en quelques clics. Profitez d'un service sûr, rapide et local à Porto-Novo.
             </p>
@@ -105,11 +107,11 @@ const DownloadCTABand = ({
               }}
               whileHover={reduceMotion ? {} : { scale: 1.05 }}
               whileTap={reduceMotion ? {} : { scale: 0.97 }}
-              aria-label="Télécharger l'application TIC Miton"
+              aria-label={ariaLabel}
               className="bg-white text-black px-8 py-4 rounded-full font-sans font-semibold flex items-center justify-center gap-2 shadow-lg hover:shadow-2xl transition-all"
               rel="noopener noreferrer"
             >
-              Télécharger l'application
+              {label}
               <ArrowRight className="w-5 h-5" />
             </motion.a>
 

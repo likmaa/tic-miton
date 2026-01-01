@@ -9,7 +9,7 @@ import driverHeroImage from '../assets/hh.jpeg?w=480;640;768;960;1200&format=avi
 /*
   DriverHero.jsx
   - Hero "affiche" style for Devenir Chauffeur page, inspired by provided poster.
-  - Brand colors: blue #3650D0 base, orange #FF7B00 accents.
+  - Brand colors: blue base, orange accents.
   - CTA scrolls to the application section (#apply), with WhatsApp/Phone quick links.
 */
 
@@ -38,18 +38,12 @@ export default function DriverHero({ className = '' }) {
           <p className="font-sans text-white/80 text-sm tracking-wide">TIC MITON • Recrutement</p>
 
           <div className="mt-3">
-            <motion.h1
-              className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight text-white"
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
+            <h1 className="hero-title text-white">
               Tu es bon au volant ?
-            </motion.h1>
-            <div className="mt-1">
-              <span className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight text-white">On a une voiture pour </span>
-              <span className="font-display font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight text-brand-orange">toi&nbsp;!</span>
-            </div>
+              <div className="mt-1">
+                On a une voiture pour <span className="text-brand-orange">toi&nbsp;!</span>
+              </div>
+            </h1>
           </div>
 
           <p className="mt-5 font-sans text-white/90 max-w-xl">

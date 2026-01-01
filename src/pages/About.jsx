@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
 export default function About() {
   return (
     <div>
-      <SEO 
+      <SEO
         title="À Propos TIC Miton | Histoire, Mission & Équipe - VTC Porto-Novo Bénin"
         description="TIC Miton révolutionne le transport à Porto-Novo depuis 2023. Découvrez notre mission de mobilité accessible, notre équipe passionnée et nos valeurs : sécurité, transparence, innovation."
         keywords="à propos TIC Miton, histoire startup VTC Bénin, mission transport Porto-Novo, équipe TIC Miton, entreprise locale, valeurs TIC Miton"
@@ -50,7 +50,7 @@ export default function About() {
           <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-brand-orange/10 rounded-full blur-2xl" />
           <div className="relative z-10 grid md:grid-cols-3 gap-6 items-center">
             <div className="md:col-span-2">
-              <h3 className="font-display text-2xl md:text-3xl font-extrabold">Rejoignez l'équipe de nos chauffeurs</h3>
+              <h3 className="section-title text-white">Rejoignez l'équipe de nos chauffeurs</h3>
               <p className="mt-2 text-white/90">Gagnez plus, travaillez en toute flexibilité et bénéficiez de notre accompagnement.</p>
             </div>
             <div className="flex md:justify-end">

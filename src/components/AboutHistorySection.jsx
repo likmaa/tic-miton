@@ -1,7 +1,7 @@
 /* eslint-disable no-irregular-whitespace */
 import React from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, Sparkles } from "lucide-react";
 // Mixed quality: reduce to 65 and drop largest 1600px width for performance
 import aboutImage from "../assets/features/Image B10.jpg?w=480;768;1200&format=webp;avif;jpg&quality=65&as=picture";
 
@@ -48,8 +48,12 @@ export default function AboutHistorySection({ className = "" }) {
     <section className={`py-12 px-6 md:px-12 lg:px-20 ${className}`} aria-labelledby="history-title">
       <div className="max-w-7xl mx-auto">
         <div className="mb-6">
-          <h2 id="history-title" className="font-display text-3xl md:text-3xl font-extrabold text-brand-blue text-left">
-            Notre histoire
+          <div className="section-badge opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
+            <Sparkles className="w-4 h-4" />
+            Notre Histoire
+          </div>
+          <h2 id="history-title" className="section-title text-brand-blue">
+            Notre Histoire
           </h2>
         </div>
 
@@ -58,9 +62,8 @@ export default function AboutHistorySection({ className = "" }) {
           <motion.div {...containerAnim} className="relative">
             <div
               id={contentId}
-              className={`font-sans text-gray-900 leading-relaxed whitespace-pre-line transition-[max-height] duration-300 ease-out overflow-hidden ${
-                expanded ? "max-h-[200rem]" : "max-h-44 md:max-h-48"
-              }`}
+              className={`font-sans text-gray-900 leading-relaxed whitespace-pre-line transition-[max-height] duration-300 ease-out overflow-hidden ${expanded ? "max-h-[200rem]" : "max-h-44 md:max-h-48"
+                }`}
               aria-live="polite"
             >
               {LONG_TEXT}

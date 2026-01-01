@@ -19,7 +19,7 @@ const DEFAULT_ITEMS = [
       "Innover avec des outils adaptés au contexte béninois.",
     ],
     image: missionImage,
-  objectPosition: "center 25%",
+    objectPosition: "center 25%",
     accent: "from-indigo-400 to-indigo-200",
     Icon: Globe,
   },
@@ -33,7 +33,7 @@ const DEFAULT_ITEMS = [
       "S'étendre en privilégiant la qualité du service.",
     ],
     image: visionImage,
-  objectPosition: "center 25%",
+    objectPosition: "center 25%",
     accent: "from-orange-400 to-amber-300",
     Icon: Sparkles,
   },
@@ -46,8 +46,8 @@ const DEFAULT_ITEMS = [
       "Proximité : service humain et local.",
       "Innovation : expériences simples et fiables.",
     ],
-  image: valeursImage,
-  objectPosition: "center 25%",
+    image: valeursImage,
+    objectPosition: "center 25%",
     accent: "from-emerald-300 to-lime-200",
     Icon: Users,
   },
@@ -141,7 +141,7 @@ const FeatureCard = ({ item, reducedMotion }) => {
             className="inline-flex items-center gap-2 text-sm font-sans font-semibold text-indigo-600 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-200 rounded"
             aria-label={`En savoir plus sur ${item.title}`}
           >
-            En savoir plus →
+            Détails de la mission →
           </a>
         </div>
       </div>
@@ -169,9 +169,12 @@ const AboutMissionSection = ({ items = DEFAULT_ITEMS, className = "" }) => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start">
           {/* Intro column */}
           <div className="md:col-span-1">
-            <p className="text-sm text-brand-blue font-sans mb-3">Notre identité</p>
-            <h2 className="font-display text-3xl md:text-4xl lg:text-3xl font-extrabold text-brand-orange leading-tight">
-              Mission, vision & valeurs
+            <div className="section-badge opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
+              <Sparkles className="w-4 h-4" />
+              Notre Mission
+            </div>
+            <h2 className="section-title text-brand-blue">
+              Notre Mission
             </h2>
             <p className="mt-4 font-sans text-gray-900 max-w-prose">
               Ce qui nous guide chez TIC Miton : offrir une mobilité intelligente, locale et fiable,
@@ -183,7 +186,7 @@ const AboutMissionSection = ({ items = DEFAULT_ITEMS, className = "" }) => {
                 href="#mission"
                 className="inline-flex items-center gap-3 bg-brand-blue text-white px-4 py-2 rounded-full font-sans font-semibold shadow-md hover:shadow-lg focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-black/20"
               >
-                Découvrir la mission
+                Notre engagement
               </a>
             </div>
           </div>

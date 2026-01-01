@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { ArrowRight, MessageCircle } from "lucide-react";
+import { ArrowRight, MessageCircle, Sparkles } from "lucide-react";
+import { getStoreUrl, trackEvent } from "../utils/storeRedirect";
 import PLACEHOLDER_LINKS from "../config/links";
 
 /*
@@ -13,7 +14,7 @@ import PLACEHOLDER_LINKS from "../config/links";
     - Navigation clavier : ↑ ↓ Home End pour naviguer entre les entêtes; Entrée / Espace pour ouvrir/fermer.
   - Personnalisation:
     - Props: items (array de { id, q, a }), className
-    - Couleurs: utilise #3650D0 pour accents et #FF7B00 si besoin pour CTA.
+    - Couleurs: utilise brand-blue pour accents et brand-orange si besoin pour CTA.
 */
 
 const DEFAULT_ITEMS = [
@@ -115,7 +116,7 @@ const FAQItem = ({
         >
           <div>
             <div className="flex items-center gap-3">
-              <span className="font-display text-base md:text-lg text-gray-900 font-semibold">
+              <span className="font-sans text-base md:text-lg text-gray-900 font-semibold">
                 {item.q}
               </span>
             </div>
@@ -124,14 +125,12 @@ const FAQItem = ({
           {/* chevron / indicator */}
           <span
             aria-hidden="true"
-            className={`inline-flex items-center justify-center w-9 h-9 rounded-full border border-gray-200 ${
-              isOpen ? "bg-brand-blue text-white" : "bg-white text-gray-600"
-            }`}
+            className={`inline-flex items-center justify-center w-9 h-9 rounded-full border border-gray-200 ${isOpen ? "bg-brand-blue text-white" : "bg-white text-gray-600"
+              }`}
           >
             <svg
-              className={`w-4 h-4 transform transition-transform ${
-                isOpen ? "rotate-180" : "rotate-0"
-              }`}
+              className={`w-4 h-4 transform transition-transform ${isOpen ? "rotate-180" : "rotate-0"
+                }`}
               viewBox="0 0 20 20"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -167,22 +166,32 @@ const FAQItem = ({
 
 const FAQSection = ({ items = DEFAULT_ITEMS, className = "" }) => {
   const reducedMotion = useReducedMotion();
-  // single open at a time; use index or null
-  const [openIndex, setOpenIndex] = useState(0);
+  // Support multiple open items
+  const [openedIds, setOpenedIds] = useState(new Set([items[0]?.id]));
 
   // Refs for keyboard navigation
   const headerRef = useRef([]);
 
   useEffect(() => {
-    // ensure headerRef array length equals items length
     headerRef.current = headerRef.current.slice(0, items.length);
   }, [items.length]);
 
-  const toggle = (index) => {
-    setOpenIndex((prev) => (prev === index ? null : index));
+  const toggle = (id) => {
+    setOpenedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
   };
 
-  // Keyboard navigation handler attached to each header button via onKeyDown
+  const openAll = () => setOpenedIds(new Set(items.map((it) => it.id)));
+  const closeAll = () => setOpenedIds(new Set());
+
+  // Keyboard navigation handler
   const onHeaderKeyDown = (e, currentIndex) => {
     const key = e.key;
     const max = items.length - 1;
@@ -212,88 +221,128 @@ const FAQSection = ({ items = DEFAULT_ITEMS, className = "" }) => {
       case "Enter":
       case " ":
         e.preventDefault();
-        toggle(currentIndex);
+        toggle(items[currentIndex].id);
         break;
       default:
         break;
     }
   };
 
+  // Schema.org FAQ Data
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": items.map(it => ({
+      "@type": "Question",
+      "name": it.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": it.a
+      }
+    }))
+  };
+
   return (
     <section className={`bg-white py-16 px-6 md:px-12 lg:px-20 ${className}`}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       <div className="max-w-7xl mx-auto">
         <div className="mb-10 text-center">
-          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-blue">
-            Foire aux questions
+          <div className="section-badge opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
+            <Sparkles className="w-4 h-4" />
+            Aide & FAQ
+          </div>
+          <h2 className="section-title text-brand-blue font-bold tracking-tight mb-4 sm:mb-6">
+            Questions fréquentes (FAQ)
           </h2>
           <p className="mt-3 font-sans text-gray-600 max-w-2xl mx-auto">
-            Questions fréquentes
+            Trouvez rapidement des réponses à vos questions les plus courantes sur l'utilisation de TIC Miton.
           </p>
+
+          {/* Global Controls */}
+          <div className="mt-8 flex justify-center gap-4">
+            <button
+              onClick={openAll}
+              className="text-sm font-sans font-semibold text-brand-blue hover:text-brand-orange transition-colors flex items-center gap-1.5 px-4 py-2 rounded-full bg-brand-blue/5 hover:bg-brand-blue/10"
+            >
+              Tout ouvrir
+            </button>
+            <button
+              onClick={closeAll}
+              className="text-sm font-sans font-semibold text-gray-600 hover:text-gray-800 transition-colors flex items-center gap-1.5 px-4 py-2 rounded-full bg-gray-100 hover:bg-gray-200"
+            >
+              Tout fermer
+            </button>
+          </div>
         </div>
 
-        {/* Grid disposition comme la maquette: deux colonnes sur md+ */}
+        {/* Grid disposition */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-          {items.map((it, idx) => (
-            <div key={it.id} className="bg-gray-50 border border-gray-100 rounded-2xl overflow-hidden">
-              <h3>
-                <button
-                  id={`${it.id}-header`}
-                  ref={(el) => (headerRef.current[idx] = el)}
-                  aria-controls={`${it.id}-content`}
-                  aria-expanded={openIndex === idx}
-                  onClick={() => toggle(idx)}
-                  onKeyDown={(e) => onHeaderKeyDown(e, idx)}
-                  className="w-full text-left px-4 py-5 md:px-6 md:py-6 flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/20"
-                >
-                  <span className="font-display text-base md:text-lg text-gray-900 font-semibold">
-                    {it.q}
-                  </span>
+          {items.map((it, idx) => {
+            const isOpen = openedIds.has(it.id);
+            return (
+              <div key={it.id} className="bg-gray-50 border border-gray-100 rounded-2xl overflow-hidden">
+                <h3>
+                  <button
+                    id={`${it.id}-header`}
+                    ref={(el) => (headerRef.current[idx] = el)}
+                    aria-controls={`${it.id}-content`}
+                    aria-expanded={isOpen}
+                    onClick={() => toggle(it.id)}
+                    onKeyDown={(e) => onHeaderKeyDown(e, idx)}
+                    className="w-full text-left px-4 py-5 md:px-6 md:py-6 flex items-center justify-between gap-4 focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/20 group"
+                  >
+                    <span className={`font-sans font-bold transition-colors ${isOpen ? "text-brand-blue" : "text-gray-900 group-hover:text-brand-blue"}`}>
+                      {it.q}
+                    </span>
 
-                  {/* Icône + / - dans un disque */}
-                  <span
-                    aria-hidden="true"
-                    className={`inline-flex items-center justify-center w-9 h-9 rounded-full border ${
-                      openIndex === idx
-                        ? "bg-brand-blue text-white border-brand-blue"
+                    {/* Icône + / - */}
+                    <span
+                      aria-hidden="true"
+                      className={`inline-flex items-center justify-center w-9 h-9 rounded-full border transition-all ${isOpen
+                        ? "bg-brand-blue text-white border-brand-blue rotate-180"
                         : "bg-white text-gray-600 border-gray-200"
-                    }`}
-                  >
-                    <svg
-                      className="w-4 h-4"
-                      viewBox="0 0 20 20"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
+                        }`}
                     >
-                      {/* Horizontal line (minus) */}
-                      <path d="M5 10h10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-                      {/* Vertical line (to make plus) — cachée si ouvert */}
-                      {openIndex !== idx && (
-                        <path d="M10 5v10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-                      )}
-                    </svg>
-                  </span>
-                </button>
-              </h3>
+                      <svg
+                        className="w-4 h-4"
+                        viewBox="0 0 20 20"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path d="M5 10h10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                        {!isOpen && (
+                          <path d="M10 5v10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                        )}
+                      </svg>
+                    </span>
+                  </button>
+                </h3>
 
-              <AnimatePresence initial={false}>
-                {openIndex === idx && (
-                  <motion.div
-                    id={`${it.id}-content`}
-                    role="region"
-                    aria-labelledby={`${it.id}-header`}
-                    key={`${it.id}-panel`}
-                    initial={reducedMotion ? {} : { height: 0, opacity: 0 }}
-                    animate={reducedMotion ? {} : { height: "auto", opacity: 1 }}
-                    exit={reducedMotion ? {} : { height: 0, opacity: 0 }}
-                    transition={{ duration: reducedMotion ? 0 : 0.32, ease: "easeOut" }}
-                    className="px-4 md:px-6 pb-6 text-gray-700"
-                  >
-                    <div className="pt-2 font-sans text-sm leading-relaxed">{it.a}</div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          ))}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      id={`${it.id}-content`}
+                      role="region"
+                      aria-labelledby={`${it.id}-header`}
+                      key={`${it.id}-panel`}
+                      initial={reducedMotion ? {} : { height: 0, opacity: 0 }}
+                      animate={reducedMotion ? {} : { height: "auto", opacity: 1 }}
+                      exit={reducedMotion ? {} : { height: 0, opacity: 0 }}
+                      transition={{ duration: reducedMotion ? 0 : 0.3, ease: [0.04, 0.62, 0.23, 0.98] }}
+                      className="px-4 md:px-6 pb-6 text-gray-700"
+                    >
+                      <div className="pt-2 font-sans text-sm leading-relaxed border-t border-gray-100 mt-1 pt-4">
+                        {it.a}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            );
+          })}
         </div>
 
         {/* CTA bas de section comme dans la maquette */}
@@ -310,12 +359,18 @@ const FAQSection = ({ items = DEFAULT_ITEMS, className = "" }) => {
           </motion.a>
           <motion.a
             href={PLACEHOLDER_LINKS.downloadUrl}
+            onClick={(e) => {
+              e.preventDefault();
+              const target = getStoreUrl({ playStoreUrl: PLACEHOLDER_LINKS.playStoreUrl, appStoreUrl: PLACEHOLDER_LINKS.appStoreUrl, fallback: PLACEHOLDER_LINKS.downloadUrl });
+              trackEvent('cta_click', { source: 'faq_footer', resolved: target });
+              window.location.href = target;
+            }}
             whileHover={reducedMotion ? {} : { scale: 1.05 }}
             whileTap={reducedMotion ? {} : { scale: 0.97 }}
             className="bg-white text-black px-8 py-4 rounded-md font-sans font-semibold flex items-center justify-center gap-2 shadow-lg hover:shadow-2xl transition-all"
-            aria-label="Télécharger l'application TIC Miton"
+            aria-label="Télécharger maintenant"
           >
-            Télécharger l'application
+            Télécharger maintenant
             <ArrowRight className="w-5 h-5" />
           </motion.a>
         </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { Users, MapPin, Star, Repeat } from "lucide-react";
+import { Users, MapPin, Star, Repeat, Sparkles } from "lucide-react";
 
 /*
   StatsSection.jsx
@@ -8,7 +8,7 @@ import { Users, MapPin, Star, Repeat } from "lucide-react";
   - Mobile-first, responsive grid.
   - Animations des compteurs avec respect de prefers-reduced-motion (useReducedMotion).
   - Accessible : chaque compteur a un contenu visuel et un aria-live pour annoncer la valeur aux assistances.
-  - Visuel cohérent avec la charte : couleurs brand (#3650D0), coins arrondis, typographies héritées du projet.
+  - Visuel cohérent avec la charte : couleurs brand (brand-blue), coins arrondis, typographies héritées du projet.
 */
 
 function useCount(target, duration = 1500, reduceMotion = false, decimals = 0) {
@@ -20,7 +20,7 @@ function useCount(target, duration = 1500, reduceMotion = false, decimals = 0) {
       return;
     }
 
-    let raf= null;
+    let raf = null;
     let start = null;
     const step = (timestamp) => {
       if (start === null) start = timestamp;
@@ -109,7 +109,7 @@ const StatCard = ({ stat, reduceMotion, itemAnim }) => {
         <div className="flex items-baseline gap-1 sm:gap-2">
           {/* Visible counter */}
           <div
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-extrabold text-brand-blue"
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-sans font-bold text-brand-blue"
             aria-hidden="true"
           >
             {formatted}
@@ -122,7 +122,7 @@ const StatCard = ({ stat, reduceMotion, itemAnim }) => {
           </div>
         </div>
 
-        <div id={`stat-${stat.id}-label`} className="mt-1 font-sans text-xs sm:text-sm text-gray-600">
+        <div id={`stat-${stat.id}-label`} className="mt-1 font-sans text-sm text-gray-600">
           {stat.label}
         </div>
       </div>
@@ -137,23 +137,27 @@ const StatsSection = () => {
   const container = reduceMotion
     ? {}
     : {
-        hidden: {},
-        show: { transition: { staggerChildren: 0.09 } },
-      };
+      hidden: {},
+      show: { transition: { staggerChildren: 0.09 } },
+    };
 
   const itemAnim = reduceMotion
     ? {}
     : {
-        hidden: { opacity: 0, y: 10 },
-        show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
-      };
+      hidden: { opacity: 0, y: 10 },
+      show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: "easeOut" } },
+    };
 
   return (
     <section className="bg-white py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 lg:px-20">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-10 md:mb-12 px-4">
-          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-blue">
+          <div className="section-badge opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
+            <Sparkles className="w-4 h-4" />
+            Impact & Chiffres
+          </div>
+          <h2 className="section-title text-brand-blue">
             Nos chiffres jusqu'à présent
           </h2>
           <p className="mt-2 sm:mt-3 font-sans text-sm sm:text-base text-gray-900 max-w-2xl mx-auto">
@@ -174,7 +178,7 @@ const StatsSection = () => {
           ))}
         </motion.div>
 
-        
+
       </div>
     </section>
   );

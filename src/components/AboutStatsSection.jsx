@@ -55,7 +55,7 @@ const StatCard = ({ stat, duration, reduceMotion }) => {
     <div className="bg-white rounded-2xl border border-brand-blue/20 p-6 shadow-sm flex flex-col items-start">
       <div className="text-sm text-brand-blue font-sans font-semibold">{stat.label}</div>
       <div className="mt-3 flex items-baseline gap-3">
-        <div className="text-3xl sm:text-4xl md:text-5xl font-display font-extrabold text-brand-blue">
+        <div className="text-3xl sm:text-4xl md:text-5xl font-sans font-bold text-brand-blue">
           {formatted}
           {stat.suffix && <span className="text-2xl text-brand-blue/70 ml-1">{stat.suffix}</span>}
         </div>
@@ -105,7 +105,7 @@ const AboutStatsSection = ({
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="text-center md:text-left mb-8">
           <p className="text-sm text-white/80 font-sans">Nos chiffres en action</p>
-          <h2 id="stats-heading" className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white">
+          <h2 id="stats-heading" className="section-title text-white">
             TIC Miton en chiffres
           </h2>
           <p className="mt-3 text-white/80 font-sans max-w-2xl">
@@ -123,9 +123,9 @@ const AboutStatsSection = ({
           <a
             href="#download"
             className="inline-flex items-center gap-3 bg-brand-orange text-white px-5 py-3 rounded-md font-sans font-semibold shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] transition focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30"
-            aria-label="Télécharger l'application"
+            aria-label="Rejoignez-nous"
           >
-            Télécharger l'application
+            Rejoignez-nous
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" aria-hidden>
               <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
             </svg>

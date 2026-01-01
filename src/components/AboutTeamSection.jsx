@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
-import { Play, Pause } from "lucide-react";
+import { Play, Pause, Sparkles } from "lucide-react";
 // Mixed quality: avatars to 80 for balance (retain single width 600)
 import MalikAvatar from "../assets/features/IMG_2670.jpeg?w=600&format=webp&quality=80";
 import DGAvatar from "../assets/features/DG.png?w=600&format=webp&quality=80";
@@ -198,8 +198,8 @@ const AboutTeamSection = ({ members = DEFAULT_MEMBERS, className = "" }) => {
         <div className="flex-1">
           <div className="flex items-center justify-between gap-3">
             <div>
-              <div id={`team-${m.id}-title`} className="text-base font-semibold font-display text-gray-900">{m.name}</div>
-              <div className="text-sm text-gray-500 font-sans">{m.role}</div>
+              <div id={`team-${m.id}-title`} className="text-base font-bold font-sans text-gray-900">{m.name}</div>
+              <div className="text-sm text-gray-600 font-sans">{m.role}</div>
             </div>
           </div>
         </div>
@@ -248,9 +248,12 @@ const AboutTeamSection = ({ members = DEFAULT_MEMBERS, className = "" }) => {
     <section className={`team bg-white py-16 px-6 md:px-12 lg:px-20 ${className}`} aria-labelledby="team-heading">
       <div className="max-w-7xl mx-auto relative">
         <div className="mb-8 text-center md:text-left">
-          <p className="text-sm text-brand-orange font-sans mb-2">Rencontrez l'équipe</p>
-          <h2 id="team-heading" className="font-display text-3xl md:text-4xl lg:text-3xl font-extrabold text-brand-blue">
-            Une équipe jeune & passionnée
+          <div className="section-badge opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
+            <Sparkles className="w-4 h-4" />
+            L'Équipe
+          </div>
+          <h2 className="section-title text-brand-blue">
+            L'équipe derrière TIC Miton
           </h2>
           <p className="mt-3 text-gray-900 font-sans max-w-2xl">
             Les personnes derrière TIC Miton : opérationnels, ingénieurs, designers et support — tous focalisés sur une mobilité de qualité et locale.
@@ -270,7 +273,7 @@ const AboutTeamSection = ({ members = DEFAULT_MEMBERS, className = "" }) => {
             <div className="flex-1">
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <h3 className="font-display text-2xl font-bold text-brand-blue">{ceo.name}</h3>
+                  <h3 className="font-sans text-2xl font-bold text-brand-blue">{ceo.name}</h3>
                   <div className="text-sm text-gray-900 mt-1">{ceo.role}</div>
                 </div>
                 <div className="hidden md:flex items-center gap-2">
@@ -306,9 +309,8 @@ const AboutTeamSection = ({ members = DEFAULT_MEMBERS, className = "" }) => {
               <div className="mt-3 relative">
                 <div
                   id={ceoContentId}
-                  className={`text-gray-700 font-sans leading-relaxed text-sm md:text-base whitespace-pre-line transition-[max-height] duration-300 ease-out overflow-hidden ${
-                    ceoExpanded ? "max-h-[200rem]" : "max-h-28 md:max-h-32"
-                  }`}
+                  className={`text-gray-700 font-sans leading-relaxed text-sm md:text-base whitespace-pre-line transition-[max-height] duration-300 ease-out overflow-hidden ${ceoExpanded ? "max-h-[200rem]" : "max-h-28 md:max-h-32"
+                    }`}
                 >
                   {ceo.bio}
                 </div>
@@ -435,10 +437,10 @@ const AboutTeamSection = ({ members = DEFAULT_MEMBERS, className = "" }) => {
                   <div className="flex-1">
                     <div className="flex items-start justify-between gap-4">
                       <div>
-                        <h3 id="team-modal-title" className="font-display text-xl font-bold text-gray-900">
+                        <h3 id="team-modal-title" className="font-sans text-xl font-bold text-gray-900">
                           {selected.name}
                         </h3>
-                        <div className="text-sm text-gray-500 mt-1">{selected.role}</div>
+                        <div className="text-sm text-gray-600 mt-1">{selected.role}</div>
                       </div>
 
                       <div className="flex items-center gap-2">

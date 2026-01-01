@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import { Car, Package, Zap, ArrowRight, X, Apple, Play } from "lucide-react";
+import { Car, Package, Zap, ArrowRight, Sparkles } from "lucide-react";
 import LINKS from "../config/links";
+import { getStoreUrl, trackEvent } from "../utils/storeRedirect";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 20 },
@@ -9,7 +10,6 @@ const fadeUp = {
 };
 
 export default function ServicesGrid() {
-  const [showStoreModal, setShowStoreModal] = useState(false);
   const services = [
     {
       title: "Courses express",
@@ -31,15 +31,31 @@ export default function ServicesGrid() {
     },
   ];
 
+  const handleBooking = (ctaLabel) => {
+    const target = getStoreUrl({
+      playStoreUrl: LINKS.playStoreUrl,
+      appStoreUrl: LINKS.appStoreUrl,
+      fallback: LINKS.downloadUrl
+    });
+    trackEvent('cta_click', { source: 'services_grid', label: ctaLabel, resolved: target });
+    window.location.href = target;
+  };
+
   return (
     <section id="services" className="bg-white py-12 sm:py-16">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp} className="text-center max-w-3xl mx-auto">
-          <h2 className="font-display text-2xl sm:text-3xl font-extrabold text-brand-blue">Ce que nous offrons</h2>
-          <p className="mt-3 text-gray-700">Des services clairs, pensés pour simplifier votre quotidien. Choisissez, réservez, démmarrez.</p>
+          <div className="section-badge opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
+            <Sparkles className="w-4 h-4" />
+            Nos Offres
+          </div>
+          <h2 className="section-title text-brand-blue mb-4">
+            Nos services à votre disposition
+          </h2>
+          <p className="mt-3 text-gray-700">Des services clairs, pensés pour simplifier votre quotidien. Choisissez, réservez, démarrez.</p>
         </motion.div>
 
-  <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((s, i) => {
             const Icon = s.icon;
             return (
@@ -57,12 +73,14 @@ export default function ServicesGrid() {
                     <Icon className="w-6 h-6" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-lg text-gray-900">{s.title}</h3>
+                    <h3 className="font-sans text-xl font-bold text-gray-900 group-hover:text-brand-blue transition-colors">
+                      {s.title}
+                    </h3>
                     <p className="mt-2 text-gray-600">{s.desc}</p>
                     <div className="mt-4">
                       <button
                         type="button"
-                        onClick={() => setShowStoreModal(true)}
+                        onClick={() => handleBooking(s.cta)}
                         className="inline-flex items-center gap-2 text-brand-blue hover:underline font-semibold bg-transparent px-0 py-0 outline-none focus:outline-none hover:outline-none ring-0 focus:ring-0 hover:ring-0 border-0 hover:border-transparent rounded-md appearance-none"
                         aria-label={`${s.cta}`}
                       >
@@ -75,45 +93,6 @@ export default function ServicesGrid() {
             );
           })}
         </div>
-
-        {/* Store selection modal */}
-        {showStoreModal && (
-          <div className="fixed inset-0 z-40 flex items-center justify-center" role="dialog" aria-modal="true" aria-labelledby="store-modal-title">
-            <div className="absolute inset-0 bg-black/40" onClick={() => setShowStoreModal(false)} />
-            <div className="relative z-50 w-full max-w-md mx-auto rounded-2xl bg-white shadow-xl p-6">
-              <button
-                type="button"
-                className="absolute top-3 right-3 p-2 rounded hover:bg-gray-100"
-                aria-label="Fermer"
-                onClick={() => setShowStoreModal(false)}
-              >
-                <X className="w-5 h-5 text-gray-600" />
-              </button>
-              <h3 id="store-modal-title" className="font-display text-xl font-bold text-gray-900">Télécharger l'application</h3>
-              <p className="mt-2 text-gray-600">Choisissez votre store pour continuer.</p>
-              <div className="mt-5 flex flex-wrap gap-4 items-center">
-                <a
-                  href={LINKS.playStoreUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Ouvrir Google Play"
-                  className="inline-flex items-center gap-2 text-brand-blue hover:underline font-semibold"
-                >
-                  <Play className="w-5 h-5" /> Google Play
-                </a>
-                <a
-                  href={LINKS.appStoreUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Ouvrir l'App Store"
-                  className="inline-flex items-center gap-2 text-brand-orange hover:underline font-semibold"
-                >
-                  <Apple className="w-5 h-5" /> App Store
-                </a>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );

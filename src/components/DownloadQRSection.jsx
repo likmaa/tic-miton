@@ -41,7 +41,7 @@ const DownloadCard = ({ item }) => {
 
       {/* Textual area */}
       <div className="flex-1 w-full md:w-auto">
-        <h3 id={`download-${item.id}-title`} className="font-display text-xl md:text-2xl text-gray-900 font-extrabold">
+        <h3 id={`download-${item.id}-title`} className="font-display text-xl md:text-2xl text-gray-900 font-bold">
           {item.title}
         </h3>
         <p className="mt-2 text-sm text-gray-600">{item.subtitle}</p>
@@ -67,8 +67,8 @@ const DownloadQRSection = ({ items = DEFAULT_ITEMS, className = "" }) => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="mb-8 text-center">
-          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-blue">
-            C'est plus facile avec l'app
+          <h2 className="section-title text-brand-blue">
+            Télécharger l'app
           </h2>
         </div>
 

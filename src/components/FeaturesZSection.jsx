@@ -1,26 +1,16 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
-import { ShieldCheck, Tag, Zap, LifeBuoy, ArrowRight, X, Apple, Play, Sparkles } from "lucide-react";
+import { ShieldCheck, Tag, Zap, LifeBuoy, ArrowRight, Sparkles } from "lucide-react";
 import LINKS from "../config/links";
+import COLORS from "../config/colors";
+import { getStoreUrl, trackEvent } from "../utils/storeRedirect";
 // Responsive, optimized sources via vite-imagetools
 // Mixed quality: feature images 65, remove largest 1600 for weight reduction
 import safetyPic from "../assets/features/safety.jpg?w=480;768;1200&format=webp;avif;jpg&quality=65&as=picture";
 import payementPic from "../assets/features/payement.jpg?w=480;768;1200&format=webp;avif;jpg&quality=65&as=picture";
 import puissancePic from "../assets/features/puissance.jpeg?w=480;768;1200&format=webp;avif;jpg&quality=65&as=picture";
 import supportPic from "../assets/features/support.jpg?w=480;768;1200&format=webp;avif;jpg&quality=65&as=picture";
-
-/*
-  FeaturesZSection.jsx
-  - Layout "en Z" : 4 lignes (rows). Sur desktop chaque ligne est une rangée
-    avec image à gauche / texte à droite pour les lignes impaires, et image à droite
-    / texte à gauche pour les lignes paires.
-  - Mobile-first : chaque bloc stacké (image au-dessus, texte dessous) pour une lecture simple.
-  - Images "réelles" : exemples fournis depuis Unsplash via source.unsplash.com (remplaçables par des fichiers locaux).
-  - Chaque avantage est rendu sur plusieurs lignes (j'ai forcé 4 courtes phrases séparées par <br/> pour s'assurer de la structure "4 lignes").
-  - Accessibilité : alt text, focus styles, aria-labels, respects prefers-reduced-motion.
-  - Dépendances : framer-motion et lucide-react (comme dans ton projet actuel).
-*/
 
 const features = [
   {
@@ -34,7 +24,7 @@ const features = [
     image: safetyPic,
     alt: "Chauffeur professionnel vérifié",
     Icon: ShieldCheck,
-    color: "#3650D0",
+    color: COLORS.brandBlue,
   },
   {
     id: "price",
@@ -47,7 +37,7 @@ const features = [
     image: payementPic,
     alt: "Paiement et reçu clair",
     Icon: Tag,
-    color: "#FF7B00",
+    color: COLORS.brandOrange,
   },
   {
     id: "speed",
@@ -60,7 +50,7 @@ const features = [
     image: puissancePic,
     alt: "Voiture rapide en ville",
     Icon: Zap,
-    color: "#3650D0",
+    color: COLORS.brandBlue,
   },
   {
     id: "support",
@@ -73,7 +63,7 @@ const features = [
     image: supportPic,
     alt: "Agent support aidant un client",
     Icon: LifeBuoy,
-    color: "#FF7B00",
+    color: COLORS.brandOrange,
   },
 ];
 
@@ -161,7 +151,7 @@ const FeatureCard = ({ feature, index }) => {
           <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
             {renderImage()}
             <div className="absolute inset-0 bg-black/20" />
-            
+
             {/* Floating icon */}
             <motion.div
               className="absolute top-4 right-4 sm:top-6 sm:right-6 w-12 h-12 sm:w-16 sm:h-16 rounded-2xl bg-white/90 backdrop-blur-sm shadow-xl flex items-center justify-center"
@@ -186,7 +176,7 @@ const FeatureCard = ({ feature, index }) => {
 
           {/* Content */}
           <div className="p-5 sm:p-6 md:p-8">
-            <h3 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-brand-blue mb-3 sm:mb-4">
+            <h3 className="font-sans text-lg sm:text-xl md:text-2xl font-bold text-brand-blue mb-3 sm:mb-4">
               {feature.title}
             </h3>
             <ul className="space-y-2 mb-4 sm:mb-6">
@@ -197,14 +187,14 @@ const FeatureCard = ({ feature, index }) => {
                 </li>
               ))}
             </ul>
-            
+
             {/* CTA */}
             <Link
               to="/services"
-              className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-brand-blue text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-brand-blue/90 hover:text-[#FFCA80] transition-all group/btn font-sans"
+              className="inline-flex items-center gap-2 px-4 sm:px-6 py-3 bg-brand-blue text-white text-sm sm:text-base font-semibold rounded-lg hover:bg-brand-blue/90 hover:text-[#FFCA80] transition-all group/btn font-sans"
             >
-              <span className="group-hover/btn:text-[#FFCA80]">Découvrir</span>
-              <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:text-[#FFCA80]" />
+              <span className="group-hover/btn:text-brand-orange-light">Explorer les services</span>
+              <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1 group-hover/btn:text-brand-orange-light" />
             </Link>
           </div>
 
@@ -213,17 +203,17 @@ const FeatureCard = ({ feature, index }) => {
         </div>
 
         {/* Back side (flipped) */}
-        <div 
+        <div
           className="absolute inset-0 p-6 md:p-8 flex flex-col justify-center items-center text-center text-white transition-opacity duration-500"
           style={{ backgroundColor: feature.color, opacity: isFlipped ? 1 : 0, pointerEvents: isFlipped ? 'auto' : 'none' }}
         >
           <Icon className="w-20 h-20 mb-6 opacity-90" />
-          <h4 className="font-display text-2xl font-bold mb-4">{feature.title}</h4>
+          <h4 className="font-sans text-2xl font-bold mb-4">{feature.title}</h4>
           <p className="text-white/90 leading-relaxed">
             {feature.description}
           </p>
           <button className="mt-8 px-6 py-3 bg-white/20 backdrop-blur-sm rounded-lg font-semibold hover:bg-white/30 transition-all">
-            En savoir plus
+            Voir les détails
           </button>
         </div>
       </motion.div>
@@ -232,8 +222,17 @@ const FeatureCard = ({ feature, index }) => {
 };
 
 const FeaturesZSection = () => {
-  const [showStoreModal, setShowStoreModal] = useState(false);
   const reduceMotion = useReducedMotion();
+
+  const handleDownload = () => {
+    const target = getStoreUrl({
+      playStoreUrl: LINKS.playStoreUrl,
+      appStoreUrl: LINKS.appStoreUrl,
+      fallback: LINKS.downloadUrl
+    });
+    trackEvent('cta_click', { source: 'features_cta', resolved: target });
+    window.location.href = target;
+  };
 
   return (
     <section className="relative bg-white py-12 sm:py-16 md:py-20 px-4 sm:px-6 md:px-12 lg:px-20 overflow-hidden">
@@ -269,15 +268,15 @@ const FeaturesZSection = () => {
           transition={{ duration: 0.6 }}
         >
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-blue/10 text-brand-blue font-semibold text-sm mb-4 sm:mb-6"
+            className="section-badge opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]"
             whileHover={reduceMotion ? {} : { scale: 1.05 }}
           >
             <Sparkles className="w-4 h-4" />
             Nos Avantages
           </motion.div>
-          
-          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-blue mb-4 sm:mb-6 px-4">
-            Ce qui nous rend unique
+
+          <h2 className="section-title text-brand-blue tracking-tight">
+            Pourquoi choisir TIC Miton ?
           </h2>
           <p className="mt-4 font-sans text-gray-600 text-base sm:text-lg max-w-3xl mx-auto px-4">
             Une expérience de transport révolutionnaire combinant technologie de pointe et service humain exceptionnel
@@ -301,56 +300,17 @@ const FeaturesZSection = () => {
         >
           <motion.button
             type="button"
-            onClick={() => setShowStoreModal(true)}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-brand-orange text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:bg-[#e66f00] hover:text-[#FFCA80] transition-all"
+            onClick={handleDownload}
+            className="inline-flex items-center gap-3 px-8 py-4 bg-brand-orange text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:bg-brand-orange-hover hover:text-brand-orange-light transition-all"
             whileHover={reduceMotion ? {} : { scale: 1.05, y: -2 }}
             whileTap={reduceMotion ? {} : { scale: 0.98 }}
           >
             <Sparkles className="w-5 h-5" />
-            Télécharger l'application
+            Télécharger maintenant
             <ArrowRight className="w-5 h-5" />
           </motion.button>
         </motion.div>
       </div>
-
-      {/* Store selection modal */}
-      {showStoreModal && (
-        <div className="fixed inset-0 z-40 flex items-center justify-center" role="dialog" aria-modal="true" aria-labelledby="store-modal-title">
-          <div className="absolute inset-0 bg-black/40" onClick={() => setShowStoreModal(false)} />
-          <div className="relative z-50 w-full max-w-md mx-auto rounded-2xl bg-white shadow-xl p-6">
-            <button
-              type="button"
-              className="absolute top-3 right-3 p-2 rounded hover:bg-gray-100"
-              aria-label="Fermer"
-              onClick={() => setShowStoreModal(false)}
-            >
-              <X className="w-5 h-5 text-gray-600" />
-            </button>
-            <h3 id="store-modal-title" className="font-display text-xl font-bold text-gray-900">Télécharger l'application</h3>
-            <p className="mt-2 text-gray-600">Choisissez votre store pour continuer.</p>
-            <div className="mt-5 flex flex-wrap gap-4 items-center">
-              <a
-                href={LINKS.playStoreUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Ouvrir Google Play"
-                className="inline-flex items-center gap-2 text-brand-blue hover:underline font-semibold"
-              >
-                <Play className="w-5 h-5" /> Google Play
-              </a>
-              <a
-                href={LINKS.appStoreUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Ouvrir l'App Store"
-                className="inline-flex items-center gap-2 text-brand-orange hover:underline font-semibold"
-              >
-                <Apple className="w-5 h-5" /> App Store
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };

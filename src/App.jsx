@@ -20,7 +20,7 @@ export default function App() {
     <div className="bg-white text-gray-900">
       <StructuredData />
       <Navbar />
-  <main id="main-content" className="pt-16 md:pt-18 lg:pt-20">
+      <main id="main-content" className="pt-navbar">
         <Suspense fallback={<div className="py-20 text-center text-gray-600">Chargement…</div>}>
           <Routes>
             <Route path="/" element={<Home />} />

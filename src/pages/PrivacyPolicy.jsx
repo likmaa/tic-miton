@@ -10,7 +10,7 @@ export default function PrivacyPolicy() {
         <div className="max-w-4xl mx-auto px-6 md:px-12">
           <div className="flex items-center gap-3 mb-6">
             <Shield className="w-12 h-12 text-[#FFCA80]" />
-            <h1 className="font-display text-4xl md:text-5xl font-extrabold">
+            <h1 className="hero-title">
               Politique de confidentialité
             </h1>
           </div>
@@ -18,7 +18,7 @@ export default function PrivacyPolicy() {
             Dernière mise à jour : 19 novembre 2025
           </p>
           <p className="mt-4 text-white/80 max-w-2xl">
-            Chez TIC Miton, nous accordons une importance primordiale à la protection de vos données personnelles. 
+            Chez TIC Miton, nous accordons une importance primordiale à la protection de vos données personnelles.
             Cette politique explique comment nous collectons, utilisons et protégeons vos informations.
           </p>
         </div>
@@ -27,13 +27,13 @@ export default function PrivacyPolicy() {
       {/* Content Section */}
       <section className="max-w-4xl mx-auto px-6 md:px-12 py-12 md:py-16">
         <div className="prose prose-lg max-w-none">
-          
+
           {/* 1. Collecte des données */}
           <div className="mb-12">
             <div className="flex items-start gap-4 mb-4">
               <Database className="w-8 h-8 text-brand-blue flex-shrink-0 mt-1" />
               <div>
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mt-0">
+                <h2 className="section-title text-gray-900 mt-0">
                   1. Collecte des données
                 </h2>
               </div>
@@ -57,7 +57,7 @@ export default function PrivacyPolicy() {
             <div className="flex items-start gap-4 mb-4">
               <Eye className="w-8 h-8 text-brand-blue flex-shrink-0 mt-1" />
               <div>
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mt-0">
+                <h2 className="section-title text-gray-900 mt-0">
                   2. Utilisation des données
                 </h2>
               </div>
@@ -83,7 +83,7 @@ export default function PrivacyPolicy() {
             <div className="flex items-start gap-4 mb-4">
               <Lock className="w-8 h-8 text-brand-blue flex-shrink-0 mt-1" />
               <div>
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mt-0">
+                <h2 className="section-title text-gray-900 mt-0">
                   3. Protection des données
                 </h2>
               </div>
@@ -108,7 +108,7 @@ export default function PrivacyPolicy() {
             <div className="flex items-start gap-4 mb-4">
               <UserCheck className="w-8 h-8 text-brand-blue flex-shrink-0 mt-1" />
               <div>
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mt-0">
+                <h2 className="section-title text-gray-900 mt-0">
                   4. Partage des données
                 </h2>
               </div>
@@ -133,7 +133,7 @@ export default function PrivacyPolicy() {
             <div className="flex items-start gap-4 mb-4">
               <Shield className="w-8 h-8 text-brand-blue flex-shrink-0 mt-1" />
               <div>
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mt-0">
+                <h2 className="section-title text-gray-900 mt-0">
                   5. Vos droits
                 </h2>
               </div>
@@ -161,7 +161,7 @@ export default function PrivacyPolicy() {
             <div className="flex items-start gap-4 mb-4">
               <Database className="w-8 h-8 text-brand-blue flex-shrink-0 mt-1" />
               <div>
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mt-0">
+                <h2 className="section-title text-gray-900 mt-0">
                   6. Cookies et technologies similaires
                 </h2>
               </div>
@@ -187,7 +187,7 @@ export default function PrivacyPolicy() {
             <div className="flex items-start gap-4 mb-4">
               <Lock className="w-8 h-8 text-brand-blue flex-shrink-0 mt-1" />
               <div>
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mt-0">
+                <h2 className="section-title text-gray-900 mt-0">
                   7. Conservation des données
                 </h2>
               </div>
@@ -209,7 +209,7 @@ export default function PrivacyPolicy() {
             <div className="flex items-start gap-4 mb-4">
               <Mail className="w-8 h-8 text-brand-blue flex-shrink-0 mt-1" />
               <div>
-                <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mt-0">
+                <h2 className="section-title text-gray-900 mt-0">
                   8. Nous contacter
                 </h2>
               </div>
@@ -229,13 +229,13 @@ export default function PrivacyPolicy() {
 
           {/* 9. Modifications */}
           <div className="mb-12">
-            <h2 className="font-display text-2xl md:text-3xl font-bold text-gray-900">
+            <h2 className="section-title text-gray-900">
               9. Modifications de la politique
             </h2>
             <div className="text-gray-700 space-y-4">
               <p>
-                Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment. 
-                Toute modification sera publiée sur cette page avec une date de mise à jour actualisée. 
+                Nous nous réservons le droit de modifier cette politique de confidentialité à tout moment.
+                Toute modification sera publiée sur cette page avec une date de mise à jour actualisée.
                 Nous vous encourageons à consulter régulièrement cette page.
               </p>
               <p>

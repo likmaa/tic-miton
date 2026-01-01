@@ -2,6 +2,7 @@ import { Renderer, Program, Mesh, Triangle } from 'ogl';
 import { useEffect, useRef } from 'react';
 
 import './Aurora.css';
+import COLORS from '../config/colors';
 
 const VERT = `#version 300 es
 in vec2 position;
@@ -111,29 +112,29 @@ void main() {
 }
 `;
 
-function hexToRGB01(hex){
-  if(!hex) return [1,1,1];
+function hexToRGB01(hex) {
+  if (!hex) return [1, 1, 1];
   let h = String(hex).trim();
-  if(h[0] === '#') h = h.slice(1);
-  if(h.length === 3 || h.length === 4){
+  if (h[0] === '#') h = h.slice(1);
+  if (h.length === 3 || h.length === 4) {
     // #RGB or #RGBA -> expand
-    h = h.split('').map((c,i)=> i<3 ? c+c : null).filter(Boolean).join('');
+    h = h.split('').map((c, i) => i < 3 ? c + c : null).filter(Boolean).join('');
   }
-  if(h.length === 8){
+  if (h.length === 8) {
     // #RRGGBBAA -> drop alpha
-    h = h.slice(0,6);
+    h = h.slice(0, 6);
   }
-  if(h.length !== 6){
-    return [1,1,1];
+  if (h.length !== 6) {
+    return [1, 1, 1];
   }
-  const r = parseInt(h.slice(0,2),16)/255;
-  const g = parseInt(h.slice(2,4),16)/255;
-  const b = parseInt(h.slice(4,6),16)/255;
-  return [r,g,b];
+  const r = parseInt(h.slice(0, 2), 16) / 255;
+  const g = parseInt(h.slice(2, 4), 16) / 255;
+  const b = parseInt(h.slice(4, 6), 16) / 255;
+  return [r, g, b];
 }
 
 export default function Aurora(props) {
-  const { colorStops = ['#3650D0', '#FFFFFF', '#FF7B00'], amplitude = 1.0, blend = 0.5 } = props;
+  const { colorStops = [COLORS.brandBlue, '#FFFFFF', COLORS.brandOrange], amplitude = 1.0, blend = 0.5 } = props;
   const propsRef = useRef(props);
   propsRef.current = props;
 
@@ -172,8 +173,8 @@ export default function Aurora(props) {
       delete geometry.attributes.uv;
     }
 
-    const normStops = (colorStops?.length ? colorStops : ['#3650D0','#FFFFFF','#FF7B00']).slice(0,3);
-    while(normStops.length < 3) normStops.push('#FFFFFF');
+    const normStops = (colorStops?.length ? colorStops : [COLORS.brandBlue, '#FFFFFF', COLORS.brandOrange]).slice(0, 3);
+    while (normStops.length < 3) normStops.push('#FFFFFF');
     const stop0 = hexToRGB01(normStops[0]);
     const stop1 = hexToRGB01(normStops[1]);
     const stop2 = hexToRGB01(normStops[2]);
@@ -203,8 +204,8 @@ export default function Aurora(props) {
       program.uniforms.uAmplitude.value = propsRef.current.amplitude ?? 1.0;
       program.uniforms.uBlend.value = propsRef.current.blend ?? blend;
       const stops = propsRef.current.colorStops ?? colorStops;
-      const arr = (stops?.length ? stops : ['#3650D0','#FFFFFF','#FF7B00']).slice(0,3);
-      while(arr.length < 3) arr.push('#FFFFFF');
+      const arr = (stops?.length ? stops : [COLORS.brandBlue, '#FFFFFF', COLORS.brandOrange]).slice(0, 3);
+      while (arr.length < 3) arr.push('#FFFFFF');
       program.uniforms.uColorStop0.value = hexToRGB01(arr[0]);
       program.uniforms.uColorStop1.value = hexToRGB01(arr[1]);
       program.uniforms.uColorStop2.value = hexToRGB01(arr[2]);

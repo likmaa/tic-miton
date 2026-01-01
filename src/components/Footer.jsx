@@ -30,8 +30,8 @@ const Footer = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           viewport={{ once: true }}
         >
-          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold">
-            Restez connectés à <span className="text-[#FFCA80]">TIC Miton</span> 
+          <h2 className="hero-title text-white">
+            Restez connectés à <span className="text-brand-orange">TIC Miton</span>
           </h2>
           <p className="font-sans text-white/80 max-w-3xl mx-auto">
             Recevez nos dernières actualités, offres exclusives et mises à jour directement dans votre boîte mail.
@@ -42,7 +42,11 @@ const Footer = () => {
             onSubmit={(e) => e.preventDefault()}
             className="flex flex-col sm:flex-row gap-3 justify-center max-w-xl mx-auto pt-4"
           >
+            <label htmlFor="newsletter-email" className="sr-only">
+              Adresse e-mail pour la newsletter
+            </label>
             <input
+              id="newsletter-email"
               type="email"
               required
               placeholder="Entrez votre adresse e-mail"
@@ -72,8 +76,8 @@ const Footer = () => {
         >
           {/* Brand Info */}
           <div className="space-y-3 sm:space-y-4">
-            <h3 className="font-display text-xl sm:text-2xl font-bold">TIC Miton</h3>
-            <p className="font-sans text-white/70 text-xs sm:text-sm leading-relaxed">
+            <h3 className="font-sans text-xl sm:text-2xl font-bold uppercase tracking-tight">TIC Miton</h3>
+            <p className="font-sans text-white/70 text-sm leading-relaxed">
               Simplifiez vos déplacements avec TIC Miton, votre compagnon de mobilité intelligente et fiable.
             </p>
             {/* Phone CTA */}
@@ -113,7 +117,7 @@ const Footer = () => {
                   key={i}
                   href="#"
                   whileHover={reduceMotion ? undefined : { scale: 1.12 }}
-                  className="p-2 rounded-full transition bg-white/10 hover:bg-white/20 text-white/90 hover:text-brand-orange focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/30"
+                  className="p-3 rounded-full transition bg-white/10 hover:bg-white/20 text-white/90 hover:text-brand-orange focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/30"
                   aria-label={`Lien ${Icon.name}`}
                 >
                   <Icon className="w-5 h-5" />
@@ -124,7 +128,7 @@ const Footer = () => {
 
           {/* App Download */}
           <div>
-            <h4 className="font-sans font-semibold text-lg mb-4">Téléchargez l’application</h4>
+            <h4 className="font-sans font-semibold text-lg mb-4">Téléchargez l'app</h4>
             <div className="flex flex-col gap-3">
               <a
                 href={PLACEHOLDER_LINKS.playStoreUrl}
@@ -150,7 +154,7 @@ const Footer = () => {
         <div className="border-t border-white/20"></div>
 
         {/* Copyright */}
-        <div className="text-center text-white/60 text-sm">
+        <div className="text-center text-white/80 text-sm">
           © {new Date().getFullYear()} TIC Miton — Tous droits réservés. | <Link to="/privacy-policy" className="hover:text-[#FFCA80] transition-colors">Politique de confidentialité</Link>
         </div>
       </div>

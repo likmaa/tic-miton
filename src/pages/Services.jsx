@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 export default function Services() {
   return (
     <main className="font-sans antialiased">
-      <SEO 
+      <SEO
         title="Services VTC Porto-Novo | Courses, Livraison, Trajets Quotidiens - TIC Miton"
         description="Services de transport VTC à Porto-Novo : courses à la demande, livraison rapide de colis, abonnements trajets domicile-travail. Tarifs clairs, paiement Mobile Money. Téléchargez TIC Miton."
         keywords="VTC Porto-Novo, livraison express Bénin, course à la demande, taxi professionnel, trajets quotidiens, transport domicile-travail, livraison colis Porto-Novo"
@@ -47,7 +47,7 @@ export default function Services() {
           <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-brand-orange/10 rounded-full blur-2xl" />
           <div className="relative z-10 grid md:grid-cols-3 gap-6 items-center">
             <div className="md:col-span-2">
-              <h3 className="font-display text-2xl md:text-3xl font-extrabold">Rejoignez l'équipe de nos chauffeurs</h3>
+              <h3 className="section-title text-white">Rejoignez l'équipe de nos chauffeurs</h3>
               <p className="mt-2 text-white/90">Gagnez plus, travaillez en toute flexibilité et bénéficiez de notre accompagnement.</p>
             </div>
             <div className="flex md:justify-end">
@@ -65,4 +65,4 @@ export default function Services() {
     </main>
   );
 }
- 
+

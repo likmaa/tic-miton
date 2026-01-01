@@ -1,6 +1,6 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { MapPin, Smartphone, CheckCircle, ArrowRight, MessageCircle } from "lucide-react";
+import { MapPin, Smartphone, CheckCircle, ArrowRight, MessageCircle, Sparkles } from "lucide-react";
 import PLACEHOLDER_LINKS from "../config/links";
 
 /*
@@ -52,7 +52,11 @@ const HowItWorksSection = () => {
         {/* Header: titre + intro + CTA */}
         <div className="mb-10 md:mb-14 grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
           <div className="md:col-span-1">
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold text-brand-blue">
+            <div className="section-badge opacity-0 animate-[fadeIn_0.5s_ease-out_forwards]">
+              <Sparkles className="w-4 h-4" />
+              Processus
+            </div>
+            <h2 className="section-title text-brand-blue">
               Comment ça marche
             </h2>
             <p className="mt-3 font-sans text-gray-600 text-base max-w-md">
@@ -73,9 +77,9 @@ const HowItWorksSection = () => {
               <a
                 href={PLACEHOLDER_LINKS.features.all}
                 className="inline-flex items-center justify-center px-4 py-3 rounded-md border border-gray-200 text-gray-700 font-sans text-sm hover:bg-gray-50 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-brand-blue/20"
-                aria-label="En savoir plus"
+                aria-label="Voir nos tarifs"
               >
-                En savoir plus
+                Voir nos tarifs
               </a>
             </div>
           </div>
@@ -87,7 +91,7 @@ const HowItWorksSection = () => {
             animate="show"
             variants={reduceMotion ? undefined : containerAnim}
           >
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {steps.map((step) => {
                 const Icon = step.icon;
                 return (
@@ -100,7 +104,7 @@ const HowItWorksSection = () => {
                     <div className="flex items-center gap-4 w-full">
                       {/* Number bubble */}
                       <div className="flex-shrink-0">
-                        <div className="w-12 h-12 rounded-xl bg-brand-blue text-white flex items-center justify-center font-display font-bold text-lg">
+                        <div className="w-12 h-12 rounded-xl bg-brand-blue text-white flex items-center justify-center font-sans font-bold text-lg">
                           {step.id}
                         </div>
                       </div>
@@ -115,7 +119,7 @@ const HowItWorksSection = () => {
 
                     <h3
                       id={`step-${step.id}-title`}
-                      className="mt-4 font-display text-lg text-gray-900"
+                      className="mt-4 font-sans text-lg font-bold text-gray-900"
                     >
                       {step.title}
                     </h3>

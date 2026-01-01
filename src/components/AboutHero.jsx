@@ -8,9 +8,9 @@ import LINKS from "../config/links";
 
 const AboutHero = ({
   image = aboutHeroImg,
-  title = "TIC Miton, votre compagnon de mobilité.",
+  title = "L'équipe qui vous simplifie la vie.",
   lead =
-    "Née à Porto-Novo, TIC Miton réinvente le transport urbain. Notre mission : offrir à chaque citoyen une solution simple, rapide et sécurisée pour se déplacer, se faire livrer ou commander en quelques clics.",
+  "Née à Porto-Novo, TIC Miton réinvente le transport urbain. Notre mission : offrir à chaque citoyen une solution simple, rapide et sécurisée pour se déplacer, se faire livrer ou commander en quelques clics.",
   ctaPrimaryHref = "#mission",
   ctaSecondaryHref = LINKS.whatsappUrl,
   imagePosition = "center 25%",
@@ -78,7 +78,7 @@ const AboutHero = ({
           {/* Left: Titre + texte */}
           <div className="text-center md:text-left flex-1">
             <motion.h1
-              className="font-display text-3xl sm:text-4xl lg:text-5xl text-white font-extrabold leading-tight"
+              className="hero-title text-white leading-tight"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
@@ -94,10 +94,10 @@ const AboutHero = ({
               href={ctaPrimaryHref}
               whileHover={reduceMotion ? {} : { scale: 1.05 }}
               whileTap={reduceMotion ? {} : { scale: 0.97 }}
-              aria-label="Découvrir notre mission"
+              aria-label="En savoir plus sur notre mission"
               className="bg-white text-black px-8 py-4 rounded-full font-sans font-semibold flex items-center justify-center gap-2 shadow-lg hover:shadow-2xl transition-all"
             >
-              Découvrir notre mission
+              Rejoignez-nous
               <ArrowRight className="w-5 h-5" />
             </motion.a>
 
