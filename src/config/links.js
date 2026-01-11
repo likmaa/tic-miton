@@ -2,21 +2,18 @@
 // sinon on garde des valeurs par défaut faciles à remplacer.
 const BASE = import.meta?.env?.VITE_BASE_URL ?? "";
 const APP_URL = import.meta?.env?.VITE_APP_URL ?? `${BASE}/app`;
-// Defaults set to official store home pages (replace with real app links when ready)
+// Direct APK download links from Expo builds
 const PASSENGER_APP_URL = "https://expo.dev/accounts/ticmiton/projects/transport/builds";
 const DRIVER_APP_URL = "https://expo.dev/accounts/ticmiton/projects/driver-app/builds";
 const WHATSAPP_URL = import.meta?.env?.VITE_WHATSAPP_URL ?? "https://wa.me/2290157792662";
 const SUPPORT_EMAIL = import.meta?.env?.VITE_SUPPORT_EMAIL ?? "support@ticmiton.com";
+const LIVE_URL = import.meta?.env?.VITE_LIVE_URL ?? "https://ticmiton.com/";
 
 const PLACEHOLDER_LINKS = {
-  // Primary download landing (page interne)
-  downloadUrl: DOWNLOAD_URL,
-
   // Application (web/app)
   appUrl: APP_URL,
 
-  // Stores
-  // Apps
+  // Apps - Direct download links
   passengerAppUrl: PASSENGER_APP_URL,
   driverAppUrl: DRIVER_APP_URL,
 
