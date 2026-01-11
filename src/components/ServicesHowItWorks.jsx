@@ -63,13 +63,8 @@ export default function ServicesHowItWorks() {
   };
 
   const handleBooking = (source) => {
-    const target = getStoreUrl({
-      playStoreUrl: LINKS.playStoreUrl,
-      appStoreUrl: LINKS.appStoreUrl,
-      fallback: LINKS.downloadUrl
-    });
-    trackEvent('cta_click', { source: `services_how_it_works_${source}`, resolved: target });
-    window.location.href = target;
+    trackEvent('cta_click', { source: `services_how_it_works_${source}`, resolved: LINKS.passengerAppUrl });
+    window.location.href = LINKS.passengerAppUrl;
   };
 
   const containerAnim = {

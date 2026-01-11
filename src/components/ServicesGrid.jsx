@@ -32,13 +32,8 @@ export default function ServicesGrid() {
   ];
 
   const handleBooking = (ctaLabel) => {
-    const target = getStoreUrl({
-      playStoreUrl: LINKS.playStoreUrl,
-      appStoreUrl: LINKS.appStoreUrl,
-      fallback: LINKS.downloadUrl
-    });
-    trackEvent('cta_click', { source: 'services_grid', label: ctaLabel, resolved: target });
-    window.location.href = target;
+    trackEvent('cta_click', { source: 'services_grid', label: ctaLabel, resolved: LINKS.passengerAppUrl });
+    window.location.href = LINKS.passengerAppUrl;
   };
 
   return (

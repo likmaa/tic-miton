@@ -113,8 +113,9 @@ export default function Navbar() {
             </a>
 
             <a
-              href={PLACEHOLDER_LINKS.downloadUrl}
+              href={PLACEHOLDER_LINKS.passengerAppUrl}
               className="hidden sm:inline-flex items-center px-6 py-2.5 border border-transparent text-sm font-sans font-medium rounded-md text-white bg-brand-orange hover:bg-[#e56a00] hover:text-[#FFCA80] active:bg-[#cc5f00] transition-all shadow-sm"
+              rel="noopener noreferrer"
             >
               <span className="mr-2">
                 <svg

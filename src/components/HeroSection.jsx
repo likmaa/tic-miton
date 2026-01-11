@@ -80,44 +80,27 @@ const HeroSection = () => {
               <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start pt-2 sm:pt-4">
                 {/* CTA Button */}
                 <motion.a
-                  href={PLACEHOLDER_LINKS.downloadUrl}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const target = getStoreUrl({ playStoreUrl: PLACEHOLDER_LINKS.playStoreUrl, appStoreUrl: PLACEHOLDER_LINKS.appStoreUrl, fallback: PLACEHOLDER_LINKS.downloadUrl });
-                    trackEvent('cta_click', { source: 'hero', resolved: target });
-                    window.location.href = target;
-                  }}
+                  href={PLACEHOLDER_LINKS.passengerAppUrl}
                   whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
                   whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
                   className="bg-brand-orange text-white px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-md font-sans font-semibold text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 shadow-lg hover:bg-brand-orange-hover hover:text-brand-orange-light focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30 transition"
-                  aria-label="Télécharger maintenant"
+                  aria-label="Télécharger l'application Passager"
                 >
-                  Télécharger maintenant
+                  Télécharger Passager
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </motion.a>
 
-                {/* Store Badges */}
+                {/* Store Badges replacement (Direct links) */}
                 <div className="flex items-center justify-center gap-3 sm:gap-4">
                   <a
-                    href={PLACEHOLDER_LINKS.playStoreUrl}
-                    aria-label="Télécharger sur le Play Store"
+                    href={PLACEHOLDER_LINKS.driverAppUrl}
+                    aria-label="Télécharger l'application Chauffeur"
                     className="inline-block rounded-md focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-white/40"
                     rel="noopener noreferrer"
                   >
-                    <span className="inline-flex items-center gap-2 md:gap-2.5 rounded-md bg-gray-900 text-white px-3 py-1.5 md:px-4 md:py-2.5 border border-white/10 shadow">
+                    <span className="inline-flex items-center gap-2 md:gap-2.5 rounded-md bg-gray-900 text-white px-3 py-1.5 md:px-4 md:py-2.5 border border-white/10 shadow hover:bg-gray-800 transition-colors">
                       <Play className="w-4 h-4 md:w-5 md:h-5" aria-hidden="true" />
-                      <span className="font-sans text-sm md:text-base font-medium">Play Store</span>
-                    </span>
-                  </a>
-                  <a
-                    href={PLACEHOLDER_LINKS.appStoreUrl}
-                    aria-label="Télécharger sur l'App Store"
-                    className="inline-block rounded-md focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-white/40"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="inline-flex items-center gap-2 md:gap-2.5 rounded-md bg-gray-900 text-white px-3 py-1.5 md:px-4 md:py-2.5 border border-white/10 shadow">
-                      <Apple className="w-4 h-4 md:w-5 md:h-5" aria-hidden="true" />
-                      <span className="font-sans text-sm md:text-base font-medium">App Store</span>
+                      <span className="font-sans text-sm md:text-base font-medium">Devenir Chauffeur</span>
                     </span>
                   </a>
                 </div>

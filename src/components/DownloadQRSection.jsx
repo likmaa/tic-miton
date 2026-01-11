@@ -1,22 +1,22 @@
 import React from "react";
 import { ArrowRight } from "lucide-react";
-
+import PLACEHOLDER_LINKS from "../config/links";
 
 
 const DEFAULT_ITEMS = [
   {
     id: "app",
-    title: "Download the App",
-    subtitle: "Scan to download",
-    qrSrc: "https://via.placeholder.com/220?text=QR+App", // remplace par ton QR
-    href: "#download-app",
+    title: "Application Passager",
+    subtitle: "Scannez pour télécharger",
+    qrSrc: "https://via.placeholder.com/220?text=QR+Passager", // remplace par ton QR
+    href: PLACEHOLDER_LINKS.passengerAppUrl,
   },
   {
     id: "driver",
-    title: "Download the Driver app",
-    subtitle: "Scan to download",
-    qrSrc: "https://via.placeholder.com/220?text=QR+Driver",
-    href: "#download-driver",
+    title: "Application Chauffeur",
+    subtitle: "Scannez pour télécharger",
+    qrSrc: "https://via.placeholder.com/220?text=QR+Chauffeur",
+    href: PLACEHOLDER_LINKS.driverAppUrl,
   },
 ];
 

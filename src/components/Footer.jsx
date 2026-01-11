@@ -131,20 +131,20 @@ const Footer = () => {
             <h4 className="font-sans font-semibold text-lg mb-4">Téléchargez l'app</h4>
             <div className="flex flex-col gap-3">
               <a
-                href={PLACEHOLDER_LINKS.playStoreUrl}
+                href={PLACEHOLDER_LINKS.passengerAppUrl}
                 className="bg-white text-brand-blue px-4 py-2 rounded-md font-sans font-semibold text-sm hover:bg-white/90 transition text-center"
-                aria-label="Télécharger sur le Play Store"
+                aria-label="Télécharger l'application Passager"
                 rel="noopener noreferrer"
               >
-                Play Store
+                App Passager
               </a>
               <a
-                href={PLACEHOLDER_LINKS.appStoreUrl}
+                href={PLACEHOLDER_LINKS.driverAppUrl}
                 className="bg-white text-brand-blue px-4 py-2 rounded-md font-sans font-semibold text-sm hover:bg-white/90 transition text-center"
-                aria-label="Télécharger sur l'App Store"
+                aria-label="Télécharger l'application Chauffeur"
                 rel="noopener noreferrer"
               >
-                App Store
+                App Chauffeur
               </a>
             </div>
           </div>

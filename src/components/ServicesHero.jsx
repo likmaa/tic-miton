@@ -220,13 +220,8 @@ export default function ServicesHero({ baseFare = 500, pricePerKm = 200, currenc
   };
 
   const handleBooking = () => {
-    const target = getStoreUrl({
-      playStoreUrl: LINKS.playStoreUrl,
-      appStoreUrl: LINKS.appStoreUrl,
-      fallback: LINKS.downloadUrl
-    });
-    trackEvent('cta_click', { source: 'services_hero_booking', resolved: target });
-    window.location.href = target;
+    trackEvent('cta_click', { source: 'services_hero_booking', resolved: LINKS.passengerAppUrl });
+    window.location.href = LINKS.passengerAppUrl;
   };
 
   const canCancel =

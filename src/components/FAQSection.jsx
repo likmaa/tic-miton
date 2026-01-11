@@ -358,19 +358,13 @@ const FAQSection = ({ items = DEFAULT_ITEMS, className = "" }) => {
             <MessageCircle className="w-5 h-5" />
           </motion.a>
           <motion.a
-            href={PLACEHOLDER_LINKS.downloadUrl}
-            onClick={(e) => {
-              e.preventDefault();
-              const target = getStoreUrl({ playStoreUrl: PLACEHOLDER_LINKS.playStoreUrl, appStoreUrl: PLACEHOLDER_LINKS.appStoreUrl, fallback: PLACEHOLDER_LINKS.downloadUrl });
-              trackEvent('cta_click', { source: 'faq_footer', resolved: target });
-              window.location.href = target;
-            }}
+            href={PLACEHOLDER_LINKS.passengerAppUrl}
             whileHover={reducedMotion ? {} : { scale: 1.05 }}
             whileTap={reducedMotion ? {} : { scale: 0.97 }}
             className="bg-white text-black px-8 py-4 rounded-md font-sans font-semibold flex items-center justify-center gap-2 shadow-lg hover:shadow-2xl transition-all"
-            aria-label="Télécharger maintenant"
+            aria-label="Télécharger l'application Passager"
           >
-            Télécharger maintenant
+            Télécharger Passager
             <ArrowRight className="w-5 h-5" />
           </motion.a>
         </div>

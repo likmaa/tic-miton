@@ -225,13 +225,8 @@ const FeaturesZSection = () => {
   const reduceMotion = useReducedMotion();
 
   const handleDownload = () => {
-    const target = getStoreUrl({
-      playStoreUrl: LINKS.playStoreUrl,
-      appStoreUrl: LINKS.appStoreUrl,
-      fallback: LINKS.downloadUrl
-    });
-    trackEvent('cta_click', { source: 'features_cta', resolved: target });
-    window.location.href = target;
+    trackEvent('cta_click', { source: 'features_cta', resolved: LINKS.passengerAppUrl });
+    window.location.href = LINKS.passengerAppUrl;
   };
 
   return (

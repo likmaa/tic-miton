@@ -95,40 +95,28 @@ const DownloadCTABand = ({
           {/* Right: primary action + store badges */}
           <div className="flex flex-col sm:flex-row items-center gap-3 md:gap-4">
             <motion.a
-              href={downloadUrl}
-              onClick={(e) => {
-                e.preventDefault();
-                const target = getStoreUrl({ playStoreUrl, appStoreUrl, fallback: downloadUrl });
-                trackEvent('cta_click', { source: 'download_band_home', resolved: target });
-                window.location.href = target;
-              }}
+              href={PLACEHOLDER_LINKS.passengerAppUrl}
               whileHover={reduceMotion ? {} : { scale: 1.05 }}
               whileTap={reduceMotion ? {} : { scale: 0.97 }}
-              aria-label={ariaLabel}
+              aria-label="Télécharger l'application Passager"
               className="bg-white text-black px-8 py-4 rounded-full font-sans font-semibold flex items-center justify-center gap-2 shadow-lg hover:shadow-2xl transition-all"
               rel="noopener noreferrer"
             >
-              {label}
+              Télécharger Passager
               <ArrowRight className="w-5 h-5" />
             </motion.a>
 
             <div className="flex items-center gap-3 md:gap-4">
               <a
-                href={playStoreUrl}
-                aria-label="Télécharger sur le Play Store"
+                href={PLACEHOLDER_LINKS.driverAppUrl}
+                aria-label="Télécharger l'application Chauffeur"
                 className="inline-block rounded-md focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-white/40"
                 rel="noopener noreferrer"
               >
-                <PlayBadge />
-              </a>
-
-              <a
-                href={appStoreUrl}
-                aria-label="Télécharger sur l'App Store"
-                className="inline-block rounded-md focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-white/40"
-                rel="noopener noreferrer"
-              >
-                <AppStoreBadge />
+                <div className="inline-flex items-center gap-2 md:gap-2.5 rounded-md bg-gray-900 text-white px-3.5 py-2 md:px-4 md:py-2.5 border border-white/10 shadow hover:bg-gray-800 transition-colors">
+                  <Play className="w-4 h-4 md:w-5 md:h-5" aria-hidden="true" />
+                  <span className="font-sans text-sm md:text-base font-medium">Devenir Chauffeur</span>
+                </div>
               </a>
             </div>
           </div>

@@ -25,17 +25,17 @@ export default function Services() {
         items={[
           {
             id: "app",
-            title: "Télécharger l'app cliente",
-            subtitle: "Scannez ou ouvrez le store",
-            qrSrc: `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(LINKS.playStoreUrl || LINKS.downloadUrl || '')}`,
-            href: LINKS.playStoreUrl || LINKS.downloadUrl || "#",
+            title: "Application Passager",
+            subtitle: "Scannez ou cliquez pour installer",
+            qrSrc: `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(LINKS.passengerAppUrl || '')}`,
+            href: LINKS.passengerAppUrl || "#",
           },
           {
             id: "driver",
-            title: "Télécharger l'app chauffeur",
-            subtitle: "Scannez ou ouvrez le store",
-            qrSrc: `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(LINKS.appStoreUrl || LINKS.downloadUrl || '')}`,
-            href: LINKS.appStoreUrl || LINKS.downloadUrl || "#",
+            title: "Application Chauffeur",
+            subtitle: "Scannez ou cliquez pour installer",
+            qrSrc: `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(LINKS.driverAppUrl || '')}`,
+            href: LINKS.driverAppUrl || "#",
           },
         ]}
       />
