@@ -3,8 +3,8 @@
 const BASE = import.meta?.env?.VITE_BASE_URL ?? "";
 const APP_URL = import.meta?.env?.VITE_APP_URL ?? `${BASE}/app`;
 // Direct APK download links from Expo builds
-const PASSENGER_APP_URL = "https://expo.dev/accounts/ticmiton/projects/transport/builds";
-const DRIVER_APP_URL = "https://expo.dev/accounts/ticmiton/projects/driver-app/builds";
+const PASSENGER_APP_URL = "https://expo.dev/artifacts/eas/gTdbwaJm3qjjJrPcSMmU7L.apk";
+const DRIVER_APP_URL = "https://expo.dev/artifacts/eas/mNe1eWZPEz3pxzBQ7cGYab.apk";
 const WHATSAPP_URL = import.meta?.env?.VITE_WHATSAPP_URL ?? "https://wa.me/2290157792662";
 const SUPPORT_EMAIL = import.meta?.env?.VITE_SUPPORT_EMAIL ?? "support@ticmiton.com";
 const LIVE_URL = import.meta?.env?.VITE_LIVE_URL ?? "https://ticmiton.com/";

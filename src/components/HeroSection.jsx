@@ -78,32 +78,29 @@ const HeroSection = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4 justify-center lg:justify-start pt-2 sm:pt-4">
-                {/* CTA Button */}
+                {/* CTA Button - Passenger App */}
                 <motion.a
                   href={PLACEHOLDER_LINKS.passengerAppUrl}
                   whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
                   whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
-                  className="bg-brand-orange text-white px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-md font-sans font-semibold text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 shadow-lg hover:bg-brand-orange-hover hover:text-brand-orange-light focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30 transition"
+                  className="bg-brand-orange text-white px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-md font-sans font-semibold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg hover:bg-brand-orange-hover hover:text-brand-orange-light focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30 transition"
                   aria-label="Télécharger l'application Passager"
                 >
-                  Télécharger Passager
+                  Téléchargez votre app ici
                   <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </motion.a>
 
-                {/* Store Badges replacement (Direct links) */}
-                <div className="flex items-center justify-center gap-3 sm:gap-4">
-                  <a
-                    href={PLACEHOLDER_LINKS.driverAppUrl}
-                    aria-label="Télécharger l'application Chauffeur"
-                    className="inline-block rounded-md focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-white/40"
-                    rel="noopener noreferrer"
-                  >
-                    <span className="inline-flex items-center gap-2 md:gap-2.5 rounded-md bg-gray-900 text-white px-3 py-1.5 md:px-4 md:py-2.5 border border-white/10 shadow hover:bg-gray-800 transition-colors">
-                      <Play className="w-4 h-4 md:w-5 md:h-5" aria-hidden="true" />
-                      <span className="font-sans text-sm md:text-base font-medium">Devenir Chauffeur</span>
-                    </span>
-                  </a>
-                </div>
+                {/* CTA Button - Driver App */}
+                <motion.a
+                  href={PLACEHOLDER_LINKS.driverAppUrl}
+                  whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
+                  whileTap={shouldReduceMotion ? {} : { scale: 0.97 }}
+                  className="bg-gray-900 text-white px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4 rounded-md font-sans font-semibold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg border border-white/10 hover:bg-gray-800 focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-white/40 transition"
+                  aria-label="Télécharger l'application Chauffeur"
+                >
+                  Téléchargez votre app/driver ici
+                  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
+                </motion.a>
               </div>
             </motion.div>
 
