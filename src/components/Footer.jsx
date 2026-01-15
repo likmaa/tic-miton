@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { motion, useReducedMotion } from "framer-motion";
-import { Facebook, Instagram, Linkedin, Send, PhoneCall } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Send, PhoneCall, Mail } from "lucide-react";
 import PLACEHOLDER_LINKS from "../config/links";
 
 const Footer = () => {
@@ -37,30 +37,17 @@ const Footer = () => {
             Recevez nos dernières actualités, offres exclusives et mises à jour directement dans votre boîte mail.
           </p>
 
-          {/* Newsletter Form */}
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="flex flex-col sm:flex-row gap-3 justify-center max-w-xl mx-auto pt-4"
-          >
-            <label htmlFor="newsletter-email" className="sr-only">
-              Adresse e-mail pour la newsletter
-            </label>
-            <input
-              id="newsletter-email"
-              type="email"
-              required
-              placeholder="Entrez votre adresse e-mail"
-              className="flex-1 px-5 py-3 rounded-full bg-white/10 text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-white transition"
-            />
-            <motion.button
+          {/* Newsletter CTA */}
+          <div className="flex justify-center pt-4">
+            <motion.a
+              href="mailto:contact@ticmiton.com?subject=Inscription%20Newsletter%20TIC%20Miton&body=Bonjour,%0A%0AJe%20souhaite%20m'inscrire%20à%20la%20newsletter%20TIC%20Miton.%0A%0AMerci!"
               whileHover={reduceMotion ? undefined : { scale: 1.05 }}
               whileTap={reduceMotion ? undefined : { scale: 0.95 }}
-              type="submit"
               className="bg-brand-orange text-white font-sans font-semibold px-6 py-3 rounded-md flex items-center justify-center gap-2 shadow-lg hover:bg-[#e66f00] hover:text-[#FFCA80] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30 transition"
             >
-              S’abonner <Send className="w-4 h-4" />
-            </motion.button>
-          </form>
+              <Mail className="w-4 h-4" /> S'inscrire à la newsletter
+            </motion.a>
+          </div>
         </motion.div>
 
         {/* Divider */}
@@ -81,12 +68,21 @@ const Footer = () => {
               Simplifiez vos déplacements avec TIC Miton, votre compagnon de mobilité intelligente et fiable.
             </p>
             {/* Phone CTA */}
-            <div>
+            <div className="space-y-2">
               <a
                 href="tel:+2290157792662"
                 className="inline-flex items-center gap-2 bg-brand-orange text-white px-3 sm:px-4 py-1.5 sm:py-2 text-sm sm:text-base rounded-md font-sans font-semibold shadow hover:bg-[#e66f00] hover:text-[#FFCA80] focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-brand-orange/30"
               >
-                <PhoneCall className="w-3 h-3 sm:w-4 sm:h-4" /> +229 0157792662
+                <PhoneCall className="w-3 h-3 sm:w-4 sm:h-4" /> +229 0157792662/0149860101
+              </a>
+            </div>
+            {/* Email CTA */}
+            <div>
+              <a
+                href="mailto:contact@ticmiton.com"
+                className="inline-flex items-center gap-2 text-white/90 hover:text-brand-orange transition-colors text-sm sm:text-base font-sans"
+              >
+                <Mail className="w-3 h-3 sm:w-4 sm:h-4" /> contact@ticmiton.com
               </a>
             </div>
           </div>
@@ -155,7 +151,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="text-center text-white/80 text-sm">
-          © {new Date().getFullYear()} TIC Miton — Tous droits réservés. | <Link to="/privacy-policy" className="hover:text-[#FFCA80] transition-colors">Politique de confidentialité</Link>
+          © {new Date().getFullYear()} TIC Miton 2026 — Tous droits réservés. | <Link to="/privacy-policy" className="hover:text-[#FFCA80] transition-colors">Politique de confidentialité</Link>
         </div>
       </div>
     </footer>
