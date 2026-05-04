@@ -247,12 +247,18 @@ export default function PrivacyPolicy() {
         </div>
 
         {/* CTA de retour */}
-        <div className="mt-12 pt-8 border-t border-gray-200 text-center">
+        <div className="mt-12 pt-8 border-t border-gray-200 text-center flex flex-wrap justify-center gap-4">
+          <Link
+            to="/cgu"
+            className="inline-flex items-center gap-2 text-brand-blue font-semibold hover:text-brand-orange underline"
+          >
+            Conditions générales d&apos;utilisation
+          </Link>
           <Link
             to="/"
             className="inline-flex items-center gap-2 bg-brand-blue text-white px-6 py-3 rounded-md font-sans font-semibold hover:bg-[#2b42b5] transition"
           >
-            ← Retour à l'accueil
+            ← Retour à l&apos;accueil
           </Link>
         </div>
       </section>

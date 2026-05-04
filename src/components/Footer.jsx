@@ -150,8 +150,12 @@ const Footer = () => {
         <div className="border-t border-white/20"></div>
 
         {/* Copyright */}
-        <div className="text-center text-white/80 text-sm">
-          © {new Date().getFullYear()} TIC Miton 2026 — Tous droits réservés. | <Link to="/privacy-policy" className="hover:text-[#FFCA80] transition-colors">Politique de confidentialité</Link>
+        <div className="text-center text-white/80 text-sm flex flex-wrap justify-center items-center gap-x-2 gap-y-1">
+          <span>© {new Date().getFullYear()} TIC Miton — Tous droits réservés.</span>
+          <span aria-hidden className="text-white/40">|</span>
+          <Link to="/cgu" className="hover:text-[#FFCA80] transition-colors">CGU</Link>
+          <span aria-hidden className="text-white/40">|</span>
+          <Link to="/confidentialite" className="hover:text-[#FFCA80] transition-colors">Politique de confidentialité</Link>
         </div>
       </div>
     </footer>
