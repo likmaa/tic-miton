@@ -2,9 +2,11 @@
 // sinon on garde des valeurs par défaut faciles à remplacer.
 const BASE = import.meta?.env?.VITE_BASE_URL ?? "";
 const APP_URL = import.meta?.env?.VITE_APP_URL ?? `${BASE}/app`;
-// Direct APK download links from Expo builds
-const PASSENGER_APP_URL = "https://expo.dev/artifacts/eas/nrMHexbCjb5WgVMXTwGzSR.apk";
-const DRIVER_APP_URL = "https://expo.dev/artifacts/eas/oLtFw2jPCiWJbfyx1JYmNf.apk";
+// Liens RÉELS des boutiques (vérifiés le 19/11/2026).
+// Passager : Android (Play Store) + iOS (App Store). Chauffeur : Android uniquement.
+const PASSENGER_PLAY_STORE = "https://play.google.com/store/apps/details?id=com.apktic.passenger";
+const PASSENGER_APP_STORE = "https://apps.apple.com/bj/app/tic-miton/id6766707068";
+const DRIVER_PLAY_STORE = "https://play.google.com/store/apps/details?id=com.apktic.driver";
 const WHATSAPP_URL = import.meta?.env?.VITE_WHATSAPP_URL ?? "https://wa.me/2290157792662";
 const SUPPORT_EMAIL = import.meta?.env?.VITE_SUPPORT_EMAIL ?? "support@ticmiton.com";
 const LIVE_URL = import.meta?.env?.VITE_LIVE_URL ?? "https://ticmiton.com/";
@@ -13,9 +15,16 @@ const PLACEHOLDER_LINKS = {
   // Application (web/app)
   appUrl: APP_URL,
 
-  // Apps - Direct download links
-  passengerAppUrl: PASSENGER_APP_URL,
-  driverAppUrl: DRIVER_APP_URL,
+  // Apps — lien « principal » mono-URL (marché très majoritairement Android au Bénin).
+  passengerAppUrl: PASSENGER_PLAY_STORE, // iOS passager : voir appStoreUrl / passengerAppStoreUrl
+  driverAppUrl: DRIVER_PLAY_STORE,       // chauffeur = Android uniquement (aucun lien iOS)
+
+  // Liens boutiques explicites (pour badges « Play Store » / « App Store »).
+  playStoreUrl: PASSENGER_PLAY_STORE,
+  appStoreUrl: PASSENGER_APP_STORE,
+  passengerPlayStoreUrl: PASSENGER_PLAY_STORE,
+  passengerAppStoreUrl: PASSENGER_APP_STORE,
+  driverPlayStoreUrl: DRIVER_PLAY_STORE,
 
   // Pages / ancres internes (utilise des routes ou ancres selon ta structure)
   features: {

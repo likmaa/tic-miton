@@ -106,6 +106,17 @@ const DownloadCTABand = ({
               <ArrowRight className="w-5 h-5" />
             </motion.a>
 
+            <a
+              href={PLACEHOLDER_LINKS.appStoreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Télécharger l'application Passager sur l'App Store"
+              className="inline-flex items-center gap-2 md:gap-2.5 rounded-md bg-gray-900 text-white px-3.5 py-2 md:px-4 md:py-2.5 border border-white/10 shadow hover:bg-gray-800 transition-colors"
+            >
+              <Apple className="w-4 h-4 md:w-5 md:h-5" aria-hidden="true" />
+              <span className="font-sans text-sm md:text-base font-medium">App Store</span>
+            </a>
+
             <div className="flex items-center gap-3 md:gap-4">
               <a
                 href={PLACEHOLDER_LINKS.driverAppUrl}

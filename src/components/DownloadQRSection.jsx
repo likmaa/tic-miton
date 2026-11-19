@@ -3,19 +3,22 @@ import { ArrowRight } from "lucide-react";
 import PLACEHOLDER_LINKS from "../config/links";
 
 
+const qrFor = (url) =>
+  `https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=${encodeURIComponent(url || "")}`;
+
 const DEFAULT_ITEMS = [
   {
     id: "app",
     title: "Application Passager",
-    subtitle: "Scannez pour télécharger",
-    qrSrc: "https://via.placeholder.com/220?text=QR+Passager", // remplace par ton QR
+    subtitle: "Scannez pour installer (Google Play / App Store)",
+    qrSrc: qrFor(PLACEHOLDER_LINKS.passengerAppUrl),
     href: PLACEHOLDER_LINKS.passengerAppUrl,
   },
   {
     id: "driver",
     title: "Application Chauffeur",
-    subtitle: "Scannez pour télécharger",
-    qrSrc: "https://via.placeholder.com/220?text=QR+Chauffeur",
+    subtitle: "Scannez pour installer (Google Play — Android)",
+    qrSrc: qrFor(PLACEHOLDER_LINKS.driverAppUrl),
     href: PLACEHOLDER_LINKS.driverAppUrl,
   },
 ];

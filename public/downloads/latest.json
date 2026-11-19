@@ -1,16 +1,13 @@
 {
-  "version": "0.0.0",
-  "releasedAt": "2025-01-01T00:00:00Z",
-  "android": {
-    "url": "downloads/android/app-latest.apk",
-    "sizeBytes": 0,
-    "sha256": "",
-    "minSdk": 24
+  "version": "2.3.1",
+  "releasedAt": "2026-11-19",
+  "distribution": "stores",
+  "passenger": {
+    "android": "https://play.google.com/store/apps/details?id=com.apktic.passenger",
+    "ios": "https://apps.apple.com/bj/app/tic-miton/id6766707068"
   },
-  "ios": {
-    "enterprisePlistUrl": "",
-    "testFlightUrl": "https://testflight.apple.com/",
-    "minIOS": "14.0"
+  "driver": {
+    "android": "https://play.google.com/store/apps/details?id=com.apktic.driver"
   },
-  "notes": "Replace with your real release metadata."
+  "notes": "Distribution via les boutiques (Google Play / App Store). Plus d'APK en telechargement direct."
 }
